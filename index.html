@@ -1,0 +1,1154 @@
+```html
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recargas Montefinix</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(circle at top, #24103f 0%, #0c0c18 45%, #07070d 100%);
+            color: white;
+            min-height: 100vh;
+        }
+
+        header {
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(5,5,12,0.65);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ffb000;
+        }
+
+        .status {
+            font-size: 13px;
+            color: #8cffad;
+            display: flex;
+            align-items: center;
+            gap: 7px;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #43ff79;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #43ff79;
+        }
+
+        main {
+            width: min(1050px, 92%);
+            margin: 45px auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 58px);
+            font-weight: 900;
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            color: #ffb000;
+        }
+
+        .hero p {
+            color: #aaa9b8;
+            margin-top: 12px;
+            font-size: 16px;
+        }
+
+        .layout {
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 22px;
+        }
+
+        .card {
+            background: rgba(19,19,31,0.9);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #d7d5df;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .input-area {
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #343442;
+            background: #0d0d17;
+            color: white;
+            outline: none;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #ffb000;
+            box-shadow: 0 0 0 3px rgba(255,176,0,0.1);
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: 800;
+            transition: 0.2s;
+        }
+
+        .search-btn {
+            padding: 0 20px;
+            border-radius: 12px;
+            background: #ffb000;
+            color: #111;
+            white-space: nowrap;
+        }
+
+        .search-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            filter: none;
+        }
+
+        .player {
+            margin-top: 18px;
+            background: #11111d;
+            border: 1px solid #2d2d3d;
+            border-radius: 15px;
+            padding: 16px;
+            display: none;
+            align-items: center;
+            gap: 14px;
+            animation: appear 0.3s ease;
+        }
+
+        .player.show {
+            display: flex;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #ffb000, #ff5c00);
+            font-size: 22px;
+        }
+
+        .player-name {
+            font-weight: 800;
+            font-size: 17px;
+        }
+
+        .player-id {
+            color: #92919e;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .message {
+            font-size: 13px;
+            margin-top: 12px;
+            min-height: 18px;
+            color: #ffcb5c;
+        }
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .package {
+            padding: 20px 12px;
+            border-radius: 15px;
+            background: #11111d;
+            border: 1px solid #2d2d3d;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .package:hover {
+            transform: translateY(-3px);
+            border-color: #ffb000;
+        }
+
+        .package.selected {
+            border-color: #ffb000;
+            background: rgba(255,176,0,0.1);
+            box-shadow: 0 0 20px rgba(255,176,0,0.08);
+        }
+
+        .diamonds {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .diamond-icon {
+            font-size: 18px;
+        }
+
+        .price {
+            margin-top: 8px;
+            color: #aaa9b8;
+            font-size: 14px;
+        }
+
+        .summary {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #292936;
+            color: #aaa9b8;
+            font-size: 14px;
+        }
+
+        .summary-row strong {
+            color: white;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 22px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #ffb000, #ff7200);
+            color: #111;
+            font-size: 16px;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,150,0,0.25);
+        }
+
+        .buy-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .secure {
+            text-align: center;
+            color: #777684;
+            font-size: 12px;
+            margin-top: 14px;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: min(430px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #171722;
+            border: 1px solid #333342;
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            animation: appear 0.25s ease;
+        }
+
+        .success {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .modal-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .modal-box p {
+            color: #aaa9b8;
+            line-height: 1.5;
+        }
+
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-top: 22px;
+        }
+
+        .payment-option {
+            width: 100%;
+            padding: 15px;
+            border-radius: 13px;
+            background: #11111d;
+            border: 1px solid #343442;
+            color: white;
+            text-align: left;
+        }
+
+        .payment-option:hover {
+            border-color: #ffb000;
+            transform: translateY(-2px);
+        }
+
+        .payment-option.disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .payment-option.disabled:hover {
+            transform: none;
+            border-color: #343442;
+        }
+
+        .payment-title {
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .payment-subtitle {
+            display: block;
+            color: #888795;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .transfer-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: #11111d;
+            border: 1px solid #343442;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .transfer-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .transfer-row {
+            margin-bottom: 13px;
+        }
+
+        .transfer-label {
+            display: block;
+            color: #888795;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .transfer-value {
+            color: white;
+            font-weight: 800;
+            word-break: break-word;
+        }
+
+        .chat-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            margin-top: 10px;
+            background: #25d366;
+            color: white;
+        }
+
+        .back-btn,
+        .close-btn,
+        .cancel-btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .back-btn {
+            margin-top: 10px;
+            background: #292936;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #ffb000, #ff7200);
+            color: #111;
+        }
+
+        .close-btn:hover,
+        .chat-btn:hover,
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .cancel-btn {
+            margin-top: 10px;
+            background: #7d2525;
+        }
+
+        .cancel-btn:hover {
+            background: #a52e2e;
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 750px) {
+            header {
+                padding: 16px 5%;
+            }
+
+            .status {
+                display: none;
+            }
+
+            main {
+                margin: 30px auto;
+            }
+
+            .layout {
+                grid-template-columns: 1fr;
+            }
+
+            .summary {
+                position: static;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 14px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">🔥 MONTEFINIX<span>Recargas</span></div>
+
+    <div class="status">
+        <span id="statusDot" class="status-dot"></span>
+        <span id="statusText">Comprobando servidor...</span>
+    </div>
+</header>
+
+<main>
+
+    <section class="hero">
+        <h1>Recargá <span>Diamantes</span></h1>
+        <p>Ingresá tu ID para validar tu cuenta en tiempo real.</p>
+    </section>
+
+    <div class="layout">
+
+        <section class="card">
+
+            <div class="card-title">1. Identificá tu cuenta</div>
+
+            <label for="uid">ID / UID de Free Fire</label>
+
+            <div class="input-area">
+
+                <input
+                    type="number"
+                    id="uid"
+                    placeholder="Ej: 123456789"
+                    autocomplete="off"
+                    min="1"
+                    inputmode="numeric"
+                >
+
+                <button
+                    id="searchButton"
+                    class="search-btn"
+                    onclick="buscarJugador()"
+                >
+                    🔍 Buscar
+                </button>
+
+            </div>
+
+            <div id="message" class="message"></div>
+
+            <div id="player" class="player">
+
+                <div class="avatar">👤</div>
+
+                <div>
+                    <div id="playerName" class="player-name">-</div>
+                    <div id="playerId" class="player-id">ID: -</div>
+                </div>
+
+            </div>
+
+            <div class="card-title" style="margin-top:30px;">
+                2. Elegí tus diamantes
+            </div>
+
+            <div class="packages">
+
+                <div class="package" onclick="seleccionarPaquete(this, 110, 1600, '1')">
+                    <div class="diamonds">110 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$1.600</div>
+                </div>
+
+                <div class="package" onclick="seleccionarPaquete(this, 341, 4000, '3')">
+                    <div class="diamonds">341 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$4.000</div>
+                </div>
+
+                <div class="package" onclick="seleccionarPaquete(this, 572, 6900, '4')">
+                    <div class="diamonds">572 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$6.900</div>
+                </div>
+
+                <div class="package" onclick="seleccionarPaquete(this, 1166, 12600, '5')">
+                    <div class="diamonds">1166 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$12.600</div>
+                </div>
+
+                <div class="package" onclick="seleccionarPaquete(this, 2398, 24700, '48')">
+                    <div class="diamonds">2398 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$24.700</div>
+                </div>
+
+                <div class="package" onclick="seleccionarPaquete(this, 6160, 62000, '49')">
+                    <div class="diamonds">6160 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$62.000</div>
+                </div>
+
+            </div>
+
+        </section>
+
+        <aside class="card summary">
+
+            <div class="card-title">Resumen</div>
+
+            <div class="summary-row">
+                <span>Jugador</span>
+                <strong id="summaryPlayer">No seleccionado</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>ID</span>
+                <strong id="summaryId">-</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Diamantes</span>
+                <strong id="summaryDiamonds">-</strong>
+            </div>
+
+            <div class="total">
+                <span>Total</span>
+                <span id="total">$0</span>
+            </div>
+
+            <button
+                id="buyButton"
+                class="buy-btn"
+                onclick="comprar()"
+                disabled
+            >
+                Continuar
+            </button>
+
+            <div class="secure">
+                🔒 Tus datos se mantienen seguros
+            </div>
+
+        </aside>
+
+    </div>
+
+</main>
+
+<div id="modal" class="modal">
+
+    <div class="modal-box">
+
+        <div id="modalIcon" class="success">⏳</div>
+
+        <h2 id="modalTitle">Preparando pedido</h2>
+
+        <p id="modalText">-</p>
+
+        <div id="paymentOptions" class="payment-options" style="display:none;">
+
+            <button class="payment-option" onclick="mostrarTransferencia()">
+                <span class="payment-title">🏦 Transferencia bancaria</span>
+                <span class="payment-subtitle">Pago manual</span>
+            </button>
+
+            <button class="payment-option disabled" disabled>
+                <span class="payment-title">💳 Mercado Pago</span>
+                <span class="payment-subtitle">Próximamente</span>
+            </button>
+
+            <button class="payment-option disabled" disabled>
+                <span class="payment-title">💰 Otro método de pago</span>
+                <span class="payment-subtitle">Próximamente</span>
+            </button>
+
+        </div>
+
+        <div id="transferBox" class="transfer-box" style="display:none;">
+
+            <h3>🏦 Datos para transferir</h3>
+
+            <div class="transfer-row">
+                <span class="transfer-label">Alias</span>
+                <span class="transfer-value">alexis.coutoune</span>
+            </div>
+
+            <div class="transfer-row">
+                <span class="transfer-label">CVU</span>
+                <span class="transfer-value">0000003100072529868807</span>
+            </div>
+
+            <div class="transfer-row">
+                <span class="transfer-label">Cuenta</span>
+                <span class="transfer-value">Alexis Dylan Coutoune</span>
+            </div>
+
+            <div class="transfer-row">
+                <span class="transfer-label">Importe exacto</span>
+                <span id="transferAmount" class="transfer-value">$0</span>
+            </div>
+
+            <button class="chat-btn" onclick="enviarComprobante()">
+                📲 Enviar comprobante
+            </button>
+
+            <button class="back-btn" onclick="volverMetodosPago()">
+                ← Volver a métodos de pago
+            </button>
+
+        </div>
+
+        <button
+            id="closeButton"
+            class="close-btn"
+            onclick="pagarAhora()"
+        >
+            💳 Pagar ahora
+        </button>
+
+        <button
+            id="cancelButton"
+            class="cancel-btn"
+            onclick="cancelarPedido()"
+            style="display:none;"
+        >
+            Cancelar pedido
+        </button>
+
+    </div>
+
+</div>
+
+<script>
+    const API_URL = "https://recargas-montefinix-server.onrender.com";
+
+    const CHAT_URL = "https://wa.me/1169830690";
+
+    let jugadorEncontrado = false;
+    let paqueteSeleccionado = null;
+    let pedidoActual = null;
+
+    async function comprobarServidor() {
+        const statusText = document.getElementById("statusText");
+        const statusDot = document.getElementById("statusDot");
+
+        try {
+            const respuesta = await fetch(`${API_URL}/api/estado`);
+
+            if (!respuesta.ok) {
+                throw new Error("Servidor no disponible");
+            }
+
+            statusText.textContent = "Servidor activo";
+            statusDot.style.background = "#43ff79";
+            statusDot.style.boxShadow = "0 0 10px #43ff79";
+
+        } catch (error) {
+            statusText.textContent = "Servidor desconectado";
+            statusDot.style.background = "#ff4545";
+            statusDot.style.boxShadow = "0 0 10px #ff4545";
+        }
+    }
+
+    async function buscarJugador() {
+        const uidInput = document.getElementById("uid");
+        const uid = uidInput.value.trim();
+        const message = document.getElementById("message");
+        const player = document.getElementById("player");
+
+        if (!uid) {
+            message.textContent = "⚠️ Primero ingresá un ID.";
+            player.classList.remove("show");
+            jugadorEncontrado = false;
+            actualizarResumen();
+            return;
+        }
+
+        if (!/^\d+$/.test(uid)) {
+            message.textContent = "⚠️ El ID debe contener solamente números.";
+            player.classList.remove("show");
+            jugadorEncontrado = false;
+            actualizarResumen();
+            return;
+        }
+
+        if (uid.length < 6) {
+            message.textContent = "⚠️ El ID parece demasiado corto.";
+            player.classList.remove("show");
+            jugadorEncontrado = false;
+            actualizarResumen();
+            return;
+        }
+
+        document.getElementById("playerName").textContent = "ID ingresado";
+        document.getElementById("playerId").textContent = "ID: " + uid;
+
+        message.textContent = "✅ ID ingresado correctamente.";
+
+        player.classList.add("show");
+
+        jugadorEncontrado = true;
+
+        actualizarResumen();
+    }
+
+    function seleccionarPaquete(elemento, diamantes, precio, variantId) {
+        document
+            .querySelectorAll(".package")
+            .forEach(pkg => pkg.classList.remove("selected"));
+
+        elemento.classList.add("selected");
+
+        paqueteSeleccionado = {
+            diamantes: diamantes,
+            precio: precio,
+            variant_id: variantId
+        };
+
+        actualizarResumen();
+    }
+
+    function actualizarResumen() {
+        const uid = document.getElementById("uid").value.trim();
+
+        if (jugadorEncontrado) {
+            document.getElementById("summaryPlayer").textContent =
+                document.getElementById("playerName").textContent;
+
+            document.getElementById("summaryId").textContent = uid;
+        } else {
+            document.getElementById("summaryPlayer").textContent =
+                "No seleccionado";
+
+            document.getElementById("summaryId").textContent = "-";
+        }
+
+        if (paqueteSeleccionado) {
+            document.getElementById("summaryDiamonds").textContent =
+                paqueteSeleccionado.diamantes + " 💎";
+
+            document.getElementById("total").textContent =
+                "$" + paqueteSeleccionado.precio.toLocaleString("es-AR");
+        } else {
+            document.getElementById("summaryDiamonds").textContent = "-";
+            document.getElementById("total").textContent = "$0";
+        }
+
+        document.getElementById("buyButton").disabled =
+            !(jugadorEncontrado && paqueteSeleccionado);
+    }
+
+    async function comprar() {
+        if (!jugadorEncontrado || !paqueteSeleccionado || pedidoActual) {
+            return;
+        }
+
+        const nombre =
+            document.getElementById("playerName").textContent;
+
+        const uid =
+            document.getElementById("uid").value.trim();
+
+        const diamantes =
+            paqueteSeleccionado.diamantes;
+
+        const precio =
+            paqueteSeleccionado.precio;
+
+        const precioMostrar =
+            precio.toLocaleString("es-AR");
+
+        const merchantRef =
+            "prueba-" + Date.now();
+
+        pedidoActual = {
+            merchant_ref: merchantRef,
+            pagando: false,
+            cancelando: false
+        };
+
+        const modal = document.getElementById("modal");
+        const closeButton = document.getElementById("closeButton");
+        const cancelButton = document.getElementById("cancelButton");
+
+        closeButton.disabled = true;
+        closeButton.textContent = "Preparando...";
+        cancelButton.style.display = "none";
+        cancelButton.disabled = false;
+        cancelButton.textContent = "Cancelar pedido";
+
+        document.getElementById("paymentOptions").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
+
+        document.getElementById("modalIcon").textContent = "⏳";
+        document.getElementById("modalTitle").textContent =
+            "Preparando pedido";
+
+        document.getElementById("modalText").innerHTML = `
+            Estamos preparando tu pedido.<br><br>
+            Jugador: <strong>${nombre}</strong><br>
+            Paquete: <strong>${diamantes} 💎</strong><br>
+            Total: <strong>$${precioMostrar}</strong>
+        `;
+
+        modal.classList.add("show");
+
+        try {
+            const respuesta = await fetch(
+                `${API_URL}/api/recarga-prueba`,
+                {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        paquete: String(diamantes),
+                        game_id: uid,
+                        merchant_ref: merchantRef,
+                        precio: precio
+                    })
+                }
+            );
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error || "No se pudo crear el pedido."
+                );
+            }
+
+            pedidoActual = {
+                ...datos.pedido,
+                pagando: false,
+                cancelando: false
+            };
+
+            document.getElementById("modalIcon").textContent = "💎";
+            document.getElementById("modalTitle").textContent =
+                "Pedido preparado";
+
+            document.getElementById("modalText").innerHTML = `
+                Jugador: <strong>${nombre}</strong><br>
+                Paquete: <strong>${diamantes} 💎</strong><br>
+                Total: <strong>$${precioMostrar}</strong>
+                <br><br>
+                Elegí un método de pago para continuar.
+            `;
+
+            closeButton.disabled = false;
+            closeButton.textContent = "💳 Pagar ahora";
+            cancelButton.style.display = "block";
+
+        } catch (error) {
+            document.getElementById("modalIcon").textContent = "❌";
+            document.getElementById("modalTitle").textContent =
+                "Error";
+
+            document.getElementById("modalText").innerHTML = `
+                No se pudo preparar el pedido.
+                <br><br>
+                Intentá nuevamente.
+            `;
+
+            closeButton.disabled = false;
+            closeButton.textContent = "💳 Pagar ahora";
+            cancelButton.style.display = "none";
+            pedidoActual = null;
+        }
+    }
+
+    function pagarAhora() {
+        if (!pedidoActual || !pedidoActual.merchant_ref) {
+            return;
+        }
+
+        const precio =
+            Number(pedidoActual.precio || paqueteSeleccionado?.precio || 0);
+
+        document.getElementById("modalIcon").textContent = "💳";
+        document.getElementById("modalTitle").textContent =
+            "Elegí cómo pagar";
+
+        document.getElementById("modalText").innerHTML = `
+            Seleccioná uno de los métodos disponibles.
+            <br><br>
+            Total: <strong>$${precio.toLocaleString("es-AR")}</strong>
+        `;
+
+        document.getElementById("paymentOptions").style.display = "flex";
+        document.getElementById("transferBox").style.display = "none";
+
+        document.getElementById("closeButton").style.display = "none";
+    }
+
+    function mostrarTransferencia() {
+        if (!pedidoActual) {
+            return;
+        }
+
+        const precio =
+            Number(pedidoActual.precio || paqueteSeleccionado?.precio || 0);
+
+        document.getElementById("modalIcon").textContent = "🏦";
+        document.getElementById("modalTitle").textContent =
+            "Transferencia bancaria";
+
+        document.getElementById("modalText").innerHTML = `
+            Realizá la transferencia por el importe exacto.
+            <br><br>
+            Después enviá el comprobante.
+        `;
+
+        document.getElementById("paymentOptions").style.display = "none";
+        document.getElementById("transferBox").style.display = "block";
+
+        document.getElementById("transferAmount").textContent =
+            "$" + precio.toLocaleString("es-AR");
+
+        document.getElementById("cancelButton").style.display = "block";
+    }
+
+    function volverMetodosPago() {
+        pagarAhora();
+    }
+
+    function enviarComprobante() {
+        if (!pedidoActual) {
+            return;
+        }
+
+        const uid =
+            document.getElementById("uid").value.trim();
+
+        const paquete =
+            paqueteSeleccionado?.diamantes || pedidoActual.paquete;
+
+        const precio =
+            Number(pedidoActual.precio || paqueteSeleccionado?.precio || 0);
+
+        const mensaje = encodeURIComponent(
+            `Hola, quiero enviar el comprobante de mi pedido ${pedidoActual.merchant_ref}. UID: ${uid}. Paquete: ${paquete} diamantes. Total: $${precio.toLocaleString("es-AR")}.`
+        );
+
+        window.open(`${CHAT_URL}?text=${mensaje}`, "_blank");
+    }
+
+    async function cancelarPedido() {
+        if (
+            !pedidoActual ||
+            !pedidoActual.merchant_ref ||
+            pedidoActual.cancelando
+        ) {
+            return;
+        }
+
+        const merchantRef = pedidoActual.merchant_ref;
+        const cancelButton = document.getElementById("cancelButton");
+        const closeButton = document.getElementById("closeButton");
+
+        pedidoActual.cancelando = true;
+
+        cancelButton.disabled = true;
+        cancelButton.textContent = "Cancelando...";
+        closeButton.disabled = true;
+
+        try {
+            const respuesta = await fetch(
+                `${API_URL}/api/pedido/${encodeURIComponent(merchantRef)}/cancelar`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                }
+            );
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error || "No se pudo cancelar el pedido."
+                );
+            }
+
+            document.getElementById("modalIcon").textContent = "❌";
+            document.getElementById("modalTitle").textContent =
+                "Pedido cancelado";
+
+            document.getElementById("modalText").innerHTML = `
+                El pedido fue cancelado correctamente.
+            `;
+
+            document.getElementById("paymentOptions").style.display = "none";
+            document.getElementById("transferBox").style.display = "none";
+
+            cancelButton.style.display = "none";
+            pedidoActual = null;
+
+            closeButton.style.display = "block";
+            closeButton.disabled = false;
+            closeButton.textContent = "Cerrar";
+            closeButton.onclick = cerrarModal;
+
+        } catch (error) {
+            if (pedidoActual) {
+                pedidoActual.cancelando = false;
+            }
+
+            cancelButton.disabled = false;
+            cancelButton.textContent = "Cancelar pedido";
+            closeButton.disabled = false;
+
+            document.getElementById("modalText").innerHTML += `
+                <br><br>
+                No se pudo cancelar el pedido. Intentá nuevamente.
+            `;
+        }
+    }
+
+    function cerrarModal() {
+        document
+            .getElementById("modal")
+            .classList.remove("show");
+
+        const closeButton = document.getElementById("closeButton");
+        const cancelButton = document.getElementById("cancelButton");
+
+        document.getElementById("paymentOptions").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
+
+        closeButton.style.display = "block";
+        closeButton.disabled = false;
+        closeButton.textContent = "💳 Pagar ahora";
+        closeButton.onclick = pagarAhora;
+
+        cancelButton.disabled = false;
+        cancelButton.textContent = "Cancelar pedido";
+        cancelButton.style.display = "none";
+
+        pedidoActual = null;
+    }
+
+    comprobarServidor();
+</script>
+
+</body>
+</html>
+```
