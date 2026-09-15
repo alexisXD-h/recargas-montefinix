@@ -60,82 +60,6 @@
             box-shadow: 0 0 10px #43ff79;
         }
 
-        .header-actions {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-        }
-
-        .admin-btn {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            border: 1px solid #343442;
-            background: #11111d;
-            color: white;
-            font-size: 18px;
-            display: grid;
-            place-items: center;
-        }
-
-        .admin-btn:hover {
-            border-color: #ffb000;
-            transform: translateY(-2px);
-        }
-
-        .admin-order {
-            background: #11111d;
-            border: 1px solid #343442;
-            border-radius: 15px;
-            padding: 16px;
-            margin-top: 12px;
-            text-align: left;
-        }
-
-        .admin-order-title {
-            font-size: 16px;
-            font-weight: 900;
-            margin-bottom: 10px;
-        }
-
-        .admin-order-info {
-            color: #aaa9b8;
-            font-size: 13px;
-            line-height: 1.8;
-        }
-
-        .admin-order-info strong {
-            color: white;
-        }
-
-        .admin-actions {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 8px;
-            margin-top: 14px;
-        }
-
-        .admin-confirm,
-        .admin-cancel {
-            padding: 12px;
-            border-radius: 10px;
-            color: white;
-        }
-
-        .admin-confirm {
-            background: #1f9d55;
-        }
-
-        .admin-cancel {
-            background: #7d2525;
-        }
-
-        .admin-confirm:disabled,
-        .admin-cancel:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
         main {
             width: min(1050px, 92%);
             margin: 45px auto;
@@ -540,6 +464,216 @@
             background: #a52e2e;
         }
 
+
+        .admin-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #1b1b2a;
+            border: 1px solid #343442;
+            color: white;
+            font-size: 18px;
+            display: grid;
+            place-items: center;
+        }
+
+        .admin-btn:hover {
+            border-color: #ffb000;
+            transform: translateY(-2px);
+        }
+
+        .admin-modal-box {
+            width: min(1100px, 96vw);
+            max-width: 1100px;
+            height: min(90vh, 800px);
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        #adminPanelView {
+            flex: 1;
+            min-height: 0;
+            flex-direction: column;
+        }
+
+        #adminOrders {
+            flex: 1;
+            min-height: 0;
+            overflow: auto;
+            padding-right: 2px;
+        }
+
+        .admin-fixed-footer {
+            flex-shrink: 0;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #343442;
+            background: #171722;
+        }
+
+        .admin-login {
+            text-align: center;
+        }
+
+        .admin-orders-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 20px;
+            border: 1px solid #343442;
+            border-radius: 14px;
+            background: #0d0d17;
+        }
+
+        .admin-orders {
+            width: 100%;
+            min-width: 760px;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        .admin-orders th {
+            padding: 13px 12px;
+            background: #171722;
+            color: #aaa9b8;
+            text-align: left;
+            font-weight: 800;
+            border-bottom: 1px solid #343442;
+            white-space: nowrap;
+        }
+
+        .admin-orders td {
+            padding: 12px;
+            border-bottom: 1px solid #242432;
+            color: #eee;
+            white-space: nowrap;
+        }
+
+        .admin-orders tbody tr {
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .admin-orders tbody tr:hover {
+            background: rgba(255,176,0,0.06);
+        }
+
+        .admin-orders tbody tr.selected {
+            background: rgba(255,176,0,0.13);
+            box-shadow: inset 3px 0 0 #ffb000;
+        }
+
+        .admin-orders tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-empty {
+            padding: 35px 20px;
+            text-align: center;
+            color: #888795;
+        }
+
+        .admin-selection {
+            padding: 15px;
+            border: 1px solid #343442;
+            border-radius: 14px;
+            background: #11111d;
+        }
+
+        .admin-selection-info {
+            color: #aaa9b8;
+            font-size: 13px;
+            min-height: 18px;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .admin-footer-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .admin-footer-buttons button {
+            flex: 1;
+        }
+
+        .admin-action {
+            flex: 1;
+            padding: 13px;
+            border-radius: 11px;
+            color: white;
+        }
+
+        .admin-confirm {
+            background: #1e8f4d;
+        }
+
+        .admin-cancel {
+            background: #7d2525;
+        }
+
+        .admin-action:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .admin-action:not(:disabled):hover {
+            transform: translateY(-2px);
+        }
+
+        .admin-status {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 8px;
+            font-size: 11px;
+            font-weight: 800;
+            border: 1px solid transparent;
+        }
+
+        .admin-status-pendiente {
+            color: #ffcb5c;
+            background: rgba(255,203,92,0.1);
+            border-color: rgba(255,203,92,0.25);
+        }
+
+        .admin-status-pagado {
+            color: #8cffad;
+            background: rgba(67,255,121,0.1);
+            border-color: rgba(67,255,121,0.25);
+        }
+
+        .admin-status-procesando {
+            color: #7dc7ff;
+            background: rgba(125,199,255,0.1);
+            border-color: rgba(125,199,255,0.25);
+        }
+
+        .admin-status-enviado {
+            color: #75ffcf;
+            background: rgba(117,255,207,0.1);
+            border-color: rgba(117,255,207,0.25);
+        }
+
+        .admin-status-error,
+        .admin-status-cancelado {
+            color: #ff8b8b;
+            background: rgba(255,69,69,0.1);
+            border-color: rgba(255,69,69,0.25);
+        }
+
+        @media (max-width: 750px) {
+            .admin-actions {
+                flex-direction: column;
+            }
+        }
+
         @keyframes appear {
             from {
                 opacity: 0;
@@ -589,7 +723,7 @@
 <header>
     <div class="logo">🔥 MONTEFINIX<span>Recargas</span></div>
 
-    <div class="header-actions">
+    <div style="display:flex;align-items:center;gap:14px;">
         <div class="status">
             <span id="statusDot" class="status-dot"></span>
             <span id="statusText">Comprobando servidor...</span>
@@ -814,12 +948,13 @@
 
 </div>
 
+
 <div id="adminModal" class="modal">
-    <div class="modal-box">
-        <div id="adminLoginView">
-            <div id="adminLoginIcon" class="success">🔐</div>
+    <div class="modal-box admin-modal-box">
+        <div id="adminLoginView" class="admin-login">
+            <div class="success">🔐</div>
             <h2>Panel de administración</h2>
-            <p>Ingresá la clave de administrador para gestionar los pedidos pendientes.</p>
+            <p>Ingresá la clave de administrador para acceder a los pedidos.</p>
             <input id="adminSecretInput" type="password" placeholder="Clave de administrador" autocomplete="off" style="margin-top:18px;">
             <div id="adminLoginMessage" class="message"></div>
             <button class="close-btn" onclick="entrarAdmin()">Ingresar</button>
@@ -827,12 +962,28 @@
         </div>
 
         <div id="adminPanelView" style="display:none;">
-            <div class="success">⚙️</div>
-            <h2>Pedidos pendientes</h2>
-            <p id="adminPanelMessage">Cargando pedidos...</p>
+            <div style="text-align:center;">
+                <div class="success">⚙️</div>
+                <h2>Pedidos</h2>
+                <p id="adminPanelMessage">Cargando pedidos...</p>
+            </div>
+
             <div id="adminOrders"></div>
-            <button class="back-btn" onclick="cargarPedidosAdmin()">🔄 Actualizar</button>
-            <button class="close-btn" onclick="cerrarAdmin()">Cerrar</button>
+
+            <div class="admin-fixed-footer">
+                <div class="admin-selection">
+                    <div id="adminSelectionInfo" class="admin-selection-info">Seleccioná un pedido para gestionar su pago.</div>
+                    <div class="admin-actions">
+                        <button id="adminConfirmButton" class="admin-action admin-confirm" onclick="acreditarPedidoSeleccionado()" disabled>✓ Confirmar pago</button>
+                        <button id="adminCancelButton" class="admin-action admin-cancel" onclick="cancelarPedidoSeleccionado()" disabled>✕ Cancelar</button>
+                    </div>
+                </div>
+
+                <div class="admin-footer-buttons">
+                    <button class="back-btn" onclick="cargarPedidosAdmin()">🔄 Actualizar</button>
+                    <button class="close-btn" onclick="cerrarAdmin()">Cerrar</button>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -845,193 +996,6 @@
     let jugadorEncontrado = false;
     let paqueteSeleccionado = null;
     let pedidoActual = null;
-    let adminSecret = "";
-
-    function abrirAdminLogin() {
-        document.getElementById("adminModal").classList.add("show");
-        document.getElementById("adminLoginView").style.display = "block";
-        document.getElementById("adminPanelView").style.display = "none";
-        document.getElementById("adminLoginMessage").textContent = "";
-        document.getElementById("adminSecretInput").value = "";
-        setTimeout(() => document.getElementById("adminSecretInput").focus(), 100);
-    }
-
-    function cerrarAdmin() {
-        document.getElementById("adminModal").classList.remove("show");
-        document.getElementById("adminLoginMessage").textContent = "";
-        document.getElementById("adminPanelMessage").textContent = "";
-        document.getElementById("adminOrders").innerHTML = "";
-        adminSecret = "";
-    }
-
-    async function entrarAdmin() {
-        const input = document.getElementById("adminSecretInput");
-        const message = document.getElementById("adminLoginMessage");
-        const secret = input.value.trim();
-
-        if (!secret) {
-            message.textContent = "⚠️ Ingresá la clave.";
-            return;
-        }
-
-        message.textContent = "Verificando...";
-
-        try {
-            const respuesta = await fetch(`${API_URL}/api/pedidos`, {
-                headers: {
-                    "x-admin-secret": secret
-                }
-            });
-
-            const datos = await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(datos.error || "Clave incorrecta.");
-            }
-
-            adminSecret = secret;
-            document.getElementById("adminLoginView").style.display = "none";
-            document.getElementById("adminPanelView").style.display = "block";
-            mostrarPedidosAdmin(datos.pedidos || []);
-        } catch (error) {
-            message.textContent = "❌ " + error.message;
-        }
-    }
-
-    function mostrarPedidosAdmin(pedidos) {
-        const container = document.getElementById("adminOrders");
-        const message = document.getElementById("adminPanelMessage");
-        const pendientes = pedidos.filter(p => p.estado === "PENDIENTE");
-
-        if (!pendientes.length) {
-            message.textContent = "No hay pedidos pendientes.";
-            container.innerHTML = "";
-            return;
-        }
-
-        message.textContent = `Hay ${pendientes.length} pedido${pendientes.length === 1 ? "" : "s"} pendiente${pendientes.length === 1 ? "" : "s"}.`;
-
-        container.innerHTML = pendientes.map(pedido => `
-            <div class="admin-order">
-                <div class="admin-order-title">Pedido #${pedido.id}</div>
-                <div class="admin-order-info">
-                    Referencia: <strong>${escapeHtmlAdmin(pedido.merchant_ref)}</strong><br>
-                    UID: <strong>${escapeHtmlAdmin(pedido.game_id)}</strong><br>
-                    Paquete: <strong>${escapeHtmlAdmin(pedido.paquete)} 💎</strong><br>
-                    Precio: <strong>$${Number(pedido.precio || 0).toLocaleString("es-AR")}</strong><br>
-                    Estado: <strong>${escapeHtmlAdmin(pedido.estado)}</strong>
-                </div>
-                <div class="admin-actions">
-                    <button class="admin-confirm" onclick="acreditarPedido('${encodeURIComponent(pedido.merchant_ref)}')">✓ Confirmar pago</button>
-                    <button class="admin-cancel" onclick="cancelarPedidoAdmin('${encodeURIComponent(pedido.merchant_ref)}')">✕ Cancelar</button>
-                </div>
-            </div>
-        `).join("");
-    }
-
-    function escapeHtmlAdmin(value) {
-        return String(value ?? "").replace(/[&<>'"]/g, char => ({
-            "&": "&amp;",
-            "<": "&lt;",
-            ">": "&gt;",
-            "'": "&#39;",
-            '"': "&quot;"
-        }[char]));
-    }
-
-    async function cargarPedidosAdmin() {
-        if (!adminSecret) {
-            abrirAdminLogin();
-            return;
-        }
-
-        const message = document.getElementById("adminPanelMessage");
-        message.textContent = "Cargando pedidos...";
-
-        try {
-            const respuesta = await fetch(`${API_URL}/api/pedidos`, {
-                headers: {
-                    "x-admin-secret": adminSecret
-                }
-            });
-
-            const datos = await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(datos.error || "No se pudieron cargar los pedidos.");
-            }
-
-            mostrarPedidosAdmin(datos.pedidos || []);
-        } catch (error) {
-            message.textContent = "❌ " + error.message;
-        }
-    }
-
-    async function acreditarPedido(merchantRef) {
-        if (!adminSecret) {
-            return;
-        }
-
-        if (!confirm("¿Confirmás que recibiste el pago de este pedido?")) {
-            return;
-        }
-
-        try {
-            const respuesta = await fetch(`${API_URL}/api/admin/pedido/${merchantRef}/acreditar`, {
-                method: "PATCH",
-                headers: {
-                    "x-admin-secret": adminSecret
-                }
-            });
-
-            const datos = await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(datos.error || "No se pudo acreditar el pago.");
-            }
-
-            await cargarPedidosAdmin();
-        } catch (error) {
-            document.getElementById("adminPanelMessage").textContent = "❌ " + error.message;
-        }
-    }
-
-    async function cancelarPedidoAdmin(merchantRef) {
-        if (!adminSecret) {
-            return;
-        }
-
-        if (!confirm("¿Querés cancelar este pedido pendiente?")) {
-            return;
-        }
-
-        try {
-            const respuesta = await fetch(`${API_URL}/api/pedido/${merchantRef}/estado`, {
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json",
-                    "x-admin-secret": adminSecret
-                },
-                body: JSON.stringify({ estado: "CANCELADO" })
-            });
-
-            const datos = await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(datos.error || "No se pudo cancelar el pedido.");
-            }
-
-            await cargarPedidosAdmin();
-        } catch (error) {
-            document.getElementById("adminPanelMessage").textContent = "❌ " + error.message;
-        }
-    }
-
-    document.addEventListener("keydown", event => {
-        if (event.key === "Enter" && document.activeElement === document.getElementById("adminSecretInput")) {
-            entrarAdmin();
-        }
-    });
 
     async function comprobarServidor() {
         const statusText = document.getElementById("statusText");
@@ -1256,13 +1220,9 @@
                 Intentá nuevamente.
             `;
 
-            closeButton.style.display = "block";
             closeButton.disabled = false;
-            closeButton.textContent = "Cerrar";
-            closeButton.onclick = cerrarModal;
+            closeButton.textContent = "💳 Pagar ahora";
             cancelButton.style.display = "none";
-            document.getElementById("paymentOptions").style.display = "none";
-            document.getElementById("transferBox").style.display = "none";
             pedidoActual = null;
         }
     }
@@ -1438,6 +1398,254 @@
 
         pedidoActual = null;
     }
+
+
+    let adminSecret = "";
+    let pedidoAdminSeleccionado = null;
+    window.pedidosAdminActuales = [];
+
+    function abrirAdminLogin() {
+        document.getElementById("adminModal").classList.add("show");
+        document.getElementById("adminLoginView").style.display = "block";
+        document.getElementById("adminPanelView").style.display = "none";
+        document.getElementById("adminSecretInput").value = "";
+        document.getElementById("adminLoginMessage").textContent = "";
+        setTimeout(() => document.getElementById("adminSecretInput").focus(), 50);
+    }
+
+    async function entrarAdmin() {
+        const input = document.getElementById("adminSecretInput");
+        const message = document.getElementById("adminLoginMessage");
+        const secret = input.value.trim();
+
+        if (!secret) {
+            message.textContent = "⚠️ Ingresá la clave de administrador.";
+            return;
+        }
+
+        message.textContent = "Verificando...";
+
+        try {
+            const respuesta = await fetch(`${API_URL}/api/pedidos`, {
+                headers: {
+                    "x-admin-secret": secret
+                }
+            });
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(datos.error || "Clave incorrecta.");
+            }
+
+            adminSecret = secret;
+            window.pedidosAdminActuales = datos.pedidos || [];
+            pedidoAdminSeleccionado = null;
+
+            document.getElementById("adminLoginView").style.display = "none";
+            document.getElementById("adminPanelView").style.display = "block";
+            mostrarPedidosAdmin(window.pedidosAdminActuales);
+
+        } catch (error) {
+            message.textContent = "❌ " + (error.message || "No se pudo acceder.");
+        }
+    }
+
+    function escapeHtmlAdmin(valor) {
+        return String(valor ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;")
+            .replace(/'/g, "&#039;");
+    }
+
+    function mostrarPedidosAdmin(pedidos) {
+        const contenedor = document.getElementById("adminOrders");
+        const mensaje = document.getElementById("adminPanelMessage");
+
+        if (!pedidos.length) {
+            mensaje.textContent = "No hay pedidos registrados.";
+            contenedor.innerHTML = `<div class="admin-orders-wrap"><div class="admin-empty">No hay pedidos para mostrar.</div></div>`;
+            actualizarAccionesAdmin();
+            return;
+        }
+
+        mensaje.textContent = `${pedidos.length} pedido${pedidos.length === 1 ? "" : "s"} registrado${pedidos.length === 1 ? "" : "s"}.`;
+
+        contenedor.innerHTML = `
+            <div class="admin-orders-wrap">
+                <table class="admin-orders">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Valor</th>
+                            <th>N.º de pedido</th>
+                            <th>Cantidad</th>
+                            <th>Estado</th>
+                            <th>Referencia de comerciante</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${pedidos.map(pedido => `
+                            <tr data-ref="${escapeHtmlAdmin(pedido.merchant_ref)}" onclick="seleccionarPedidoAdmin('${String(pedido.merchant_ref).replace(/\\/g, "\\\\").replace(/'/g, "\\'")}')" class="${pedidoAdminSeleccionado === pedido.merchant_ref ? "selected" : ""}">
+                                <td>${escapeHtmlAdmin(pedido.game_id)}</td>
+                                <td>$${Number(pedido.precio || 0).toLocaleString("es-AR")}</td>
+                                <td>#${escapeHtmlAdmin(pedido.id)}</td>
+                                <td>${escapeHtmlAdmin(pedido.paquete)} 💎</td>
+                                <td><span class="admin-status admin-status-${String(pedido.estado || "").toLowerCase()}">${escapeHtmlAdmin(pedido.estado || "-")}</span></td>
+                                <td>${escapeHtmlAdmin(pedido.merchant_ref)}</td>
+                            </tr>
+                        `).join("")}
+                    </tbody>
+                </table>
+            </div>
+        `;
+
+        actualizarAccionesAdmin();
+    }
+
+    function seleccionarPedidoAdmin(merchantRef) {
+        pedidoAdminSeleccionado = merchantRef;
+        mostrarPedidosAdmin(window.pedidosAdminActuales);
+    }
+
+    function actualizarAccionesAdmin() {
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        const info = document.getElementById("adminSelectionInfo");
+        const confirmar = document.getElementById("adminConfirmButton");
+        const cancelar = document.getElementById("adminCancelButton");
+
+        if (!pedido) {
+            info.textContent = "Seleccioná un pedido para gestionar su pago.";
+            confirmar.disabled = true;
+            cancelar.disabled = true;
+            return;
+        }
+
+        info.innerHTML = `Pedido <strong>#${escapeHtmlAdmin(pedido.id)}</strong> · Estado: <strong>${escapeHtmlAdmin(pedido.estado)}</strong>`;
+
+        const pendiente = pedido.estado === "PENDIENTE";
+        confirmar.disabled = !pendiente;
+        cancelar.disabled = !pendiente;
+    }
+
+    async function cargarPedidosAdmin() {
+        if (!adminSecret) {
+            return;
+        }
+
+        const mensaje = document.getElementById("adminPanelMessage");
+        mensaje.textContent = "Cargando pedidos...";
+
+        try {
+            const respuesta = await fetch(`${API_URL}/api/pedidos`, {
+                headers: {
+                    "x-admin-secret": adminSecret
+                }
+            });
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(datos.error || "No se pudieron cargar los pedidos.");
+            }
+
+            window.pedidosAdminActuales = datos.pedidos || [];
+
+            if (pedidoAdminSeleccionado && !window.pedidosAdminActuales.some(p => p.merchant_ref === pedidoAdminSeleccionado)) {
+                pedidoAdminSeleccionado = null;
+            }
+
+            mostrarPedidosAdmin(window.pedidosAdminActuales);
+        } catch (error) {
+            mensaje.textContent = "❌ " + (error.message || "No se pudieron cargar los pedidos.");
+        }
+    }
+
+    async function acreditarPedidoSeleccionado() {
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+
+        if (!pedido || pedido.estado !== "PENDIENTE") {
+            return;
+        }
+
+        const confirmar = document.getElementById("adminConfirmButton");
+        const cancelar = document.getElementById("adminCancelButton");
+        confirmar.disabled = true;
+        cancelar.disabled = true;
+        confirmar.textContent = "Confirmando...";
+
+        try {
+            const respuesta = await fetch(`${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/acreditar`, {
+                method: "PATCH",
+                headers: {
+                    "x-admin-secret": adminSecret
+                }
+            });
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(datos.error || "No se pudo confirmar el pago.");
+            }
+
+            pedidoAdminSeleccionado = null;
+            await cargarPedidosAdmin();
+        } catch (error) {
+            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo confirmar el pago.");
+            actualizarAccionesAdmin();
+        } finally {
+            confirmar.textContent = "✓ Confirmar pago";
+        }
+    }
+
+    async function cancelarPedidoSeleccionado() {
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+
+        if (!pedido || pedido.estado !== "PENDIENTE") {
+            return;
+        }
+
+        const confirmar = document.getElementById("adminConfirmButton");
+        const cancelar = document.getElementById("adminCancelButton");
+        confirmar.disabled = true;
+        cancelar.disabled = true;
+        cancelar.textContent = "Cancelando...";
+
+        try {
+            const respuesta = await fetch(`${API_URL}/api/pedido/${encodeURIComponent(pedido.merchant_ref)}/cancelar`, {
+                method: "PATCH"
+            });
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(datos.error || "No se pudo cancelar el pedido.");
+            }
+
+            pedidoAdminSeleccionado = null;
+            await cargarPedidosAdmin();
+        } catch (error) {
+            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo cancelar el pedido.");
+            actualizarAccionesAdmin();
+        } finally {
+            cancelar.textContent = "✕ Cancelar";
+        }
+    }
+
+    function cerrarAdmin() {
+        document.getElementById("adminModal").classList.remove("show");
+        adminSecret = "";
+        pedidoAdminSeleccionado = null;
+        window.pedidosAdminActuales = [];
+    }
+
+    document.getElementById("adminSecretInput")?.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            entrarAdmin();
+        }
+    });
 
     comprobarServidor();
 </script>
