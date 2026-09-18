@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta name="google-site-verification" content="AlrbRRbVqdh8hyk4cIcw44bF60KAQVeUXp4kMZCFupQ" />
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recargas Montefinix</title>
 
-    <meta name="description" content="Recargas Montefinix: recargá diamantes de Free Fire de forma rápida y segura.">
     <style>
         * {
             box-sizing: border-box;
@@ -650,6 +648,24 @@
             border-color: rgba(67,255,121,0.25);
         }
 
+        .admin-status-mandado {
+            color: #ffc66d;
+            background: rgba(255,171,71,0.1);
+            border-color: rgba(255,171,71,0.25);
+        }
+
+        .admin-status-entregado {
+            color: #75ffcf;
+            background: rgba(117,255,207,0.1);
+            border-color: rgba(117,255,207,0.25);
+        }
+
+        .admin-status-rechazado {
+            color: #ff8b8b;
+            background: rgba(255,69,69,0.1);
+            border-color: rgba(255,69,69,0.25);
+        }
+
         .admin-status-procesando {
             color: #7dc7ff;
             background: rgba(125,199,255,0.1);
@@ -669,8 +685,172 @@
             border-color: rgba(255,69,69,0.25);
         }
 
+        .admin-tools {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: 10px;
+            margin: 14px 0 12px;
+        }
+
+        .admin-tools input,
+        .admin-tools select {
+            width: 100%;
+            margin: 0;
+            padding: 11px 12px;
+            border-radius: 10px;
+            border: 1px solid #343442;
+            background: #0d0d17;
+            color: #fff;
+            outline: none;
+        }
+
+        .admin-tools input:focus,
+        .admin-tools select:focus {
+            border-color: #ffb000;
+        }
+
+        .admin-inspect {
+            margin-top: 14px;
+            padding: 18px;
+            border: 1px solid #343442;
+            border-radius: 14px;
+            background: #0d0d17;
+        }
+
+        .admin-inspect-title {
+            font-size: 18px;
+            font-weight: 900;
+            margin-bottom: 14px;
+        }
+
+        .admin-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 10px;
+        }
+
+        .admin-detail {
+            padding: 11px 12px;
+            border: 1px solid #292936;
+            border-radius: 10px;
+            background: #11111d;
+        }
+
+        .admin-detail-label {
+            display: block;
+            color: #888795;
+            font-size: 11px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .admin-detail-value {
+            color: #fff;
+            font-size: 13px;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .admin-progress {
+            margin-top: 18px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .admin-progress-track {
+            min-width: 680px;
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .admin-progress-track::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 8%;
+            right: 8%;
+            height: 3px;
+            background: #343442;
+        }
+
+        .admin-progress-step {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            text-align: center;
+        }
+
+        .admin-progress-dot {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #22222f;
+            border: 2px solid #444454;
+            color: #aaa;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .admin-progress-step.active .admin-progress-dot,
+        .admin-progress-step.done .admin-progress-dot {
+            background: #ffb000;
+            border-color: #ffb000;
+            color: #111;
+        }
+
+        .admin-progress-step.active .admin-progress-label,
+        .admin-progress-step.done .admin-progress-label {
+            color: #fff;
+        }
+
+        .admin-progress-label {
+            color: #777685;
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .admin-progress-step.error .admin-progress-dot,
+        .admin-progress-step.rejected .admin-progress-dot {
+            background: #7d2525;
+            border-color: #ff6969;
+            color: #fff;
+        }
+
+        .admin-progress-step.error .admin-progress-label,
+        .admin-progress-step.rejected .admin-progress-label {
+            color: #ff8b8b;
+        }
+
+        .admin-inspect-actions {
+            display: flex;
+            gap: 10px;
+            margin-top: 16px;
+        }
+
+        .admin-inspect-actions button {
+            flex: 1;
+        }
+
         @media (max-width: 750px) {
             .admin-actions {
+                flex-direction: column;
+            }
+
+            .admin-tools {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-inspect-actions {
                 flex-direction: column;
             }
         }
@@ -793,29 +973,29 @@
                     <div class="price">$1.600</div>
                 </div>
 
-                <div class="package" onclick="seleccionarPaquete(this, 341, 4300, '3')">
+                <div class="package" onclick="seleccionarPaquete(this, 341, 4000, '3')">
                     <div class="diamonds">341 <span class="diamond-icon">💎</span></div>
-                    <div class="price">$4.300</div>
+                    <div class="price">$4.000</div>
                 </div>
 
-                <div class="package" onclick="seleccionarPaquete(this, 572, 7200, '4')">
+                <div class="package" onclick="seleccionarPaquete(this, 572, 6900, '4')">
                     <div class="diamonds">572 <span class="diamond-icon">💎</span></div>
-                    <div class="price">$7.200</div>
+                    <div class="price">$6.900</div>
                 </div>
 
-                <div class="package" onclick="seleccionarPaquete(this, 1166, 13300, '5')">
+                <div class="package" onclick="seleccionarPaquete(this, 1166, 12600, '5')">
                     <div class="diamonds">1166 <span class="diamond-icon">💎</span></div>
-                    <div class="price">$13.300</div>
+                    <div class="price">$12.600</div>
                 </div>
 
-                <div class="package" onclick="seleccionarPaquete(this, 2398, 26800, '48')">
+                <div class="package" onclick="seleccionarPaquete(this, 2398, 24700, '48')">
                     <div class="diamonds">2398 <span class="diamond-icon">💎</span></div>
-                    <div class="price">$26.800</div>
+                    <div class="price">$24.700</div>
                 </div>
 
-                <div class="package" onclick="seleccionarPaquete(this, 6160, 66000, '49')">
+                <div class="package" onclick="seleccionarPaquete(this, 6160, 62000, '49')">
                     <div class="diamonds">6160 <span class="diamond-icon">💎</span></div>
-                    <div class="price">$66.000</div>
+                    <div class="price">$62.000</div>
                 </div>
 
             </div>
@@ -969,18 +1149,44 @@
                 <p id="adminPanelMessage">Cargando pedidos...</p>
             </div>
 
+            <div class="admin-tools">
+                <input id="adminSearchInput" type="search" placeholder="🔎 Buscar por ID de jugador..." oninput="aplicarFiltrosAdmin()">
+                <select id="adminStatusFilter" onchange="aplicarFiltrosAdmin()">
+                    <option value="">Todos los estados</option>
+                    <option value="PENDIENTE">Pendiente</option>
+                    <option value="PAGADO">Pagado</option>
+                    <option value="MANDADO">Mandado</option>
+                    <option value="ENTREGADO">Entregado</option>
+                    <option value="ERROR">Error</option>
+                    <option value="RECHAZADO">Rechazado</option>
+                    <option value="CANCELADO">Cancelado</option>
+                </select>
+                <select id="adminAmountFilter" onchange="aplicarFiltrosAdmin()">
+                    <option value="">Todos los montos</option>
+                    <option value="0-3999">Hasta $3.999</option>
+                    <option value="4000-9999">$4.000 - $9.999</option>
+                    <option value="10000-24999">$10.000 - $24.999</option>
+                    <option value="25000-999999999">$25.000 o más</option>
+                </select>
+            </div>
+
             <div id="adminOrders"></div>
+
+            <div id="adminInspect" class="admin-inspect" style="display:none;"></div>
 
             <div class="admin-fixed-footer">
                 <div class="admin-selection">
                     <div id="adminSelectionInfo" class="admin-selection-info">Seleccioná un pedido para gestionar su pago.</div>
                     <div class="admin-actions">
                         <button id="adminConfirmButton" class="admin-action admin-confirm" onclick="acreditarPedidoSeleccionado()" disabled>✓ Confirmar pago</button>
-                        <button id="adminCancelButton" class="admin-action admin-cancel" onclick="cancelarPedidoSeleccionado()" disabled>✕ Cancelar</button>
+                        <button id="adminMandadoButton" class="admin-action" style="background:#8a5a00;" onclick="mandarPedidoSeleccionado()" disabled>📦 Marcar mandado</button>
+                        <button id="adminEntregadoButton" class="admin-action" style="background:#176b49;" onclick="entregarPedidoSeleccionado()" disabled>✓ Marcar entregado</button>
+                        <button id="adminCancelButton" class="admin-action admin-cancel" onclick="cancelarPedidoSeleccionado()" disabled>✕ Rechazar</button>
                     </div>
                 </div>
 
                 <div class="admin-footer-buttons">
+                    <button id="adminInspectButton" class="back-btn" onclick="inspeccionarPedidoSeleccionado()" disabled>🔍 Inspeccionar</button>
                     <button class="back-btn" onclick="cargarPedidosAdmin()">🔄 Actualizar</button>
                     <button class="close-btn" onclick="cerrarAdmin()">Cerrar</button>
                 </div>
@@ -1445,6 +1651,10 @@
 
             document.getElementById("adminLoginView").style.display = "none";
             document.getElementById("adminPanelView").style.display = "flex";
+            document.getElementById("adminSearchInput").value = "";
+            document.getElementById("adminStatusFilter").value = "";
+            document.getElementById("adminAmountFilter").value = "";
+            document.getElementById("adminInspect").style.display = "none";
             mostrarPedidosAdmin(window.pedidosAdminActuales);
 
         } catch (error) {
@@ -1461,18 +1671,52 @@
             .replace(/'/g, "&#039;");
     }
 
+    function obtenerEstadoAdmin(pedido) {
+        const estado = String(pedido?.estado || "PENDIENTE").toUpperCase();
+        if (estado === "ENVIADO") return "MANDADO";
+        return estado;
+    }
+
+    function estadoClaseAdmin(estado) {
+        return String(estado || "").toLowerCase();
+    }
+
+    function aplicarFiltrosAdmin() {
+        const busqueda = (document.getElementById("adminSearchInput")?.value || "").trim().toLowerCase();
+        const estado = document.getElementById("adminStatusFilter")?.value || "";
+        const monto = document.getElementById("adminAmountFilter")?.value || "";
+
+        const filtrados = window.pedidosAdminActuales.filter(pedido => {
+            const uid = String(pedido.game_id || "").toLowerCase();
+            const estadoPedido = obtenerEstadoAdmin(pedido);
+            const precio = Number(pedido.precio || 0);
+
+            if (busqueda && !uid.includes(busqueda)) return false;
+            if (estado && estadoPedido !== estado) return false;
+
+            if (monto) {
+                const partes = monto.split("-").map(Number);
+                if (precio < partes[0] || precio > partes[1]) return false;
+            }
+
+            return true;
+        });
+
+        mostrarPedidosAdmin(filtrados);
+    }
+
     function mostrarPedidosAdmin(pedidos) {
         const contenedor = document.getElementById("adminOrders");
         const mensaje = document.getElementById("adminPanelMessage");
 
         if (!pedidos.length) {
-            mensaje.textContent = "No hay pedidos registrados.";
+            mensaje.textContent = window.pedidosAdminActuales.length ? "No hay pedidos que coincidan con los filtros." : "No hay pedidos registrados.";
             contenedor.innerHTML = `<div class="admin-orders-wrap"><div class="admin-empty">No hay pedidos para mostrar.</div></div>`;
             actualizarAccionesAdmin();
             return;
         }
 
-        mensaje.textContent = `${pedidos.length} pedido${pedidos.length === 1 ? "" : "s"} registrado${pedidos.length === 1 ? "" : "s"}.`;
+        mensaje.textContent = `${pedidos.length} de ${window.pedidosAdminActuales.length} pedido${window.pedidosAdminActuales.length === 1 ? "" : "s"}.`;
 
         contenedor.innerHTML = `
             <div class="admin-orders-wrap">
@@ -1488,16 +1732,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        ${pedidos.map(pedido => `
-                            <tr data-ref="${escapeHtmlAdmin(pedido.merchant_ref)}" onclick="seleccionarPedidoAdmin('${String(pedido.merchant_ref).replace(/\\/g, "\\\\").replace(/'/g, "\\'")}')" class="${pedidoAdminSeleccionado === pedido.merchant_ref ? "selected" : ""}">
-                                <td>${escapeHtmlAdmin(pedido.game_id)}</td>
-                                <td>$${Number(pedido.precio || 0).toLocaleString("es-AR")}</td>
-                                <td>#${escapeHtmlAdmin(pedido.id)}</td>
-                                <td>${escapeHtmlAdmin(pedido.paquete)} 💎</td>
-                                <td><span class="admin-status admin-status-${String(pedido.estado || "").toLowerCase()}">${escapeHtmlAdmin(pedido.estado || "-")}</span></td>
-                                <td>${escapeHtmlAdmin(pedido.merchant_ref)}</td>
-                            </tr>
-                        `).join("")}
+                        ${pedidos.map(pedido => {
+                            const estado = obtenerEstadoAdmin(pedido);
+                            const ref = String(pedido.merchant_ref).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
+                            return `
+                                <tr data-ref="${escapeHtmlAdmin(pedido.merchant_ref)}" onclick="seleccionarPedidoAdmin('${ref}')" class="${pedidoAdminSeleccionado === pedido.merchant_ref ? "selected" : ""}">
+                                    <td>${escapeHtmlAdmin(pedido.game_id)}</td>
+                                    <td>$${Number(pedido.precio || 0).toLocaleString("es-AR")}</td>
+                                    <td>#${escapeHtmlAdmin(pedido.id)}</td>
+                                    <td>${escapeHtmlAdmin(pedido.paquete)} 💎</td>
+                                    <td><span class="admin-status admin-status-${estadoClaseAdmin(estado)}">${escapeHtmlAdmin(estado)}</span></td>
+                                    <td>${escapeHtmlAdmin(pedido.merchant_ref)}</td>
+                                </tr>
+                            `;
+                        }).join("")}
                     </tbody>
                 </table>
             </div>
@@ -1508,131 +1756,192 @@
 
     function seleccionarPedidoAdmin(merchantRef) {
         pedidoAdminSeleccionado = merchantRef;
-        mostrarPedidosAdmin(window.pedidosAdminActuales);
+        mostrarPedidosAdmin(window.pedidosAdminActuales.filter(pedido => {
+            const busqueda = (document.getElementById("adminSearchInput")?.value || "").trim().toLowerCase();
+            const estadoFiltro = document.getElementById("adminStatusFilter")?.value || "";
+            const monto = document.getElementById("adminAmountFilter")?.value || "";
+            const uid = String(pedido.game_id || "").toLowerCase();
+            const estado = obtenerEstadoAdmin(pedido);
+            const precio = Number(pedido.precio || 0);
+            if (busqueda && !uid.includes(busqueda)) return false;
+            if (estadoFiltro && estado !== estadoFiltro) return false;
+            if (monto) {
+                const partes = monto.split("-").map(Number);
+                if (precio < partes[0] || precio > partes[1]) return false;
+            }
+            return true;
+        }));
     }
 
     function actualizarAccionesAdmin() {
         const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
         const info = document.getElementById("adminSelectionInfo");
         const confirmar = document.getElementById("adminConfirmButton");
+        const mandado = document.getElementById("adminMandadoButton");
+        const entregado = document.getElementById("adminEntregadoButton");
         const cancelar = document.getElementById("adminCancelButton");
+        const inspeccionar = document.getElementById("adminInspectButton");
 
         if (!pedido) {
-            info.textContent = "Seleccioná un pedido para gestionar su pago.";
+            info.textContent = "Seleccioná un pedido para gestionarlo.";
             confirmar.disabled = true;
+            mandado.disabled = true;
+            entregado.disabled = true;
             cancelar.disabled = true;
+            inspeccionar.disabled = true;
             return;
         }
 
-        info.innerHTML = `Pedido <strong>#${escapeHtmlAdmin(pedido.id)}</strong> · Estado: <strong>${escapeHtmlAdmin(pedido.estado)}</strong>`;
-
-        const pendiente = pedido.estado === "PENDIENTE";
-        confirmar.disabled = !pendiente;
-        cancelar.disabled = !pendiente;
+        const estado = obtenerEstadoAdmin(pedido);
+        info.innerHTML = `Pedido <strong>#${escapeHtmlAdmin(pedido.id)}</strong> · Estado: <strong>${escapeHtmlAdmin(estado)}</strong>`;
+        confirmar.disabled = estado !== "PENDIENTE";
+        mandado.disabled = estado !== "PAGADO";
+        entregado.disabled = estado !== "MANDADO";
+        cancelar.disabled = estado !== "PENDIENTE";
+        inspeccionar.disabled = false;
     }
 
     async function cargarPedidosAdmin() {
-        if (!adminSecret) {
-            return;
-        }
-
+        if (!adminSecret) return;
         const mensaje = document.getElementById("adminPanelMessage");
         mensaje.textContent = "Cargando pedidos...";
 
         try {
-            const respuesta = await fetch(`${API_URL}/api/pedidos`, {
-                headers: {
-                    "x-admin-secret": adminSecret
-                }
-            });
-
+            const respuesta = await fetch(`${API_URL}/api/pedidos`, { headers: { "x-admin-secret": adminSecret } });
             const datos = await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(datos.error || "No se pudieron cargar los pedidos.");
-            }
+            if (!respuesta.ok || !datos.ok) throw new Error(datos.error || "No se pudieron cargar los pedidos.");
 
             window.pedidosAdminActuales = datos.pedidos || [];
-
-            if (pedidoAdminSeleccionado && !window.pedidosAdminActuales.some(p => p.merchant_ref === pedidoAdminSeleccionado)) {
-                pedidoAdminSeleccionado = null;
-            }
-
-            mostrarPedidosAdmin(window.pedidosAdminActuales);
+            if (pedidoAdminSeleccionado && !window.pedidosAdminActuales.some(p => p.merchant_ref === pedidoAdminSeleccionado)) pedidoAdminSeleccionado = null;
+            aplicarFiltrosAdmin();
         } catch (error) {
             mensaje.textContent = "❌ " + (error.message || "No se pudieron cargar los pedidos.");
         }
     }
 
-    async function acreditarPedidoSeleccionado() {
+    async function cambiarEstadoAdmin(estadoNuevo, textoBoton) {
         const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        if (!pedido) return;
 
-        if (!pedido || pedido.estado !== "PENDIENTE") {
-            return;
-        }
+        const estadoActual = obtenerEstadoAdmin(pedido);
+        const permitidos = {
+            PAGADO: ["PENDIENTE"],
+            MANDADO: ["PAGADO"],
+            ENTREGADO: ["MANDADO"]
+        };
+        if (!permitidos[estadoNuevo]?.includes(estadoActual)) return;
 
-        const confirmar = document.getElementById("adminConfirmButton");
-        const cancelar = document.getElementById("adminCancelButton");
-        confirmar.disabled = true;
-        cancelar.disabled = true;
-        confirmar.textContent = "Confirmando...";
+        const botones = ["adminConfirmButton", "adminMandadoButton", "adminEntregadoButton", "adminCancelButton"].map(id => document.getElementById(id));
+        botones.forEach(b => b.disabled = true);
+        const botonActivo = botones.find(b => b && b.textContent.includes(textoBoton));
+        if (botonActivo) botonActivo.textContent = "Procesando...";
 
         try {
-            const respuesta = await fetch(`${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/acreditar`, {
+            const respuesta = await fetch(`${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`, {
                 method: "PATCH",
-                headers: {
-                    "x-admin-secret": adminSecret
-                }
+                headers: { "Content-Type": "application/json", "x-admin-secret": adminSecret },
+                body: JSON.stringify({ estado: estadoNuevo })
             });
-
             const datos = await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(datos.error || "No se pudo confirmar el pago.");
-            }
-
-            pedidoAdminSeleccionado = null;
+            if (!respuesta.ok || !datos.ok) throw new Error(datos.error || "No se pudo actualizar el estado.");
+            pedidoAdminSeleccionado = datos.pedido?.merchant_ref || pedidoAdminSeleccionado;
             await cargarPedidosAdmin();
+            inspeccionarPedidoSeleccionado();
         } catch (error) {
-            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo confirmar el pago.");
+            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo actualizar el estado.");
             actualizarAccionesAdmin();
-        } finally {
-            confirmar.textContent = "✓ Confirmar pago";
         }
+    }
+
+    function acreditarPedidoSeleccionado() {
+        cambiarEstadoAdmin("PAGADO", "Confirmar pago");
+    }
+
+    function mandarPedidoSeleccionado() {
+        cambiarEstadoAdmin("MANDADO", "Marcar mandado");
+    }
+
+    function entregarPedidoSeleccionado() {
+        cambiarEstadoAdmin("ENTREGADO", "Marcar entregado");
     }
 
     async function cancelarPedidoSeleccionado() {
         const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        if (!pedido || obtenerEstadoAdmin(pedido) !== "PENDIENTE") return;
 
-        if (!pedido || pedido.estado !== "PENDIENTE") {
+        const botones = ["adminConfirmButton", "adminMandadoButton", "adminEntregadoButton", "adminCancelButton"].map(id => document.getElementById(id));
+        botones.forEach(b => b.disabled = true);
+        const cancelar = document.getElementById("adminCancelButton");
+        cancelar.textContent = "Rechazando...";
+
+        try {
+            const respuesta = await fetch(`${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json", "x-admin-secret": adminSecret },
+                body: JSON.stringify({ estado: "RECHAZADO" })
+            });
+            const datos = await respuesta.json();
+            if (!respuesta.ok || !datos.ok) throw new Error(datos.error || "No se pudo rechazar el pedido.");
+            await cargarPedidosAdmin();
+            inspeccionarPedidoSeleccionado();
+        } catch (error) {
+            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo rechazar el pedido.");
+            actualizarAccionesAdmin();
+        } finally {
+            cancelar.textContent = "✕ Rechazar";
+        }
+    }
+
+    function inspeccionarPedidoSeleccionado() {
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        const panel = document.getElementById("adminInspect");
+        if (!pedido) {
+            panel.style.display = "none";
             return;
         }
 
-        const confirmar = document.getElementById("adminConfirmButton");
-        const cancelar = document.getElementById("adminCancelButton");
-        confirmar.disabled = true;
-        cancelar.disabled = true;
-        cancelar.textContent = "Cancelando...";
+        const estado = obtenerEstadoAdmin(pedido);
+        const pasos = ["PENDIENTE", "PAGADO", "MANDADO", "ENTREGADO"];
+        const indice = pasos.indexOf(estado);
+        const especial = estado === "RECHAZADO" || estado === "ERROR" || estado === "CANCELADO";
+        const metodo = pedido.metodo_pago || pedido.metodo_de_pago || "No registrado";
+        const fecha = pedido.created_at ? new Date(pedido.created_at) : null;
+        const hora = fecha && !Number.isNaN(fecha.getTime()) ? fecha.toLocaleString("es-AR", { dateStyle: "short", timeStyle: "medium" }) : "No registrada";
 
-        try {
-            const respuesta = await fetch(`${API_URL}/api/pedido/${encodeURIComponent(pedido.merchant_ref)}/cancelar`, {
-                method: "PATCH"
-            });
-
-            const datos = await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(datos.error || "No se pudo cancelar el pedido.");
-            }
-
-            pedidoAdminSeleccionado = null;
-            await cargarPedidosAdmin();
-        } catch (error) {
-            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo cancelar el pedido.");
-            actualizarAccionesAdmin();
-        } finally {
-            cancelar.textContent = "✕ Cancelar";
+        let progreso = "";
+        if (especial) {
+            progreso = `
+                <div class="admin-progress">
+                    <div class="admin-progress-track">
+                        ${pasos.map((paso, i) => `<div class="admin-progress-step ${i <= Math.max(indice, 0) ? "done" : ""}"><div class="admin-progress-dot">${i + 1}</div><div class="admin-progress-label">${paso === "PENDIENTE" ? "Pendiente" : paso === "PAGADO" ? "Pagado" : paso === "MANDADO" ? "Mandado" : "Entregado"}</div></div>`).join("")}
+                        <div class="admin-progress-step ${estado === "RECHAZADO" || estado === "CANCELADO" ? "rejected" : "error"}"><div class="admin-progress-dot">!</div><div class="admin-progress-label">${escapeHtmlAdmin(estado)}</div></div>
+                    </div>
+                </div>`;
+        } else {
+            progreso = `
+                <div class="admin-progress">
+                    <div class="admin-progress-track">
+                        ${pasos.map((paso, i) => `<div class="admin-progress-step ${i < indice ? "done" : i === indice ? "active" : ""}"><div class="admin-progress-dot">${i + 1}</div><div class="admin-progress-label">${paso === "PENDIENTE" ? "Pendiente" : paso === "PAGADO" ? "Pagado" : paso === "MANDADO" ? "Mandado" : "Entregado"}</div></div>`).join("")}
+                    </div>
+                </div>`;
         }
+
+        panel.innerHTML = `
+            <div class="admin-inspect-title">🔍 Detalle del pedido #${escapeHtmlAdmin(pedido.id)}</div>
+            <div class="admin-detail-grid">
+                <div class="admin-detail"><span class="admin-detail-label">ID del jugador</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.game_id)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Cantidad</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.paquete)} 💎</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Valor</span><span class="admin-detail-value">$${Number(pedido.precio || 0).toLocaleString("es-AR")}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Método de compra</span><span class="admin-detail-value">${escapeHtmlAdmin(metodo)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Referencia de comerciante</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.merchant_ref)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Horario de creación</span><span class="admin-detail-value">${escapeHtmlAdmin(hora)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Última actualización</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.updated_at ? new Date(pedido.updated_at).toLocaleString("es-AR", { dateStyle: "short", timeStyle: "medium" }) : "No registrada")}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Estado actual</span><span class="admin-detail-value"><span class="admin-status admin-status-${estadoClaseAdmin(estado)}">${escapeHtmlAdmin(estado)}</span></span></div>
+            </div>
+            ${progreso}
+        `;
+        panel.style.display = "block";
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
     function cerrarAdmin() {
@@ -1640,6 +1949,8 @@
         adminSecret = "";
         pedidoAdminSeleccionado = null;
         window.pedidosAdminActuales = [];
+        const inspect = document.getElementById("adminInspect");
+        if (inspect) inspect.style.display = "none";
     }
 
     document.getElementById("adminSecretInput")?.addEventListener("keydown", function(event) {
