@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -463,6 +464,7 @@
             background: #a52e2e;
         }
 
+
         .admin-btn {
             width: 38px;
             height: 38px;
@@ -481,119 +483,59 @@
         }
 
         .admin-modal-box {
-            width: min(1050px, 94vw);
-            height: min(88vh, 820px);
-            max-height: 88vh;
+            width: min(1100px, 96vw);
+            max-width: 1100px;
+            height: min(90vh, 800px);
+            max-height: 90vh;
             display: flex;
             flex-direction: column;
             overflow: hidden;
             text-align: left;
-            padding: 20px;
-            border-color: rgba(255,176,0,0.16);
-            box-shadow: 0 30px 90px rgba(0,0,0,0.65);
         }
 
         #adminPanelView {
-            display: flex;
             flex: 1;
             min-height: 0;
             flex-direction: column;
         }
 
-        .admin-header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 18px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid #2b2b39;
-        }
-
-        .admin-header-copy h2 {
-            margin-bottom: 4px;
-        }
-
-        .admin-header-copy p {
-            margin: 0;
-        }
-
-        .admin-header-icon {
-            width: 46px;
-            height: 46px;
-            flex: 0 0 46px;
-            border-radius: 13px;
-            display: grid;
-            place-items: center;
-            background: rgba(255,176,0,0.1);
-            border: 1px solid rgba(255,176,0,0.2);
-            font-size: 22px;
-        }
-
-        .admin-content-scroll {
+        #adminOrders {
             flex: 1;
             min-height: 0;
-            overflow-y: auto;
-            overflow-x: hidden;
-            padding: 12px 3px 6px 0;
-            scrollbar-width: thin;
-            scrollbar-color: #4a4a5b transparent;
+            overflow: auto;
+            padding-right: 2px;
         }
 
-        .admin-content-scroll::-webkit-scrollbar {
-            width: 8px;
+        .admin-fixed-footer {
+            flex-shrink: 0;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid #343442;
+            background: #171722;
         }
 
-        .admin-content-scroll::-webkit-scrollbar-thumb {
-            background: #4a4a5b;
-            border-radius: 20px;
-        }
-
-        .admin-tools {
-            display: grid;
-            grid-template-columns: minmax(260px, 1.8fr) minmax(170px, 0.9fr) minmax(170px, 0.9fr);
-            gap: 8px;
-            margin: 0 0 9px;
-        }
-
-        .admin-tools input,
-        .admin-tools select {
-            width: 100%;
-            margin: 0;
-            padding: 10px 11px;
-            border-radius: 9px;
-            border: 1px solid #343442;
-            background: #0d0d17;
-            color: #fff;
-            outline: none;
-        }
-
-        .admin-tools input:focus,
-        .admin-tools select:focus {
-            border-color: #ffb000;
+        .admin-login {
+            text-align: center;
         }
 
         .admin-orders-wrap {
             width: 100%;
             overflow-x: auto;
-            margin-top: 0;
+            margin-top: 20px;
             border: 1px solid #343442;
-            border-radius: 12px;
+            border-radius: 14px;
             background: #0d0d17;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
         }
 
         .admin-orders {
             width: 100%;
-            min-width: 820px;
+            min-width: 760px;
             border-collapse: collapse;
-            font-size: 12px;
+            font-size: 13px;
         }
 
         .admin-orders th {
-            position: sticky;
-            top: 0;
-            z-index: 2;
-            padding: 10px 10px;
+            padding: 13px 12px;
             background: #171722;
             color: #aaa9b8;
             text-align: left;
@@ -603,15 +545,10 @@
         }
 
         .admin-orders td {
-            padding: 9px 10px;
+            padding: 12px;
             border-bottom: 1px solid #242432;
             color: #eee;
             white-space: nowrap;
-        }
-
-        .admin-orders td:first-child,
-        .admin-orders th:first-child {
-            padding-left: 12px;
         }
 
         .admin-orders tbody tr {
@@ -639,35 +576,39 @@
         }
 
         .admin-selection {
-            padding: 8px;
+            padding: 15px;
             border: 1px solid #343442;
-            border-radius: 10px;
+            border-radius: 14px;
             background: #11111d;
         }
 
         .admin-selection-info {
-            display: flex;
-            align-items: center;
-            gap: 8px;
             color: #aaa9b8;
-            font-size: 11px;
-            min-height: 16px;
+            font-size: 13px;
+            min-height: 18px;
         }
 
         .admin-actions {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 6px;
-            margin-top: 7px;
+            display: flex;
+            gap: 10px;
+            margin-top: 12px;
+        }
+
+        .admin-footer-buttons {
+            display: flex;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .admin-footer-buttons button {
+            flex: 1;
         }
 
         .admin-action {
-            min-height: 32px;
-            padding: 7px 8px;
-            border-radius: 8px;
+            flex: 1;
+            padding: 13px;
+            border-radius: 11px;
             color: white;
-            font-size: 11px;
-            line-height: 1.1;
         }
 
         .admin-confirm {
@@ -679,41 +620,19 @@
         }
 
         .admin-action:disabled {
-            display: none;
+            opacity: 0.35;
+            cursor: not-allowed;
         }
 
         .admin-action:not(:disabled):hover {
-            transform: translateY(-1px);
-        }
-
-        .admin-footer-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 6px;
-            margin-top: 6px;
-        }
-
-        .admin-footer-buttons button {
-            min-height: 32px;
-            padding: 7px 8px;
-            border-radius: 8px;
-            font-size: 11px;
-            margin-top: 0;
-        }
-
-        .admin-fixed-footer {
-            flex-shrink: 0;
-            margin-top: 8px;
-            padding-top: 8px;
-            border-top: 1px solid #343442;
-            background: #171722;
+            transform: translateY(-2px);
         }
 
         .admin-status {
             display: inline-block;
-            padding: 4px 8px;
-            border-radius: 7px;
-            font-size: 10px;
+            padding: 5px 9px;
+            border-radius: 8px;
+            font-size: 11px;
             font-weight: 800;
             border: 1px solid transparent;
         }
@@ -742,9 +661,7 @@
             border-color: rgba(117,255,207,0.25);
         }
 
-        .admin-status-rechazado,
-        .admin-status-error,
-        .admin-status-cancelado {
+        .admin-status-rechazado {
             color: #ff8b8b;
             background: rgba(255,69,69,0.1);
             border-color: rgba(255,69,69,0.25);
@@ -762,97 +679,87 @@
             border-color: rgba(117,255,207,0.25);
         }
 
-        .admin-inspect-modal {
-            position: absolute;
-            inset: 0;
-            background: rgba(5,5,12,0.82);
-            backdrop-filter: blur(7px);
-            z-index: 20;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+        .admin-status-error,
+        .admin-status-cancelado {
+            color: #ff8b8b;
+            background: rgba(255,69,69,0.1);
+            border-color: rgba(255,69,69,0.25);
         }
 
-        .admin-inspect-modal.show {
-            display: flex;
+        .admin-tools {
+            display: grid;
+            grid-template-columns: 1.6fr 1fr 1fr;
+            gap: 10px;
+            margin: 14px 0 12px;
         }
 
-        .admin-inspect-box {
-            width: min(720px, 100%);
-            max-height: 90%;
-            overflow-y: auto;
-            padding: 20px;
-            border: 1px solid #3b3b4b;
-            border-radius: 16px;
-            background: linear-gradient(180deg, #171722, #0f0f19);
-            box-shadow: 0 25px 80px rgba(0,0,0,0.65);
-            animation: appear 0.2s ease;
+        .admin-tools input,
+        .admin-tools select {
+            width: 100%;
+            margin: 0;
+            padding: 11px 12px;
+            border-radius: 10px;
+            border: 1px solid #343442;
+            background: #0d0d17;
+            color: #fff;
+            outline: none;
         }
 
-        .admin-inspect-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            margin-bottom: 16px;
+        .admin-tools input:focus,
+        .admin-tools select:focus {
+            border-color: #ffb000;
+        }
+
+        .admin-inspect {
+            margin-top: 14px;
+            padding: 18px;
+            border: 1px solid #343442;
+            border-radius: 14px;
+            background: #0d0d17;
         }
 
         .admin-inspect-title {
             font-size: 18px;
             font-weight: 900;
-        }
-
-        .admin-inspect-close {
-            width: 34px;
-            height: 34px;
-            flex: 0 0 34px;
-            border-radius: 9px;
-            background: #292936;
-            color: white;
-            font-size: 16px;
-        }
-
-        .admin-inspect-close:hover {
-            background: #3a3a49;
+            margin-bottom: 14px;
         }
 
         .admin-detail-grid {
             display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 9px;
+            gap: 10px;
         }
 
         .admin-detail {
-            padding: 10px 11px;
+            padding: 11px 12px;
             border: 1px solid #292936;
-            border-radius: 9px;
+            border-radius: 10px;
             background: #11111d;
         }
 
         .admin-detail-label {
             display: block;
             color: #888795;
-            font-size: 10px;
+            font-size: 11px;
             font-weight: 700;
             margin-bottom: 4px;
         }
 
         .admin-detail-value {
             color: #fff;
-            font-size: 12px;
+            font-size: 13px;
             font-weight: 800;
             overflow-wrap: anywhere;
         }
 
         .admin-progress {
-            margin-top: 16px;
+            margin-top: 18px;
             overflow-x: auto;
             padding-bottom: 4px;
         }
 
         .admin-progress-track {
-            min-width: 600px;
+            min-width: 680px;
             display: flex;
             align-items: flex-start;
             position: relative;
@@ -921,32 +828,43 @@
             color: #ff8b8b;
         }
 
-        .admin-inspect-footer {
+        .admin-inspect-actions {
             display: flex;
-            gap: 7px;
-            margin-top: 15px;
+            gap: 10px;
+            margin-top: 16px;
         }
 
-        .admin-inspect-footer button {
+        .admin-inspect-actions button {
             flex: 1;
-            min-height: 34px;
-            padding: 8px;
-            border-radius: 9px;
-            font-size: 11px;
         }
 
-        @media (min-width: 1100px) {
-            main {
-                width: min(1180px, 92%);
+        @media (max-width: 750px) {
+            .admin-actions {
+                flex-direction: column;
             }
 
-            .layout {
-                grid-template-columns: minmax(0, 1.45fr) minmax(330px, 0.65fr);
-                gap: 26px;
+            .admin-tools {
+                grid-template-columns: 1fr;
             }
 
-            .packages {
-                grid-template-columns: repeat(3, 1fr);
+            .admin-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-inspect-actions {
+                flex-direction: column;
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
@@ -978,156 +896,6 @@
             .search-btn {
                 padding: 14px;
             }
-
-            .admin-modal-box {
-                width: 96vw;
-                height: 94vh;
-                max-height: 94vh;
-                padding: 14px;
-                border-radius: 16px;
-            }
-
-            .admin-header {
-                gap: 10px;
-                padding-bottom: 11px;
-            }
-
-            .admin-header-icon {
-                width: 40px;
-                height: 40px;
-                flex-basis: 40px;
-                border-radius: 11px;
-                font-size: 19px;
-            }
-
-            .admin-content-scroll {
-                padding-top: 10px;
-            }
-
-            .admin-tools {
-                grid-template-columns: 1fr;
-                gap: 7px;
-            }
-
-            .admin-tools input,
-            .admin-tools select {
-                padding: 9px 10px;
-                font-size: 12px;
-            }
-
-            .admin-orders {
-                min-width: 820px;
-                font-size: 12px;
-            }
-
-            .admin-orders th {
-                padding: 10px 9px;
-            }
-
-            .admin-orders td {
-                padding: 9px;
-            }
-
-            .admin-selection {
-                padding: 8px;
-            }
-
-            .admin-actions {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 5px;
-            }
-
-            .admin-action {
-                min-height: 32px;
-                padding: 7px 5px;
-                font-size: 10px;
-            }
-
-            .admin-footer-buttons {
-                grid-template-columns: 1fr 1fr 1fr;
-                gap: 5px;
-            }
-
-            .admin-footer-buttons button {
-                min-height: 32px;
-                padding: 7px 4px;
-                font-size: 10px;
-            }
-
-            .admin-detail-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .admin-inspect-modal {
-                padding: 10px;
-            }
-
-            .admin-inspect-box {
-                padding: 14px;
-                max-height: 94%;
-                border-radius: 14px;
-            }
-
-            .admin-inspect-footer {
-                display: grid;
-                grid-template-columns: 1fr;
-            }
-        }
-
-        @media (min-width: 1101px) {
-             main {
-                 grid-template-columns: 1.25fr 0.75fr;
-                }
-            }
-
-        @keyframes appear {
-            from {
-                opacity: 0;
-                transform: translateY(8px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        body::before {
-            content: "";
-            position: fixed;
-            inset: 0;
-            pointer-events: none;
-            background: radial-gradient(circle at 50% -10%, rgba(255,176,0,0.08), transparent 35%);
-            z-index: -1;
-        }
-
-        button,
-        input,
-        select {
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .card,
-        .modal-box {
-            backdrop-filter: blur(12px);
-        }
-
-        .package {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .package::after {
-            content: "";
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.04), transparent 70%);
-            transform: translateX(-100%);
-            transition: transform 0.5s ease;
-        }
-
-        .package:hover::after {
-            transform: translateX(100%);
         }
     </style>
 </head>
@@ -1142,7 +910,6 @@
             <span id="statusDot" class="status-dot"></span>
             <span id="statusText">Comprobando servidor...</span>
         </div>
-
         <button class="admin-btn" onclick="abrirAdminLogin()" title="Administración">⚙️</button>
     </div>
 </header>
@@ -1308,6 +1075,24 @@
 
         </div>
 
+        <div id="transferConfirmBox" class="transfer-box" style="display:none;">
+
+            <h3>🏦 Acreditación manual</h3>
+
+            <p style="color:#aaa9b8;line-height:1.5;margin-bottom:18px;">
+                Este pedido utiliza acreditación manual. Confirmá que vas a pagar mediante transferencia bancaria para continuar.
+            </p>
+
+            <button id="confirmTransferButton" class="close-btn" style="margin-top:0;" onclick="confirmarTransferencia()">
+                ✓ Confirmar
+            </button>
+
+            <button class="back-btn" onclick="volverMetodosPago()">
+                ← Volver a métodos de pago
+            </button>
+
+        </div>
+
         <div id="transferBox" class="transfer-box" style="display:none;">
 
             <h3>🏦 Datos para transferir</h3>
@@ -1363,193 +1148,73 @@
 
 </div>
 
+
 <div id="adminModal" class="modal">
-
     <div class="modal-box admin-modal-box">
-
         <div id="adminLoginView" class="admin-login">
-
             <div class="success">🔐</div>
-
             <h2>Panel de administración</h2>
-
             <p>Ingresá la clave de administrador para acceder a los pedidos.</p>
-
-            <input
-                id="adminSecretInput"
-                type="password"
-                placeholder="Clave de administrador"
-                autocomplete="off"
-                style="margin-top:18px;"
-            >
-
+            <input id="adminSecretInput" type="password" placeholder="Clave de administrador" autocomplete="off" style="margin-top:18px;">
             <div id="adminLoginMessage" class="message"></div>
-
             <button class="close-btn" onclick="entrarAdmin()">Ingresar</button>
-
             <button class="back-btn" onclick="cerrarAdmin()">Cerrar</button>
-
         </div>
 
         <div id="adminPanelView" style="display:none;">
-
-            <div class="admin-header">
-
-                <div class="admin-header-copy">
-                    <h2>Pedidos</h2>
-                    <p id="adminPanelMessage">Cargando pedidos...</p>
-                </div>
-
-                <div class="admin-header-icon">⚙️</div>
-
+            <div style="text-align:center;">
+                <div class="success">⚙️</div>
+                <h2>Pedidos</h2>
+                <p id="adminPanelMessage">Cargando pedidos...</p>
             </div>
 
-            <div class="admin-content-scroll">
-
-                <div class="admin-tools">
-
-                    <input
-                        id="adminSearchInput"
-                        type="search"
-                        placeholder="🔎 Buscar por ID de jugador..."
-                        oninput="aplicarFiltrosAdmin()"
-                    >
-
-                    <select
-                        id="adminStatusFilter"
-                        onchange="aplicarFiltrosAdmin()"
-                    >
-                        <option value="">Todos los estados</option>
-                        <option value="PENDIENTE">Pendiente</option>
-                        <option value="PAGADO">Pagado</option>
-                        <option value="MANDADO">Mandado</option>
-                        <option value="ENTREGADO">Entregado</option>
-                        <option value="ERROR">Error</option>
-                        <option value="RECHAZADO">Rechazado</option>
-                        <option value="CANCELADO">Cancelado</option>
-                    </select>
-
-                    <select
-                        id="adminAmountFilter"
-                        onchange="aplicarFiltrosAdmin()"
-                    >
-                        <option value="">Todos los montos</option>
-                        <option value="0-3999">Hasta $3.999</option>
-                        <option value="4000-9999">$4.000 - $9.999</option>
-                        <option value="10000-24999">$10.000 - $24.999</option>
-                        <option value="25000-999999999">$25.000 o más</option>
-                    </select>
-
-                </div>
-
-                <div id="adminOrders"></div>
-
+            <div class="admin-tools">
+                <input id="adminSearchInput" type="search" placeholder="🔎 Buscar por ID de jugador..." oninput="aplicarFiltrosAdmin()">
+                <select id="adminStatusFilter" onchange="aplicarFiltrosAdmin()">
+                    <option value="">Todos los estados</option>
+                    <option value="PENDIENTE">Pendiente</option>
+                    <option value="PAGADO">Pagado</option>
+                    <option value="MANDADO">Mandado</option>
+                    <option value="ENTREGADO">Entregado</option>
+                    <option value="ERROR">Error</option>
+                    <option value="RECHAZADO">Rechazado</option>
+                    <option value="CANCELADO">Cancelado</option>
+                </select>
+                <select id="adminAmountFilter" onchange="aplicarFiltrosAdmin()">
+                    <option value="">Todos los montos</option>
+                    <option value="0-3999">Hasta $3.999</option>
+                    <option value="4000-9999">$4.000 - $9.999</option>
+                    <option value="10000-24999">$10.000 - $24.999</option>
+                    <option value="25000-999999999">$25.000 o más</option>
+                </select>
             </div>
+
+            <div id="adminOrders"></div>
+
+            <div id="adminInspect" class="admin-inspect" style="display:none;"></div>
 
             <div class="admin-fixed-footer">
-
                 <div class="admin-selection">
-
-                    <div
-                        id="adminSelectionInfo"
-                        class="admin-selection-info"
-                    >
-                        Seleccioná un pedido para gestionarlo.
-                    </div>
-
+                    <div id="adminSelectionInfo" class="admin-selection-info">Seleccioná un pedido para gestionar su pago.</div>
                     <div class="admin-actions">
-
-                        <button
-                            id="adminConfirmButton"
-                            class="admin-action admin-confirm"
-                            onclick="acreditarPedidoSeleccionado()"
-                            disabled
-                        >
-                            ✓ Confirmar pago
-                        </button>
-
-                        <button
-                            id="adminMandadoButton"
-                            class="admin-action"
-                            style="background:#8a5a00;"
-                            onclick="mandarPedidoSeleccionado()"
-                            disabled
-                        >
-                            📦 Marcar mandado
-                        </button>
-
-                        <button
-                            id="adminEntregadoButton"
-                            class="admin-action"
-                            style="background:#176b49;"
-                            onclick="entregarPedidoSeleccionado()"
-                            disabled
-                        >
-                            ✓ Marcar entregado
-                        </button>
-
-                        <button
-                            id="adminCancelButton"
-                            class="admin-action admin-cancel"
-                            onclick="cancelarPedidoSeleccionado()"
-                            disabled
-                        >
-                            ✕ Cancelar
-                        </button>
-
+                        <button id="adminConfirmButton" class="admin-action admin-confirm" onclick="acreditarPedidoSeleccionado()" disabled>✓ Confirmar pago</button>
+                        <button id="adminMandadoButton" class="admin-action" style="background:#8a5a00;" onclick="mandarPedidoSeleccionado()" disabled>📦 Marcar mandado</button>
+                        <button id="adminEntregadoButton" class="admin-action" style="background:#176b49;" onclick="entregarPedidoSeleccionado()" disabled>✓ Marcar entregado</button>
+                        <button id="adminCancelButton" class="admin-action admin-cancel" onclick="cancelarPedidoSeleccionado()" disabled>✕ Rechazar</button>
                     </div>
-
                 </div>
 
                 <div class="admin-footer-buttons">
-
-                    <button
-                        id="adminInspectButton"
-                        class="back-btn"
-                        onclick="inspeccionarPedidoSeleccionado()"
-                        disabled
-                    >
-                        🔍 Inspeccionar
-                    </button>
-
-                    <button
-                        class="back-btn"
-                        onclick="cargarPedidosAdmin()"
-                    >
-                        🔄 Actualizar
-                    </button>
-
-                    <button
-                        class="close-btn"
-                        onclick="cerrarAdmin()"
-                    >
-                        Cerrar
-                    </button>
-
+                    <button id="adminInspectButton" class="back-btn" onclick="inspeccionarPedidoSeleccionado()" disabled>🔍 Inspeccionar</button>
+                    <button class="back-btn" onclick="cargarPedidosAdmin()">🔄 Actualizar</button>
+                    <button class="close-btn" onclick="cerrarAdmin()">Cerrar</button>
                 </div>
-
             </div>
-
         </div>
-
-        <div
-            id="adminInspectModal"
-            class="admin-inspect-modal"
-            onclick="cerrarInspeccionAdmin(event)"
-        >
-            <div
-                id="adminInspectBox"
-                class="admin-inspect-box"
-                onclick="event.stopPropagation()"
-            ></div>
-        </div>
-
     </div>
-
 </div>
 
 <script>
-
     const API_URL = "https://recargas-montefinix-server.onrender.com";
 
     const CHAT_URL = "https://wa.me/1154821952";
@@ -1559,12 +1224,10 @@
     let pedidoActual = null;
 
     async function comprobarServidor() {
-
         const statusText = document.getElementById("statusText");
         const statusDot = document.getElementById("statusDot");
 
         try {
-
             const respuesta = await fetch(`${API_URL}/api/estado`);
 
             if (!respuesta.ok) {
@@ -1576,49 +1239,39 @@
             statusDot.style.boxShadow = "0 0 10px #43ff79";
 
         } catch (error) {
-
             statusText.textContent = "Servidor desconectado";
             statusDot.style.background = "#ff4545";
             statusDot.style.boxShadow = "0 0 10px #ff4545";
-
         }
-
     }
 
     async function buscarJugador() {
-
         const uidInput = document.getElementById("uid");
         const uid = uidInput.value.trim();
         const message = document.getElementById("message");
         const player = document.getElementById("player");
 
         if (!uid) {
-
             message.textContent = "⚠️ Primero ingresá un ID.";
             player.classList.remove("show");
             jugadorEncontrado = false;
             actualizarResumen();
-
             return;
         }
 
         if (!/^\d+$/.test(uid)) {
-
             message.textContent = "⚠️ El ID debe contener solamente números.";
             player.classList.remove("show");
             jugadorEncontrado = false;
             actualizarResumen();
-
             return;
         }
 
         if (uid.length < 6) {
-
             message.textContent = "⚠️ El ID parece demasiado corto.";
             player.classList.remove("show");
             jugadorEncontrado = false;
             actualizarResumen();
-
             return;
         }
 
@@ -1632,11 +1285,9 @@
         jugadorEncontrado = true;
 
         actualizarResumen();
-
     }
 
     function seleccionarPaquete(elemento, diamantes, precio, variantId) {
-
         document
             .querySelectorAll(".package")
             .forEach(pkg => pkg.classList.remove("selected"));
@@ -1650,51 +1301,39 @@
         };
 
         actualizarResumen();
-
     }
 
     function actualizarResumen() {
-
         const uid = document.getElementById("uid").value.trim();
 
         if (jugadorEncontrado) {
-
             document.getElementById("summaryPlayer").textContent =
                 document.getElementById("playerName").textContent;
 
             document.getElementById("summaryId").textContent = uid;
-
         } else {
-
             document.getElementById("summaryPlayer").textContent =
                 "No seleccionado";
 
             document.getElementById("summaryId").textContent = "-";
-
         }
 
         if (paqueteSeleccionado) {
-
             document.getElementById("summaryDiamonds").textContent =
                 paqueteSeleccionado.diamantes + " 💎";
 
             document.getElementById("total").textContent =
                 "$" + paqueteSeleccionado.precio.toLocaleString("es-AR");
-
         } else {
-
             document.getElementById("summaryDiamonds").textContent = "-";
             document.getElementById("total").textContent = "$0";
-
         }
 
         document.getElementById("buyButton").disabled =
             !(jugadorEncontrado && paqueteSeleccionado);
-
     }
 
     async function comprar() {
-
         if (!jugadorEncontrado || !paqueteSeleccionado || pedidoActual) {
             return;
         }
@@ -1735,9 +1374,9 @@
 
         document.getElementById("paymentOptions").style.display = "none";
         document.getElementById("transferBox").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "none";
 
         document.getElementById("modalIcon").textContent = "⏳";
-
         document.getElementById("modalTitle").textContent =
             "Preparando pedido";
 
@@ -1751,7 +1390,6 @@
         modal.classList.add("show");
 
         try {
-
             const respuesta = await fetch(
                 `${API_URL}/api/recarga-prueba`,
                 {
@@ -1783,7 +1421,6 @@
             };
 
             document.getElementById("modalIcon").textContent = "💎";
-
             document.getElementById("modalTitle").textContent =
                 "Pedido preparado";
 
@@ -1800,9 +1437,7 @@
             cancelButton.style.display = "block";
 
         } catch (error) {
-
             document.getElementById("modalIcon").textContent = "❌";
-
             document.getElementById("modalTitle").textContent =
                 "Error";
 
@@ -1815,14 +1450,11 @@
             closeButton.disabled = false;
             closeButton.textContent = "💳 Pagar ahora";
             cancelButton.style.display = "none";
-
             pedidoActual = null;
         }
-
     }
 
     function pagarAhora() {
-
         if (!pedidoActual || !pedidoActual.merchant_ref) {
             return;
         }
@@ -1831,7 +1463,6 @@
             Number(pedidoActual.precio || paqueteSeleccionado?.precio || 0);
 
         document.getElementById("modalIcon").textContent = "💳";
-
         document.getElementById("modalTitle").textContent =
             "Elegí cómo pagar";
 
@@ -1843,47 +1474,106 @@
 
         document.getElementById("paymentOptions").style.display = "flex";
         document.getElementById("transferBox").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "none";
 
         document.getElementById("closeButton").style.display = "none";
-
     }
 
     function mostrarTransferencia() {
-
-        if (!pedidoActual) {
+        if (!pedidoActual || !pedidoActual.merchant_ref) {
             return;
         }
 
-        const precio =
-            Number(pedidoActual.precio || paqueteSeleccionado?.precio || 0);
-
         document.getElementById("modalIcon").textContent = "🏦";
-
         document.getElementById("modalTitle").textContent =
             "Transferencia bancaria";
 
         document.getElementById("modalText").innerHTML = `
-            Realizá la transferencia por el importe exacto.
+            Este pedido utiliza <strong>acreditación manual</strong>.
             <br><br>
-            Después enviá el comprobante.
+            Primero confirmá el método de pago y después se mostrarán los datos para realizar la transferencia.
         `;
 
         document.getElementById("paymentOptions").style.display = "none";
-        document.getElementById("transferBox").style.display = "block";
-
-        document.getElementById("transferAmount").textContent =
-            "$" + precio.toLocaleString("es-AR");
-
+        document.getElementById("transferBox").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "block";
         document.getElementById("cancelButton").style.display = "block";
+    }
 
+    async function confirmarTransferencia() {
+        if (!pedidoActual || !pedidoActual.merchant_ref || pedidoActual.guardandoMetodo) {
+            return;
+        }
+
+        const boton = document.getElementById("confirmTransferButton");
+        pedidoActual.guardandoMetodo = true;
+        boton.disabled = true;
+        boton.textContent = "Guardando...";
+
+        try {
+            const respuesta = await fetch(
+                `${API_URL}/api/pedido/${encodeURIComponent(pedidoActual.merchant_ref)}/metodo-pago`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        metodo_pago: "TRANSFERENCIA_BANCARIA"
+                    })
+                }
+            );
+
+            const datos = await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error || "No se pudo guardar el método de pago."
+                );
+            }
+
+            pedidoActual = {
+                ...pedidoActual,
+                ...datos.pedido,
+                guardandoMetodo: false
+            };
+
+            const precio =
+                Number(pedidoActual.precio || paqueteSeleccionado?.precio || 0);
+
+            document.getElementById("modalIcon").textContent = "🏦";
+            document.getElementById("modalTitle").textContent =
+                "Datos para transferir";
+
+            document.getElementById("modalText").innerHTML = `
+                Realizá la transferencia por el importe exacto.
+                <br><br>
+                Una vez realizada, enviá el comprobante.
+            `;
+
+            document.getElementById("transferConfirmBox").style.display = "none";
+            document.getElementById("transferBox").style.display = "block";
+            document.getElementById("transferAmount").textContent =
+                "$" + precio.toLocaleString("es-AR");
+
+        } catch (error) {
+            pedidoActual.guardandoMetodo = false;
+            boton.disabled = false;
+            boton.textContent = "✓ Confirmar";
+            document.getElementById("modalText").innerHTML += `
+                <br><br>
+                <strong style="color:#ff8b8b;">${escapeHtmlAdmin(error.message || "No se pudo guardar el método de pago.")}</strong>
+            `;
+        }
     }
 
     function volverMetodosPago() {
+        document.getElementById("transferConfirmBox").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
         pagarAhora();
     }
 
     function enviarComprobante() {
-
         if (!pedidoActual) {
             return;
         }
@@ -1902,11 +1592,9 @@
         );
 
         window.open(`${CHAT_URL}?text=${mensaje}`, "_blank");
-
     }
 
     async function cancelarPedido() {
-
         if (
             !pedidoActual ||
             !pedidoActual.merchant_ref ||
@@ -1926,7 +1614,6 @@
         closeButton.disabled = true;
 
         try {
-
             const respuesta = await fetch(
                 `${API_URL}/api/pedido/${encodeURIComponent(merchantRef)}/cancelar`,
                 {
@@ -1946,7 +1633,6 @@
             }
 
             document.getElementById("modalIcon").textContent = "❌";
-
             document.getElementById("modalTitle").textContent =
                 "Pedido cancelado";
 
@@ -1956,9 +1642,9 @@
 
             document.getElementById("paymentOptions").style.display = "none";
             document.getElementById("transferBox").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "none";
 
             cancelButton.style.display = "none";
-
             pedidoActual = null;
 
             closeButton.style.display = "block";
@@ -1967,7 +1653,6 @@
             closeButton.onclick = cerrarModal;
 
         } catch (error) {
-
             if (pedidoActual) {
                 pedidoActual.cancelando = false;
             }
@@ -1981,11 +1666,9 @@
                 No se pudo cancelar el pedido. Intentá nuevamente.
             `;
         }
-
     }
 
     function cerrarModal() {
-
         document
             .getElementById("modal")
             .classList.remove("show");
@@ -1995,6 +1678,7 @@
 
         document.getElementById("paymentOptions").style.display = "none";
         document.getElementById("transferBox").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "none";
 
         closeButton.style.display = "block";
         closeButton.disabled = false;
@@ -2006,66 +1690,45 @@
         cancelButton.style.display = "none";
 
         pedidoActual = null;
-
     }
+
 
     let adminSecret = "";
     let pedidoAdminSeleccionado = null;
-
     window.pedidosAdminActuales = [];
 
     function abrirAdminLogin() {
-
         document.getElementById("adminModal").classList.add("show");
-
         document.getElementById("adminLoginView").style.display = "block";
         document.getElementById("adminPanelView").style.display = "none";
-
         document.getElementById("adminSecretInput").value = "";
         document.getElementById("adminLoginMessage").textContent = "";
-
-        cerrarInspeccionAdmin();
-
-        setTimeout(
-            () => document.getElementById("adminSecretInput").focus(),
-            50
-        );
-
+        setTimeout(() => document.getElementById("adminSecretInput").focus(), 50);
     }
 
     async function entrarAdmin() {
-
         const input = document.getElementById("adminSecretInput");
         const message = document.getElementById("adminLoginMessage");
         const secret = input.value.trim();
 
         if (!secret) {
-
-            message.textContent =
-                "⚠️ Ingresá la clave de administrador.";
-
+            message.textContent = "⚠️ Ingresá la clave de administrador.";
             return;
         }
 
         message.textContent = "Verificando...";
 
         try {
-
-            const respuesta = await fetch(
-                `${API_URL}/api/pedidos`,
-                {
-                    headers: {
-                        "x-admin-secret": secret
-                    }
+            const respuesta = await fetch(`${API_URL}/api/pedidos`, {
+                headers: {
+                    "x-admin-secret": secret
                 }
-            );
+            });
 
             const datos = await respuesta.json();
 
             if (!respuesta.ok || !datos.ok) {
-                throw new Error(
-                    datos.error || "Clave incorrecta."
-                );
+                throw new Error(datos.error || "Clave incorrecta.");
             }
 
             adminSecret = secret;
@@ -2074,46 +1737,30 @@
 
             document.getElementById("adminLoginView").style.display = "none";
             document.getElementById("adminPanelView").style.display = "flex";
-
             document.getElementById("adminSearchInput").value = "";
             document.getElementById("adminStatusFilter").value = "";
             document.getElementById("adminAmountFilter").value = "";
-
-            cerrarInspeccionAdmin();
-
+            document.getElementById("adminInspect").style.display = "none";
             mostrarPedidosAdmin(window.pedidosAdminActuales);
 
         } catch (error) {
-
-            message.textContent =
-                "❌ " + (error.message || "No se pudo acceder.");
-
+            message.textContent = "❌ " + (error.message || "No se pudo acceder.");
         }
-
     }
 
     function escapeHtmlAdmin(valor) {
-
         return String(valor ?? "")
             .replace(/&/g, "&amp;")
             .replace(/</g, "&lt;")
             .replace(/>/g, "&gt;")
             .replace(/\"/g, "&quot;")
             .replace(/'/g, "&#039;");
-
     }
 
     function obtenerEstadoAdmin(pedido) {
-
-        const estado =
-            String(pedido?.estado || "PENDIENTE").toUpperCase();
-
-        if (estado === "ENVIADO") {
-            return "MANDADO";
-        }
-
+        const estado = String(pedido?.estado || "PENDIENTE").toUpperCase();
+        if (estado === "ENVIADO") return "MANDADO";
         return estado;
-
     }
 
     function estadoClaseAdmin(estado) {
@@ -2121,110 +1768,46 @@
     }
 
     function aplicarFiltrosAdmin() {
+        const busqueda = (document.getElementById("adminSearchInput")?.value || "").trim().toLowerCase();
+        const estado = document.getElementById("adminStatusFilter")?.value || "";
+        const monto = document.getElementById("adminAmountFilter")?.value || "";
 
-        const busqueda =
-            (document.getElementById("adminSearchInput")?.value || "")
-                .trim()
-                .toLowerCase();
+        const filtrados = window.pedidosAdminActuales.filter(pedido => {
+            const uid = String(pedido.game_id || "").toLowerCase();
+            const estadoPedido = obtenerEstadoAdmin(pedido);
+            const precio = Number(pedido.precio || 0);
 
-        const estado =
-            document.getElementById("adminStatusFilter")?.value || "";
+            if (busqueda && !uid.includes(busqueda)) return false;
+            if (estado && estadoPedido !== estado) return false;
 
-        const monto =
-            document.getElementById("adminAmountFilter")?.value || "";
+            if (monto) {
+                const partes = monto.split("-").map(Number);
+                if (precio < partes[0] || precio > partes[1]) return false;
+            }
 
-        const filtrados =
-            window.pedidosAdminActuales.filter(pedido => {
-
-                const uid =
-                    String(pedido.game_id || "").toLowerCase();
-
-                const estadoPedido =
-                    obtenerEstadoAdmin(pedido);
-
-                const precio =
-                    Number(pedido.precio || 0);
-
-                if (busqueda && !uid.includes(busqueda)) {
-                    return false;
-                }
-
-                if (estado && estadoPedido !== estado) {
-                    return false;
-                }
-
-                if (monto) {
-
-                    const partes =
-                        monto.split("-").map(Number);
-
-                    if (
-                        precio < partes[0] ||
-                        precio > partes[1]
-                    ) {
-                        return false;
-                    }
-
-                }
-
-                return true;
-
-            });
+            return true;
+        });
 
         mostrarPedidosAdmin(filtrados);
-
     }
 
     function mostrarPedidosAdmin(pedidos) {
-
-        const contenedor =
-            document.getElementById("adminOrders");
-
-        const mensaje =
-            document.getElementById("adminPanelMessage");
-
-        pedidos = [...pedidos].sort((a, b) => {
-
-            const da =
-                new Date(a.created_at || 0).getTime();
-
-            const db =
-                new Date(b.created_at || 0).getTime();
-
-            return db - da;
-
-        });
+        const contenedor = document.getElementById("adminOrders");
+        const mensaje = document.getElementById("adminPanelMessage");
 
         if (!pedidos.length) {
-
-            mensaje.textContent =
-                window.pedidosAdminActuales.length
-                    ? "No hay pedidos que coincidan con los filtros."
-                    : "No hay pedidos registrados.";
-
-            contenedor.innerHTML = `
-                <div class="admin-orders-wrap">
-                    <div class="admin-empty">
-                        No hay pedidos para mostrar.
-                    </div>
-                </div>
-            `;
-
+            mensaje.textContent = window.pedidosAdminActuales.length ? "No hay pedidos que coincidan con los filtros." : "No hay pedidos registrados.";
+            contenedor.innerHTML = `<div class="admin-orders-wrap"><div class="admin-empty">No hay pedidos para mostrar.</div></div>`;
             actualizarAccionesAdmin();
-
             return;
         }
 
-        mensaje.textContent =
-            `${pedidos.length} de ${window.pedidosAdminActuales.length} pedido${window.pedidosAdminActuales.length === 1 ? "" : "s"}.`;
+        mensaje.textContent = `${pedidos.length} de ${window.pedidosAdminActuales.length} pedido${window.pedidosAdminActuales.length === 1 ? "" : "s"}.`;
 
         contenedor.innerHTML = `
             <div class="admin-orders-wrap">
-
                 <table class="admin-orders">
-
                     <thead>
-
                         <tr>
                             <th>ID</th>
                             <th>Valor</th>
@@ -2233,829 +1816,241 @@
                             <th>Estado</th>
                             <th>Referencia de comerciante</th>
                         </tr>
-
                     </thead>
-
                     <tbody>
-
                         ${pedidos.map(pedido => {
-
-                            const estado =
-                                obtenerEstadoAdmin(pedido);
-
-                            const ref =
-                                String(pedido.merchant_ref)
-                                    .replace(/\\/g, "\\\\")
-                                    .replace(/'/g, "\\'");
-
+                            const estado = obtenerEstadoAdmin(pedido);
+                            const ref = String(pedido.merchant_ref).replace(/\\/g, "\\\\").replace(/'/g, "\\'");
                             return `
-                                <tr
-                                    data-ref="${escapeHtmlAdmin(pedido.merchant_ref)}"
-                                    onclick="seleccionarPedidoAdmin('${ref}')"
-                                    class="${pedidoAdminSeleccionado === pedido.merchant_ref ? "selected" : ""}"
-                                >
+                                <tr data-ref="${escapeHtmlAdmin(pedido.merchant_ref)}" onclick="seleccionarPedidoAdmin('${ref}')" class="${pedidoAdminSeleccionado === pedido.merchant_ref ? "selected" : ""}">
                                     <td>${escapeHtmlAdmin(pedido.game_id)}</td>
-
-                                    <td>
-                                        $${Number(pedido.precio || 0).toLocaleString("es-AR")}
-                                    </td>
-
-                                    <td>
-                                        #${escapeHtmlAdmin(pedido.id)}
-                                    </td>
-
-                                    <td>
-                                        ${escapeHtmlAdmin(pedido.paquete)} 💎
-                                    </td>
-
-                                    <td>
-                                        <span class="admin-status admin-status-${estadoClaseAdmin(estado)}">
-                                            ${escapeHtmlAdmin(estado)}
-                                        </span>
-                                    </td>
-
-                                    <td>
-                                        ${escapeHtmlAdmin(pedido.merchant_ref)}
-                                    </td>
+                                    <td>$${Number(pedido.precio || 0).toLocaleString("es-AR")}</td>
+                                    <td>#${escapeHtmlAdmin(pedido.id)}</td>
+                                    <td>${escapeHtmlAdmin(pedido.paquete)} 💎</td>
+                                    <td><span class="admin-status admin-status-${estadoClaseAdmin(estado)}">${escapeHtmlAdmin(estado)}</span></td>
+                                    <td>${escapeHtmlAdmin(pedido.merchant_ref)}</td>
                                 </tr>
                             `;
-
                         }).join("")}
-
                     </tbody>
-
                 </table>
-
             </div>
         `;
 
         actualizarAccionesAdmin();
-
     }
 
     function seleccionarPedidoAdmin(merchantRef) {
-
         pedidoAdminSeleccionado = merchantRef;
-
-        cerrarInspeccionAdmin();
-
-        aplicarFiltrosAdmin();
-
-        actualizarAccionesAdmin();
-
+        mostrarPedidosAdmin(window.pedidosAdminActuales.filter(pedido => {
+            const busqueda = (document.getElementById("adminSearchInput")?.value || "").trim().toLowerCase();
+            const estadoFiltro = document.getElementById("adminStatusFilter")?.value || "";
+            const monto = document.getElementById("adminAmountFilter")?.value || "";
+            const uid = String(pedido.game_id || "").toLowerCase();
+            const estado = obtenerEstadoAdmin(pedido);
+            const precio = Number(pedido.precio || 0);
+            if (busqueda && !uid.includes(busqueda)) return false;
+            if (estadoFiltro && estado !== estadoFiltro) return false;
+            if (monto) {
+                const partes = monto.split("-").map(Number);
+                if (precio < partes[0] || precio > partes[1]) return false;
+            }
+            return true;
+        }));
     }
 
     function actualizarAccionesAdmin() {
-
-        const pedido =
-            window.pedidosAdminActuales.find(
-                p => p.merchant_ref === pedidoAdminSeleccionado
-            );
-
-        const info =
-            document.getElementById("adminSelectionInfo");
-
-        const confirmar =
-            document.getElementById("adminConfirmButton");
-
-        const mandado =
-            document.getElementById("adminMandadoButton");
-
-        const entregado =
-            document.getElementById("adminEntregadoButton");
-
-        const cancelar =
-            document.getElementById("adminCancelButton");
-
-        const inspeccionar =
-            document.getElementById("adminInspectButton");
-
-        confirmar.style.display = "none";
-        mandado.style.display = "none";
-        entregado.style.display = "none";
-        cancelar.style.display = "none";
-
-        confirmar.disabled = true;
-        mandado.disabled = true;
-        entregado.disabled = true;
-        cancelar.disabled = true;
-        inspeccionar.disabled = true;
-
-        confirmar.textContent = "✓ Confirmar pago";
-        mandado.textContent = "📦 Marcar mandado";
-        entregado.textContent = "✓ Marcar entregado";
-        cancelar.textContent = "✕ Cancelar";
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        const info = document.getElementById("adminSelectionInfo");
+        const confirmar = document.getElementById("adminConfirmButton");
+        const mandado = document.getElementById("adminMandadoButton");
+        const entregado = document.getElementById("adminEntregadoButton");
+        const cancelar = document.getElementById("adminCancelButton");
+        const inspeccionar = document.getElementById("adminInspectButton");
 
         if (!pedido) {
-
-            info.textContent =
-                "Seleccioná un pedido para gestionarlo.";
-
+            info.textContent = "Seleccioná un pedido para gestionarlo.";
+            confirmar.disabled = true;
+            mandado.disabled = true;
+            entregado.disabled = true;
+            cancelar.disabled = true;
+            inspeccionar.disabled = true;
             return;
-
         }
 
-        const estado =
-            obtenerEstadoAdmin(pedido);
-
-        info.innerHTML =
-            `Pedido <strong>#${escapeHtmlAdmin(pedido.id)}</strong> · Estado: <strong>${escapeHtmlAdmin(estado)}</strong>`;
-
+        const estado = obtenerEstadoAdmin(pedido);
+        info.innerHTML = `Pedido <strong>#${escapeHtmlAdmin(pedido.id)}</strong> · Estado: <strong>${escapeHtmlAdmin(estado)}</strong>`;
+        confirmar.disabled = estado !== "PENDIENTE";
+        mandado.disabled = estado !== "PAGADO";
+        entregado.disabled = estado !== "MANDADO";
+        cancelar.disabled = estado !== "PENDIENTE";
         inspeccionar.disabled = false;
-
-        if (estado === "PENDIENTE") {
-
-            confirmar.style.display = "block";
-            confirmar.disabled = false;
-
-            cancelar.style.display = "block";
-            cancelar.disabled = false;
-
-        } else if (estado === "PAGADO") {
-
-            mandado.style.display = "block";
-            mandado.disabled = false;
-
-            cancelar.style.display = "block";
-            cancelar.disabled = false;
-
-        } else if (estado === "MANDADO") {
-
-            entregado.style.display = "block";
-            entregado.disabled = false;
-
-            cancelar.style.display = "block";
-            cancelar.disabled = false;
-
-        } else if (estado === "ENTREGADO") {
-
-            cancelar.style.display = "block";
-            cancelar.disabled = false;
-
-        } else {
-
-            cancelar.style.display = "block";
-            cancelar.disabled = false;
-
-        }
-
     }
 
     async function cargarPedidosAdmin() {
-
-        if (!adminSecret) {
-            return;
-        }
-
-        const mensaje =
-            document.getElementById("adminPanelMessage");
-
-        mensaje.textContent =
-            "Cargando pedidos...";
+        if (!adminSecret) return;
+        const mensaje = document.getElementById("adminPanelMessage");
+        mensaje.textContent = "Cargando pedidos...";
 
         try {
+            const respuesta = await fetch(`${API_URL}/api/pedidos`, { headers: { "x-admin-secret": adminSecret } });
+            const datos = await respuesta.json();
+            if (!respuesta.ok || !datos.ok) throw new Error(datos.error || "No se pudieron cargar los pedidos.");
 
-            const respuesta =
-                await fetch(
-                    `${API_URL}/api/pedidos`,
-                    {
-                        headers: {
-                            "x-admin-secret": adminSecret
-                        }
-                    }
-                );
-
-            const datos =
-                await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-                throw new Error(
-                    datos.error ||
-                    "No se pudieron cargar los pedidos."
-                );
-            }
-
-            window.pedidosAdminActuales =
-                datos.pedidos || [];
-
-            if (
-                pedidoAdminSeleccionado &&
-                !window.pedidosAdminActuales.some(
-                    p =>
-                        p.merchant_ref ===
-                        pedidoAdminSeleccionado
-                )
-            ) {
-
-                pedidoAdminSeleccionado = null;
-
-            }
-
+            window.pedidosAdminActuales = datos.pedidos || [];
+            if (pedidoAdminSeleccionado && !window.pedidosAdminActuales.some(p => p.merchant_ref === pedidoAdminSeleccionado)) pedidoAdminSeleccionado = null;
             aplicarFiltrosAdmin();
-
         } catch (error) {
-
-            mensaje.textContent =
-                "❌ " +
-                (error.message ||
-                    "No se pudieron cargar los pedidos.");
-
+            mensaje.textContent = "❌ " + (error.message || "No se pudieron cargar los pedidos.");
         }
-
     }
 
-    async function cambiarEstadoAdmin(
-        estadoNuevo,
-        textoBoton
-    ) {
+    async function cambiarEstadoAdmin(estadoNuevo, textoBoton) {
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        if (!pedido) return;
 
-        const pedido =
-            window.pedidosAdminActuales.find(
-                p =>
-                    p.merchant_ref ===
-                    pedidoAdminSeleccionado
-            );
-
-        if (!pedido) {
-            return;
-        }
-
-        const estadoActual =
-            obtenerEstadoAdmin(pedido);
-
+        const estadoActual = obtenerEstadoAdmin(pedido);
         const permitidos = {
-
-            PAGADO: [
-                "PENDIENTE"
-            ],
-
-            MANDADO: [
-                "PAGADO"
-            ],
-
-            ENTREGADO: [
-                "MANDADO"
-            ]
-
+            PAGADO: ["PENDIENTE"],
+            MANDADO: ["PAGADO"],
+            ENTREGADO: ["MANDADO"]
         };
+        if (!permitidos[estadoNuevo]?.includes(estadoActual)) return;
 
-        if (
-            !permitidos[estadoNuevo]?.includes(
-                estadoActual
-            )
-        ) {
-
-            return;
-
-        }
-
-        const botones = [
-            "adminConfirmButton",
-            "adminMandadoButton",
-            "adminEntregadoButton",
-            "adminCancelButton"
-        ].map(
-            id =>
-                document.getElementById(id)
-        );
-
-        botones.forEach(
-            b => b.disabled = true
-        );
-
-        const botonActivo =
-            botones.find(
-                b =>
-                    b &&
-                    b.textContent.includes(
-                        textoBoton
-                    )
-            );
-
-        if (botonActivo) {
-            botonActivo.textContent =
-                "Procesando...";
-        }
+        const botones = ["adminConfirmButton", "adminMandadoButton", "adminEntregadoButton", "adminCancelButton"].map(id => document.getElementById(id));
+        botones.forEach(b => b.disabled = true);
+        const botonActivo = botones.find(b => b && b.textContent.includes(textoBoton));
+        if (botonActivo) botonActivo.textContent = "Procesando...";
 
         try {
-
-            const respuesta =
-                await fetch(
-                    `${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`,
-                    {
-                        method: "PATCH",
-
-                        headers: {
-                            "Content-Type": "application/json",
-                            "x-admin-secret": adminSecret
-                        },
-
-                        body: JSON.stringify({
-                            estado: estadoNuevo
-                        })
-                    }
-                );
-
-            const datos =
-                await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-
-                throw new Error(
-                    datos.error ||
-                    "No se pudo actualizar el estado."
-                );
-
-            }
-
-            pedidoAdminSeleccionado =
-                datos.pedido?.merchant_ref ||
-                pedidoAdminSeleccionado;
-
-            cerrarInspeccionAdmin();
-
+            const respuesta = await fetch(`${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json", "x-admin-secret": adminSecret },
+                body: JSON.stringify({ estado: estadoNuevo })
+            });
+            const datos = await respuesta.json();
+            if (!respuesta.ok || !datos.ok) throw new Error(datos.error || "No se pudo actualizar el estado.");
+            pedidoAdminSeleccionado = datos.pedido?.merchant_ref || pedidoAdminSeleccionado;
             await cargarPedidosAdmin();
-
+            inspeccionarPedidoSeleccionado();
         } catch (error) {
-
-            document.getElementById(
-                "adminPanelMessage"
-            ).textContent =
-                "❌ " +
-                (
-                    error.message ||
-                    "No se pudo actualizar el estado."
-                );
-
+            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo actualizar el estado.");
             actualizarAccionesAdmin();
-
         }
-
     }
 
     function acreditarPedidoSeleccionado() {
-
-        cambiarEstadoAdmin(
-            "PAGADO",
-            "Confirmar pago"
-        );
-
+        cambiarEstadoAdmin("PAGADO", "Confirmar pago");
     }
 
     function mandarPedidoSeleccionado() {
-
-        cambiarEstadoAdmin(
-            "MANDADO",
-            "Marcar mandado"
-        );
-
+        cambiarEstadoAdmin("MANDADO", "Marcar mandado");
     }
 
     function entregarPedidoSeleccionado() {
-
-        cambiarEstadoAdmin(
-            "ENTREGADO",
-            "Marcar entregado"
-        );
-
+        cambiarEstadoAdmin("ENTREGADO", "Marcar entregado");
     }
 
     async function cancelarPedidoSeleccionado() {
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        if (!pedido || obtenerEstadoAdmin(pedido) !== "PENDIENTE") return;
 
-        const pedido =
-            window.pedidosAdminActuales.find(
-                p =>
-                    p.merchant_ref ===
-                    pedidoAdminSeleccionado
-            );
-
-        if (!pedido) {
-            return;
-        }
-
-        const botones = [
-            "adminConfirmButton",
-            "adminMandadoButton",
-            "adminEntregadoButton",
-            "adminCancelButton"
-        ].map(
-            id =>
-                document.getElementById(id)
-        );
-
-        botones.forEach(
-            b => b.disabled = true
-        );
-
-        const cancelar =
-            document.getElementById(
-                "adminCancelButton"
-            );
-
-        cancelar.style.display = "block";
-        cancelar.textContent =
-            "Cancelando...";
+        const botones = ["adminConfirmButton", "adminMandadoButton", "adminEntregadoButton", "adminCancelButton"].map(id => document.getElementById(id));
+        botones.forEach(b => b.disabled = true);
+        const cancelar = document.getElementById("adminCancelButton");
+        cancelar.textContent = "Rechazando...";
 
         try {
-
-            const respuesta =
-                await fetch(
-                    `${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`,
-                    {
-                        method: "PATCH",
-
-                        headers: {
-                            "Content-Type": "application/json",
-                            "x-admin-secret": adminSecret
-                        },
-
-                        body: JSON.stringify({
-                            estado: "RECHAZADO"
-                        })
-                    }
-                );
-
-            const datos =
-                await respuesta.json();
-
-            if (!respuesta.ok || !datos.ok) {
-
-                throw new Error(
-                    datos.error ||
-                    "No se pudo cancelar el pedido."
-                );
-
-            }
-
-            cerrarInspeccionAdmin();
-
+            const respuesta = await fetch(`${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`, {
+                method: "PATCH",
+                headers: { "Content-Type": "application/json", "x-admin-secret": adminSecret },
+                body: JSON.stringify({ estado: "RECHAZADO" })
+            });
+            const datos = await respuesta.json();
+            if (!respuesta.ok || !datos.ok) throw new Error(datos.error || "No se pudo rechazar el pedido.");
             await cargarPedidosAdmin();
-
+            inspeccionarPedidoSeleccionado();
         } catch (error) {
-
-            document.getElementById(
-                "adminPanelMessage"
-            ).textContent =
-                "❌ " +
-                (
-                    error.message ||
-                    "No se pudo cancelar el pedido."
-                );
-
+            document.getElementById("adminPanelMessage").textContent = "❌ " + (error.message || "No se pudo rechazar el pedido.");
             actualizarAccionesAdmin();
-
         } finally {
-
-            cancelar.textContent =
-                "✕ Cancelar";
-
+            cancelar.textContent = "✕ Rechazar";
         }
-
     }
 
     function inspeccionarPedidoSeleccionado() {
-
-        const pedido =
-            window.pedidosAdminActuales.find(
-                p =>
-                    p.merchant_ref ===
-                    pedidoAdminSeleccionado
-            );
-
-        const modal =
-            document.getElementById(
-                "adminInspectModal"
-            );
-
-        const box =
-            document.getElementById(
-                "adminInspectBox"
-            );
-
+        const pedido = window.pedidosAdminActuales.find(p => p.merchant_ref === pedidoAdminSeleccionado);
+        const panel = document.getElementById("adminInspect");
         if (!pedido) {
-
-            cerrarInspeccionAdmin();
-
+            panel.style.display = "none";
             return;
-
         }
 
-        const estado =
-            obtenerEstadoAdmin(pedido);
-
-        const pasos = [
-            "PENDIENTE",
-            "PAGADO",
-            "MANDADO",
-            "ENTREGADO"
-        ];
-
-        const indice =
-            pasos.indexOf(estado);
-
-        const especial =
-            estado === "RECHAZADO" ||
-            estado === "ERROR" ||
-            estado === "CANCELADO";
-
-        const metodo =
-            pedido.metodo_pago ||
-            pedido.metodo_de_pago ||
-            "No registrado";
-
-        const fecha =
-            pedido.created_at
-                ? new Date(pedido.created_at)
-                : null;
-
-        const hora =
-            fecha &&
-            !Number.isNaN(fecha.getTime())
-                ? fecha.toLocaleString(
-                    "es-AR",
-                    {
-                        dateStyle: "short",
-                        timeStyle: "medium"
-                    }
-                )
-                : "No registrada";
+        const estado = obtenerEstadoAdmin(pedido);
+        const pasos = ["PENDIENTE", "PAGADO", "MANDADO", "ENTREGADO"];
+        const indice = pasos.indexOf(estado);
+        const especial = estado === "RECHAZADO" || estado === "ERROR" || estado === "CANCELADO";
+        const metodoValor = String(pedido.metodo_pago || pedido.metodo_de_pago || "").toUpperCase();
+        const metodo = metodoValor === "TRANSFERENCIA_BANCARIA"
+            ? "🏦 Transferencia bancaria"
+            : metodoValor === "NO_DEFINIDO" || !metodoValor
+                ? "No seleccionado"
+                : pedido.metodo_pago || pedido.metodo_de_pago;
+        const fecha = pedido.created_at ? new Date(pedido.created_at) : null;
+        const hora = fecha && !Number.isNaN(fecha.getTime()) ? fecha.toLocaleString("es-AR", { dateStyle: "short", timeStyle: "medium" }) : "No registrada";
 
         let progreso = "";
-
         if (especial) {
-
             progreso = `
                 <div class="admin-progress">
-
                     <div class="admin-progress-track">
-
-                        ${pasos.map(
-                            (paso, i) => `
-                                <div class="admin-progress-step ${i <= Math.max(indice, 0) ? "done" : ""}">
-                                    <div class="admin-progress-dot">
-                                        ${i + 1}
-                                    </div>
-
-                                    <div class="admin-progress-label">
-                                        ${
-                                            paso === "PENDIENTE"
-                                                ? "Pendiente"
-                                                : paso === "PAGADO"
-                                                    ? "Pagado"
-                                                    : paso === "MANDADO"
-                                                        ? "Mandado"
-                                                        : "Entregado"
-                                        }
-                                    </div>
-                                </div>
-                            `
-                        ).join("")}
-
-                        <div class="admin-progress-step ${estado === "RECHAZADO" || estado === "CANCELADO" ? "rejected" : "error"}">
-
-                            <div class="admin-progress-dot">
-                                !
-                            </div>
-
-                            <div class="admin-progress-label">
-                                ${escapeHtmlAdmin(estado)}
-                            </div>
-
-                        </div>
-
+                        ${pasos.map((paso, i) => `<div class="admin-progress-step ${i <= Math.max(indice, 0) ? "done" : ""}"><div class="admin-progress-dot">${i + 1}</div><div class="admin-progress-label">${paso === "PENDIENTE" ? "Pendiente" : paso === "PAGADO" ? "Pagado" : paso === "MANDADO" ? "Mandado" : "Entregado"}</div></div>`).join("")}
+                        <div class="admin-progress-step ${estado === "RECHAZADO" || estado === "CANCELADO" ? "rejected" : "error"}"><div class="admin-progress-dot">!</div><div class="admin-progress-label">${escapeHtmlAdmin(estado)}</div></div>
                     </div>
-
-                </div>
-            `;
-
+                </div>`;
         } else {
-
             progreso = `
                 <div class="admin-progress">
-
                     <div class="admin-progress-track">
-
-                        ${pasos.map(
-                            (paso, i) => `
-                                <div class="admin-progress-step ${i < indice ? "done" : i === indice ? "active" : ""}">
-
-                                    <div class="admin-progress-dot">
-                                        ${i + 1}
-                                    </div>
-
-                                    <div class="admin-progress-label">
-                                        ${
-                                            paso === "PENDIENTE"
-                                                ? "Pendiente"
-                                                : paso === "PAGADO"
-                                                    ? "Pagado"
-                                                    : paso === "MANDADO"
-                                                        ? "Mandado"
-                                                        : "Entregado"
-                                        }
-                                    </div>
-
-                                </div>
-                            `
-                        ).join("")}
-
+                        ${pasos.map((paso, i) => `<div class="admin-progress-step ${i < indice ? "done" : i === indice ? "active" : ""}"><div class="admin-progress-dot">${i + 1}</div><div class="admin-progress-label">${paso === "PENDIENTE" ? "Pendiente" : paso === "PAGADO" ? "Pagado" : paso === "MANDADO" ? "Mandado" : "Entregado"}</div></div>`).join("")}
                     </div>
-
-                </div>
-            `;
-
+                </div>`;
         }
 
-        box.innerHTML = `
-
-            <div class="admin-inspect-top">
-
-                <div class="admin-inspect-title">
-                    🔍 Detalle del pedido #${escapeHtmlAdmin(pedido.id)}
-                </div>
-
-                <button
-                    class="admin-inspect-close"
-                    onclick="cerrarInspeccionAdmin()"
-                >
-                    ✕
-                </button>
-
-            </div>
-
+        panel.innerHTML = `
+            <div class="admin-inspect-title">🔍 Detalle del pedido #${escapeHtmlAdmin(pedido.id)}</div>
             <div class="admin-detail-grid">
-
-                <div class="admin-detail">
-                    <span class="admin-detail-label">
-                        ID del jugador
-                    </span>
-
-                    <span class="admin-detail-value">
-                        ${escapeHtmlAdmin(pedido.game_id)}
-                    </span>
-                </div>
-
-                <div class="admin-detail">
-                    <span class="admin-detail-label">
-                        Cantidad
-                    </span>
-
-                    <span class="admin-detail-value">
-                        ${escapeHtmlAdmin(pedido.paquete)} 💎
-                    </span>
-                </div>
-
-                <div class="admin-detail">
-                    <span class="admin-detail-label">
-                        Valor
-                    </span>
-
-                    <span class="admin-detail-value">
-                        $${Number(pedido.precio || 0).toLocaleString("es-AR")}
-                    </span>
-                </div>
-
-                <div class="admin-detail">
-                    <span class="admin-detail-label">
-                        Método de compra
-                    </span>
-
-                    <span class="admin-detail-value">
-                        ${escapeHtmlAdmin(metodo)}
-                    </span>
-                </div>
-
-                <div class="admin-detail">
-                    <span class="admin-detail-label">
-                        Referencia de comerciante
-                    </span>
-
-                    <span class="admin-detail-value">
-                        ${escapeHtmlAdmin(pedido.merchant_ref)}
-                    </span>
-                </div>
-
-                <div class="admin-detail">
-                    <span class="admin-detail-label">
-                        Horario de creación
-                    </span>
-
-                    <span class="admin-detail-value">
-                        ${escapeHtmlAdmin(hora)}
-                    </span>
-                </div>
-
-                <div class="admin-detail">
-                    <span class="admin-detail-label">
-                        Última actualización
-                    </span>
-
-                    <span class="admin-detail-value">
-                        ${
-                            escapeHtmlAdmin(
-                                pedido.updated_at
-                                    ? new Date(
-                                        pedido.updated_at
-                                    ).toLocaleString(
-                                        "es-AR",
-                                        {
-                                            dateStyle: "short",
-                                            timeStyle: "medium"
-                                        }
-                                    )
-                                    : "No registrada"
-                            )
-                        }
-                    </span>
-                </div>
-
-                <div class="admin-detail">
-
-                    <span class="admin-detail-label">
-                        Estado actual
-                    </span>
-
-                    <span class="admin-detail-value">
-
-                        <span class="admin-status admin-status-${estadoClaseAdmin(estado)}">
-                            ${escapeHtmlAdmin(estado)}
-                        </span>
-
-                    </span>
-
-                </div>
-
+                <div class="admin-detail"><span class="admin-detail-label">ID del jugador</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.game_id)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Cantidad</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.paquete)} 💎</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Valor</span><span class="admin-detail-value">$${Number(pedido.precio || 0).toLocaleString("es-AR")}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Método de compra</span><span class="admin-detail-value">${escapeHtmlAdmin(metodo)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Referencia de comerciante</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.merchant_ref)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Horario de creación</span><span class="admin-detail-value">${escapeHtmlAdmin(hora)}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Última actualización</span><span class="admin-detail-value">${escapeHtmlAdmin(pedido.updated_at ? new Date(pedido.updated_at).toLocaleString("es-AR", { dateStyle: "short", timeStyle: "medium" }) : "No registrada")}</span></div>
+                <div class="admin-detail"><span class="admin-detail-label">Estado actual</span><span class="admin-detail-value"><span class="admin-status admin-status-${estadoClaseAdmin(estado)}">${escapeHtmlAdmin(estado)}</span></span></div>
             </div>
-
             ${progreso}
-
-            <div class="admin-inspect-footer">
-
-                <button
-                    class="back-btn"
-                    onclick="cerrarInspeccionAdmin()"
-                >
-                    Cerrar
-                </button>
-
-            </div>
-
         `;
-
-        modal.classList.add("show");
-
-    }
-
-    function cerrarInspeccionAdmin(event) {
-
-        if (
-            event &&
-            event.target &&
-            event.target.id !== "adminInspectModal"
-        ) {
-            return;
-        }
-
-        const modal =
-            document.getElementById(
-                "adminInspectModal"
-            );
-
-        if (modal) {
-            modal.classList.remove("show");
-        }
-
+        panel.style.display = "block";
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
 
     function cerrarAdmin() {
-
-        cerrarInspeccionAdmin();
-
-        document
-            .getElementById("adminModal")
-            .classList.remove("show");
-
+        document.getElementById("adminModal").classList.remove("show");
         adminSecret = "";
         pedidoAdminSeleccionado = null;
         window.pedidosAdminActuales = [];
-
+        const inspect = document.getElementById("adminInspect");
+        if (inspect) inspect.style.display = "none";
     }
 
-    document
-        .getElementById("adminSecretInput")
-        ?.addEventListener(
-            "keydown",
-            function(event) {
-
-                if (event.key === "Enter") {
-                    entrarAdmin();
-                }
-
-            }
-        );
+    document.getElementById("adminSecretInput")?.addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            entrarAdmin();
+        }
+    });
 
     comprobarServidor();
-
 </script>
 
 </body>
