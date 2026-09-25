@@ -5,1369 +5,1125 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recargas Montefinix</title>
 
-<style>
-    * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-    }
-
-    body {
-        font-family: Arial, Helvetica, sans-serif;
-        background: radial-gradient(circle at top, #24103f 0%, #0c0c18 45%, #07070d 100%);
-        color: white;
-        min-height: 100vh;
-    }
-
-    header {
-        width: 100%;
-        padding: 18px 7%;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        border-bottom: 1px solid rgba(255,255,255,0.08);
-        background: rgba(5,5,12,0.65);
-        backdrop-filter: blur(10px);
-        position: sticky;
-        top: 0;
-        z-index: 10;
-    }
-
-    .logo {
-        font-size: 24px;
-        font-weight: 900;
-        letter-spacing: 1px;
-    }
-
-    .logo span {
-        color: #ffb000;
-    }
-
-    .header-right {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-
-    .status {
-        font-size: 13px;
-        color: #8cffad;
-        display: flex;
-        align-items: center;
-        gap: 7px;
-    }
-
-    .status-dot {
-        width: 8px;
-        height: 8px;
-        background: #43ff79;
-        border-radius: 50%;
-        box-shadow: 0 0 10px #43ff79;
-    }
-
-    main {
-        width: min(1050px, 92%);
-        margin: 45px auto;
-    }
-
-    .hero {
-        text-align: center;
-        margin-bottom: 35px;
-    }
-
-    .hero h1 {
-        font-size: clamp(32px, 6vw, 58px);
-        font-weight: 900;
-        line-height: 1.05;
-    }
-
-    .hero h1 span {
-        color: #ffb000;
-    }
-
-    .hero p {
-        color: #aaa9b8;
-        margin-top: 12px;
-        font-size: 16px;
-    }
-
-    .layout {
-        display: grid;
-        grid-template-columns: 1.25fr 0.75fr;
-        gap: 22px;
-    }
-
-    .card {
-        background: rgba(19,19,31,0.9);
-        border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 20px;
-        padding: 25px;
-        box-shadow: 0 15px 50px rgba(0,0,0,0.35);
-    }
-
-    .card-title {
-        font-size: 20px;
-        font-weight: 800;
-        margin-bottom: 20px;
-    }
-
-    label {
-        display: block;
-        color: #d7d5df;
-        font-size: 14px;
-        margin-bottom: 8px;
-    }
-
-    .input-area {
-        display: flex;
-        gap: 10px;
-    }
-
-    input,
-    select {
-        width: 100%;
-        padding: 15px;
-        border-radius: 12px;
-        border: 1px solid #343442;
-        background: #0d0d17;
-        color: white;
-        outline: none;
-        font-size: 16px;
-        transition: 0.2s;
-    }
-
-    input:focus,
-    select:focus {
-        border-color: #ffb000;
-        box-shadow: 0 0 0 3px rgba(255,176,0,0.1);
-    }
-
-    button {
-        border: none;
-        cursor: pointer;
-        font-weight: 800;
-        transition: 0.2s;
-    }
-
-    button:disabled {
-        cursor: not-allowed;
-    }
-
-    .search-btn {
-        padding: 0 20px;
-        border-radius: 12px;
-        background: #ffb000;
-        color: #111;
-        white-space: nowrap;
-    }
-
-    .search-btn:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.1);
-    }
-
-    .search-btn:disabled {
-        opacity: 0.5;
-        transform: none;
-        filter: none;
-    }
-
-    .player {
-        margin-top: 18px;
-        background: #11111d;
-        border: 1px solid #2d2d3d;
-        border-radius: 15px;
-        padding: 16px;
-        display: none;
-        align-items: center;
-        gap: 14px;
-        animation: appear 0.3s ease;
-    }
-
-    .player.show {
-        display: flex;
-    }
-
-    .avatar {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(135deg, #ffb000, #ff5c00);
-        font-size: 22px;
-    }
-
-    .player-name {
-        font-weight: 800;
-        font-size: 17px;
-    }
-
-    .player-id {
-        color: #92919e;
-        font-size: 13px;
-        margin-top: 4px;
-    }
-
-    .message {
-        font-size: 13px;
-        margin-top: 12px;
-        min-height: 18px;
-        color: #ffcb5c;
-    }
-
-    .packages {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
-        margin-top: 20px;
-    }
-
-    .package {
-        padding: 20px 12px;
-        border-radius: 15px;
-        background: #11111d;
-        border: 1px solid #2d2d3d;
-        text-align: center;
-        cursor: pointer;
-        transition: 0.2s;
-    }
-
-    .package:hover {
-        transform: translateY(-3px);
-        border-color: #ffb000;
-    }
-
-    .package.selected {
-        border-color: #ffb000;
-        background: rgba(255,176,0,0.1);
-        box-shadow: 0 0 20px rgba(255,176,0,0.08);
-    }
-
-    .diamonds {
-        font-size: 22px;
-        font-weight: 900;
-    }
-
-    .diamond-icon {
-        font-size: 18px;
-    }
-
-    .price {
-        margin-top: 8px;
-        color: #aaa9b8;
-        font-size: 14px;
-    }
-
-    .discount-section {
-        margin-top: 28px;
-        padding-top: 22px;
-        border-top: 1px solid #292936;
-    }
-
-    .discount-title {
-        font-size: 15px;
-        font-weight: 800;
-        margin-bottom: 10px;
-    }
-
-    .discount-input-area {
-        display: flex;
-        gap: 8px;
-    }
-
-    .discount-input-area input {
-        padding: 12px;
-        font-size: 14px;
-    }
-
-    .discount-btn {
-        min-width: 105px;
-        border-radius: 10px;
-        background: #292936;
-        color: white;
-        padding: 0 14px;
-        font-size: 12px;
-    }
-
-    .discount-btn:hover {
-        background: #3a3a49;
-    }
-
-    .discount-btn:disabled {
-        opacity: 0.5;
-    }
-
-    .discount-message {
-        min-height: 18px;
-        margin-top: 8px;
-        font-size: 12px;
-        color: #aaa9b8;
-    }
-
-    .discount-message.success {
-        color: #8cffad;
-    }
-
-    .discount-message.error {
-        color: #ff8b8b;
-    }
-
-    .summary {
-        position: sticky;
-        top: 100px;
-        height: fit-content;
-    }
-
-    .summary-row {
-        display: flex;
-        justify-content: space-between;
-        gap: 12px;
-        padding: 12px 0;
-        border-bottom: 1px solid #292936;
-        color: #aaa9b8;
-        font-size: 14px;
-    }
-
-    .summary-row strong {
-        color: white;
-        text-align: right;
-        overflow-wrap: anywhere;
-    }
-
-    .discount-row {
-        color: #8cffad;
-    }
-
-    .discount-row strong {
-        color: #8cffad;
-    }
-
-    .total {
-        display: flex;
-        justify-content: space-between;
-        margin-top: 20px;
-        font-size: 22px;
-        font-weight: 900;
-    }
-
-    .original-total {
-        display: none;
-        margin-top: 15px;
-        color: #777684;
-        text-decoration: line-through;
-        font-size: 13px;
-        text-align: right;
-    }
-
-    .buy-btn {
-        width: 100%;
-        padding: 16px;
-        margin-top: 22px;
-        border-radius: 13px;
-        background: linear-gradient(135deg, #ffb000, #ff7200);
-        color: #111;
-        font-size: 16px;
-    }
-
-    .buy-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(255,150,0,0.25);
-    }
-
-    .buy-btn:disabled {
-        opacity: 0.4;
-        transform: none;
-        box-shadow: none;
-    }
-
-    .secure {
-        text-align: center;
-        color: #777684;
-        font-size: 12px;
-        margin-top: 14px;
-    }
-
-    .login-required {
-        margin-top: 10px;
-        text-align: center;
-        font-size: 12px;
-        color: #ffcb5c;
-        display: none;
-    }
-
-    .account-btn {
-        min-height: 38px;
-        padding: 0 13px;
-        border-radius: 10px;
-        background: #1b1b2a;
-        border: 1px solid #343442;
-        color: white;
-        font-size: 12px;
-    }
-
-    .account-btn:hover {
-        border-color: #ffb000;
-        transform: translateY(-2px);
-    }
-
-    .admin-btn {
-        width: 38px;
-        height: 38px;
-        border-radius: 50%;
-        background: #1b1b2a;
-        border: 1px solid #343442;
-        color: white;
-        font-size: 18px;
-        display: grid;
-        place-items: center;
-    }
-
-    .admin-btn:hover {
-        border-color: #ffb000;
-        transform: translateY(-2px);
-    }
-
-    .modal {
-        position: fixed;
-        inset: 0;
-        background: rgba(0,0,0,0.75);
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-        z-index: 100;
-    }
-
-    .modal.show {
-        display: flex;
-    }
-
-    .modal-box {
-        width: min(430px, 100%);
-        max-height: 90vh;
-        overflow-y: auto;
-        background: #171722;
-        border: 1px solid #333342;
-        border-radius: 20px;
-        padding: 28px;
-        text-align: center;
-        animation: appear 0.25s ease;
-    }
-
-    .auth-modal-box {
-        width: min(440px, 100%);
-    }
-
-    .auth-tabs {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 6px;
-        margin: 20px 0;
-        background: #0d0d17;
-        padding: 5px;
-        border-radius: 11px;
-    }
-
-    .auth-tab {
-        padding: 10px;
-        border-radius: 8px;
-        background: transparent;
-        color: #888795;
-        font-size: 13px;
-    }
-
-    .auth-tab.active {
-        background: #292936;
-        color: white;
-    }
-
-    .auth-form {
-        text-align: left;
-    }
-
-    .auth-form label {
-        margin-top: 13px;
-    }
-
-    .auth-form input {
-        padding: 13px;
-    }
-
-    .auth-submit {
-        width: 100%;
-        padding: 14px;
-        border-radius: 11px;
-        margin-top: 18px;
-        background: linear-gradient(135deg, #ffb000, #ff7200);
-        color: #111;
-    }
-
-    .auth-message {
-        min-height: 18px;
-        margin-top: 12px;
-        font-size: 12px;
-        color: #ffcb5c;
-    }
-
-    .profile-card {
-        background: #11111d;
-        border: 1px solid #343442;
-        border-radius: 14px;
-        padding: 16px;
-        text-align: left;
-        margin-top: 18px;
-    }
-
-    .profile-item {
-        padding: 10px 0;
-        border-bottom: 1px solid #292936;
-    }
-
-    .profile-item:last-child {
-        border-bottom: none;
-    }
-
-    .profile-label {
-        color: #777684;
-        font-size: 11px;
-        display: block;
-        margin-bottom: 4px;
-    }
-
-    .profile-value {
-        font-size: 14px;
-        font-weight: 800;
-        overflow-wrap: anywhere;
-    }
-
-    .copy-code {
-        width: 100%;
-        padding: 11px;
-        border-radius: 9px;
-        background: #292936;
-        color: white;
-        margin-top: 9px;
-        font-size: 12px;
-    }
-
-    .copy-code:hover {
-        background: #3a3a49;
-    }
-
-    .logout-btn {
-        width: 100%;
-        padding: 13px;
-        border-radius: 11px;
-        margin-top: 15px;
-        background: #7d2525;
-        color: white;
-    }
-
-    .logout-btn:hover {
-        background: #a52e2e;
-    }
-
-    .success {
-        font-size: 50px;
-        margin-bottom: 12px;
-    }
-
-    .modal-box h2 {
-        margin-bottom: 10px;
-    }
-
-    .modal-box p {
-        color: #aaa9b8;
-        line-height: 1.5;
-    }
-
-    .payment-options {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        margin-top: 22px;
-    }
-
-    .payment-option {
-        width: 100%;
-        padding: 15px;
-        border-radius: 13px;
-        background: #11111d;
-        border: 1px solid #343442;
-        color: white;
-        text-align: left;
-    }
-
-    .payment-option:hover {
-        border-color: #ffb000;
-        transform: translateY(-2px);
-    }
-
-    .payment-option.disabled {
-        opacity: 0.45;
-        cursor: not-allowed;
-    }
-
-    .payment-option.disabled:hover {
-        transform: none;
-        border-color: #343442;
-    }
-
-    .payment-title {
-        font-size: 15px;
-        font-weight: 800;
-    }
-
-    .payment-subtitle {
-        display: block;
-        color: #888795;
-        font-size: 12px;
-        margin-top: 4px;
-    }
-
-    .transfer-box {
-        margin-top: 20px;
-        padding: 18px;
-        background: #11111d;
-        border: 1px solid #343442;
-        border-radius: 15px;
-        text-align: left;
-    }
-
-    .transfer-box h3 {
-        margin-bottom: 15px;
-    }
-
-    .transfer-row {
-        margin-bottom: 13px;
-    }
-
-    .transfer-label {
-        display: block;
-        color: #888795;
-        font-size: 12px;
-        margin-bottom: 4px;
-    }
-
-    .transfer-value {
-        color: white;
-        font-weight: 800;
-        word-break: break-word;
-    }
-
-    .chat-btn {
-        width: 100%;
-        padding: 14px;
-        border-radius: 12px;
-        margin-top: 10px;
-        background: #25d366;
-        color: white;
-    }
-
-    .back-btn,
-    .close-btn,
-    .cancel-btn {
-        width: 100%;
-        padding: 13px;
-        border-radius: 12px;
-        color: white;
-    }
-
-    .back-btn {
-        margin-top: 10px;
-        background: #292936;
-    }
-
-    .close-btn {
-        margin-top: 20px;
-        background: linear-gradient(135deg, #ffb000, #ff7200);
-        color: #111;
-    }
-
-    .close-btn:hover,
-    .chat-btn:hover,
-    .back-btn:hover {
-        transform: translateY(-2px);
-    }
-
-    .cancel-btn {
-        margin-top: 10px;
-        background: #7d2525;
-    }
-
-    .cancel-btn:hover {
-        background: #a52e2e;
-    }
-
-    .admin-modal-box {
-        width: min(1050px, 94vw);
-        height: min(88vh, 820px);
-        max-height: 88vh;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        text-align: left;
-        padding: 20px;
-        border-color: rgba(255,176,0,0.16);
-        box-shadow: 0 30px 90px rgba(0,0,0,0.65);
-    }
-
-    #adminPanelView {
-        display: flex;
-        flex: 1;
-        min-height: 0;
-        flex-direction: column;
-    }
-
-    .admin-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 18px;
-        padding-bottom: 12px;
-        border-bottom: 1px solid #2b2b39;
-    }
-
-    .admin-header-copy h2 {
-        margin-bottom: 4px;
-    }
-
-    .admin-header-copy p {
-        margin: 0;
-    }
-
-    .admin-header-icon {
-        width: 46px;
-        height: 46px;
-        flex: 0 0 46px;
-        border-radius: 13px;
-        display: grid;
-        place-items: center;
-        background: rgba(255,176,0,0.1);
-        border: 1px solid rgba(255,176,0,0.2);
-        font-size: 22px;
-    }
-
-    .admin-content-scroll {
-        flex: 1;
-        min-height: 0;
-        overflow-y: auto;
-        overflow-x: hidden;
-        padding: 12px 3px 6px 0;
-        scrollbar-width: thin;
-        scrollbar-color: #4a4a5b transparent;
-    }
-
-    .admin-content-scroll::-webkit-scrollbar {
-        width: 8px;
-    }
-
-    .admin-content-scroll::-webkit-scrollbar-thumb {
-        background: #4a4a5b;
-        border-radius: 20px;
-    }
-
-    .admin-tools {
-        display: grid;
-        grid-template-columns: minmax(260px, 1.8fr) minmax(170px, 0.9fr) minmax(170px, 0.9fr);
-        gap: 8px;
-        margin: 0 0 9px;
-    }
-
-    .admin-tools input,
-    .admin-tools select {
-        width: 100%;
-        margin: 0;
-        padding: 10px 11px;
-        border-radius: 9px;
-        border: 1px solid #343442;
-        background: #0d0d17;
-        color: #fff;
-        outline: none;
-    }
-
-    .admin-tools input:focus,
-    .admin-tools select:focus {
-        border-color: #ffb000;
-    }
-
-    .admin-orders-wrap {
-        width: 100%;
-        overflow-x: auto;
-        margin-top: 0;
-        border: 1px solid #343442;
-        border-radius: 12px;
-        background: #0d0d17;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.18);
-    }
-
-    .admin-orders {
-        width: 100%;
-        min-width: 820px;
-        border-collapse: collapse;
-        font-size: 12px;
-    }
-
-    .admin-orders th {
-        position: sticky;
-        top: 0;
-        z-index: 2;
-        padding: 10px 10px;
-        background: #171722;
-        color: #aaa9b8;
-        text-align: left;
-        font-weight: 800;
-        border-bottom: 1px solid #343442;
-        white-space: nowrap;
-    }
-
-    .admin-orders td {
-        padding: 9px 10px;
-        border-bottom: 1px solid #242432;
-        color: #eee;
-        white-space: nowrap;
-    }
-
-    .admin-orders td:first-child,
-    .admin-orders th:first-child {
-        padding-left: 12px;
-    }
-
-    .admin-orders tbody tr {
-        cursor: pointer;
-        transition: 0.15s;
-    }
-
-    .admin-orders tbody tr:hover {
-        background: rgba(255,176,0,0.06);
-    }
-
-    .admin-orders tbody tr.selected {
-        background: rgba(255,176,0,0.13);
-        box-shadow: inset 3px 0 0 #ffb000;
-    }
-
-    .admin-orders tbody tr:last-child td {
-        border-bottom: none;
-    }
-
-    .admin-empty {
-        padding: 35px 20px;
-        text-align: center;
-        color: #888795;
-    }
-
-    .admin-selection {
-        padding: 8px;
-        border: 1px solid #343442;
-        border-radius: 10px;
-        background: #11111d;
-    }
-
-    .admin-selection-info {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: #aaa9b8;
-        font-size: 11px;
-        min-height: 16px;
-    }
-
-    .admin-actions {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 6px;
-        margin-top: 7px;
-    }
-
-    .admin-action {
-        min-height: 32px;
-        padding: 7px 8px;
-        border-radius: 8px;
-        color: white;
-        font-size: 11px;
-        line-height: 1.1;
-    }
-
-    .admin-confirm {
-        background: #1e8f4d;
-    }
-
-    .admin-cancel {
-        background: #7d2525;
-    }
-
-    .admin-action:disabled {
-        display: none;
-    }
-
-    .admin-action:not(:disabled):hover {
-        transform: translateY(-1px);
-    }
-
-    .admin-footer-buttons {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-        gap: 6px;
-        margin-top: 6px;
-    }
-
-    .admin-footer-buttons button {
-        min-height: 32px;
-        padding: 7px 8px;
-        border-radius: 8px;
-        font-size: 11px;
-        margin-top: 0;
-    }
-
-    .admin-fixed-footer {
-        flex-shrink: 0;
-        margin-top: 8px;
-        padding-top: 8px;
-        border-top: 1px solid #343442;
-        background: #171722;
-    }
-
-    .admin-status {
-        display: inline-block;
-        padding: 4px 8px;
-        border-radius: 7px;
-        font-size: 10px;
-        font-weight: 800;
-        border: 1px solid transparent;
-    }
-
-    .admin-status-pendiente {
-        color: #ffcb5c;
-        background: rgba(255,203,92,0.1);
-        border-color: rgba(255,203,92,0.25);
-    }
-
-    .admin-status-pagado {
-        color: #8cffad;
-        background: rgba(67,255,121,0.1);
-        border-color: rgba(67,255,121,0.25);
-    }
-
-    .admin-status-mandado {
-        color: #ffc66d;
-        background: rgba(255,171,71,0.1);
-        border-color: rgba(255,171,71,0.25);
-    }
-
-    .admin-status-entregado {
-        color: #75ffcf;
-        background: rgba(117,255,207,0.1);
-        border-color: rgba(117,255,207,0.25);
-    }
-
-    .admin-status-rechazado,
-    .admin-status-error,
-    .admin-status-cancelado {
-        color: #ff8b8b;
-        background: rgba(255,69,69,0.1);
-        border-color: rgba(255,69,69,0.25);
-    }
-
-    .admin-status-procesando {
-        color: #7dc7ff;
-        background: rgba(125,199,255,0.1);
-        border-color: rgba(125,199,255,0.25);
-    }
-
-    .admin-status-enviado {
-        color: #75ffcf;
-        background: rgba(117,255,207,0.1);
-        border-color: rgba(117,255,207,0.25);
-    }
-
-    .admin-inspect-modal {
-        position: absolute;
-        inset: 0;
-        background: rgba(5,5,12,0.82);
-        backdrop-filter: blur(7px);
-        z-index: 20;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        padding: 20px;
-    }
-
-    .admin-inspect-modal.show {
-        display: flex;
-    }
-
-    .admin-inspect-box {
-        width: min(720px, 100%);
-        max-height: 90%;
-        overflow-y: auto;
-        padding: 20px;
-        border: 1px solid #3b3b4b;
-        border-radius: 16px;
-        background: linear-gradient(180deg, #171722, #0f0f19);
-        box-shadow: 0 25px 80px rgba(0,0,0,0.65);
-        animation: appear 0.2s ease;
-    }
-
-    .admin-inspect-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 15px;
-        margin-bottom: 16px;
-    }
-
-    .admin-inspect-title {
-        font-size: 18px;
-        font-weight: 900;
-    }
-
-    .admin-inspect-close {
-        width: 34px;
-        height: 34px;
-        flex: 0 0 34px;
-        border-radius: 9px;
-        background: #292936;
-        color: white;
-        font-size: 16px;
-    }
-
-    .admin-inspect-close:hover {
-        background: #3a3a49;
-    }
-
-    .admin-detail-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 9px;
-    }
-
-    .admin-detail {
-        padding: 10px 11px;
-        border: 1px solid #292936;
-        border-radius: 9px;
-        background: #11111d;
-    }
-
-    .admin-detail-label {
-        display: block;
-        color: #888795;
-        font-size: 10px;
-        font-weight: 700;
-        margin-bottom: 4px;
-    }
-
-    .admin-detail-value {
-        color: #fff;
-        font-size: 12px;
-        font-weight: 800;
-        overflow-wrap: anywhere;
-    }
-
-    .admin-progress {
-        margin-top: 16px;
-        overflow-x: auto;
-        padding-bottom: 4px;
-    }
-
-    .admin-progress-track {
-        min-width: 600px;
-        display: flex;
-        align-items: flex-start;
-        position: relative;
-    }
-
-    .admin-progress-track::before {
-        content: "";
-        position: absolute;
-        top: 15px;
-        left: 8%;
-        right: 8%;
-        height: 3px;
-        background: #343442;
-    }
-
-    .admin-progress-step {
-        position: relative;
-        z-index: 1;
-        flex: 1;
-        text-align: center;
-    }
-
-    .admin-progress-dot {
-        width: 30px;
-        height: 30px;
-        margin: 0 auto 8px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: #22222f;
-        border: 2px solid #444454;
-        color: #aaa;
-        font-size: 12px;
-        font-weight: 900;
-    }
-
-    .admin-progress-step.active .admin-progress-dot,
-    .admin-progress-step.done .admin-progress-dot {
-        background: #ffb000;
-        border-color: #ffb000;
-        color: #111;
-    }
-
-    .admin-progress-step.active .admin-progress-label,
-    .admin-progress-step.done .admin-progress-label {
-        color: #fff;
-    }
-
-    .admin-progress-label {
-        color: #777685;
-        font-size: 10px;
-        font-weight: 800;
-        white-space: nowrap;
-    }
-
-    .admin-progress-step.error .admin-progress-dot,
-    .admin-progress-step.rejected .admin-progress-dot {
-        background: #7d2525;
-        border-color: #ff6969;
-        color: #fff;
-    }
-
-    .admin-progress-step.error .admin-progress-label,
-    .admin-progress-step.rejected .admin-progress-label {
-        color: #ff8b8b;
-    }
-
-    .admin-inspect-footer {
-        display: flex;
-        gap: 7px;
-        margin-top: 15px;
-    }
-
-    .admin-inspect-footer button {
-        flex: 1;
-        min-height: 34px;
-        padding: 8px;
-        border-radius: 9px;
-        font-size: 11px;
-    }
-
-    @media (min-width: 1100px) {
-        main {
-            width: min(1180px, 92%);
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
-        .layout {
-            grid-template-columns: minmax(0, 1.45fr) minmax(330px, 0.65fr);
-            gap: 26px;
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: radial-gradient(circle at top, #24103f 0%, #0c0c18 45%, #07070d 100%);
+            color: white;
+            min-height: 100vh;
         }
 
-        .packages {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-
-    @media (max-width: 750px) {
         header {
-            padding: 14px 5%;
+            width: 100%;
+            padding: 18px 7%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            background: rgba(5,5,12,0.65);
+            backdrop-filter: blur(10px);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
         .logo {
-            font-size: 19px;
+            font-size: 24px;
+            font-weight: 900;
+            letter-spacing: 1px;
+        }
+
+        .logo span {
+            color: #ffb000;
         }
 
         .status {
-            display: none;
+            font-size: 13px;
+            color: #8cffad;
+            display: flex;
+            align-items: center;
+            gap: 7px;
         }
 
-        .header-right {
-            gap: 6px;
-        }
-
-        .account-btn {
-            padding: 0 9px;
-            font-size: 11px;
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            background: #43ff79;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #43ff79;
         }
 
         main {
-            margin: 30px auto;
+            width: min(1050px, 92%);
+            margin: 45px auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 58px);
+            font-weight: 900;
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            color: #ffb000;
+        }
+
+        .hero p {
+            color: #aaa9b8;
+            margin-top: 12px;
+            font-size: 16px;
         }
 
         .layout {
-            grid-template-columns: 1fr;
+            display: grid;
+            grid-template-columns: 1.25fr 0.75fr;
+            gap: 22px;
         }
 
-        .summary {
-            position: static;
+        .card {
+            background: rgba(19,19,31,0.9);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 20px;
+            padding: 25px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.35);
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            color: #d7d5df;
+            font-size: 14px;
+            margin-bottom: 8px;
         }
 
         .input-area {
-            flex-direction: column;
+            display: flex;
+            gap: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border-radius: 12px;
+            border: 1px solid #343442;
+            background: #0d0d17;
+            color: white;
+            outline: none;
+            font-size: 16px;
+            transition: 0.2s;
+        }
+
+        input:focus {
+            border-color: #ffb000;
+            box-shadow: 0 0 0 3px rgba(255,176,0,0.1);
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-weight: 800;
+            transition: 0.2s;
         }
 
         .search-btn {
-            padding: 14px;
+            padding: 0 20px;
+            border-radius: 12px;
+            background: #ffb000;
+            color: #111;
+            white-space: nowrap;
         }
 
-        .discount-input-area {
+        .search-btn:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.1);
+        }
+
+        .search-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+            filter: none;
+        }
+
+        .player {
+            margin-top: 18px;
+            background: #11111d;
+            border: 1px solid #2d2d3d;
+            border-radius: 15px;
+            padding: 16px;
+            display: none;
+            align-items: center;
+            gap: 14px;
+            animation: appear 0.3s ease;
+        }
+
+        .player.show {
+            display: flex;
+        }
+
+        .avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: grid;
+            place-items: center;
+            background: linear-gradient(135deg, #ffb000, #ff5c00);
+            font-size: 22px;
+        }
+
+        .player-name {
+            font-weight: 800;
+            font-size: 17px;
+        }
+
+        .player-id {
+            color: #92919e;
+            font-size: 13px;
+            margin-top: 4px;
+        }
+
+        .message {
+            font-size: 13px;
+            margin-top: 12px;
+            min-height: 18px;
+            color: #ffcb5c;
+        }
+
+        .packages {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .package {
+            padding: 20px 12px;
+            border-radius: 15px;
+            background: #11111d;
+            border: 1px solid #2d2d3d;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .package:hover {
+            transform: translateY(-3px);
+            border-color: #ffb000;
+        }
+
+        .package.selected {
+            border-color: #ffb000;
+            background: rgba(255,176,0,0.1);
+            box-shadow: 0 0 20px rgba(255,176,0,0.08);
+        }
+
+        .diamonds {
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .diamond-icon {
+            font-size: 18px;
+        }
+
+        .price {
+            margin-top: 8px;
+            color: #aaa9b8;
+            font-size: 14px;
+        }
+
+        .summary {
+            position: sticky;
+            top: 100px;
+            height: fit-content;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #292936;
+            color: #aaa9b8;
+            font-size: 14px;
+        }
+
+        .summary-row strong {
+            color: white;
+        }
+
+        .total {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 22px;
+            font-weight: 900;
+        }
+
+        .buy-btn {
+            width: 100%;
+            padding: 16px;
+            margin-top: 22px;
+            border-radius: 13px;
+            background: linear-gradient(135deg, #ffb000, #ff7200);
+            color: #111;
+            font-size: 16px;
+        }
+
+        .buy-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(255,150,0,0.25);
+        }
+
+        .buy-btn:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .secure {
+            text-align: center;
+            color: #777684;
+            font-size: 12px;
+            margin-top: 14px;
+        }
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal.show {
+            display: flex;
+        }
+
+        .modal-box {
+            width: min(430px, 100%);
+            max-height: 90vh;
+            overflow-y: auto;
+            background: #171722;
+            border: 1px solid #333342;
+            border-radius: 20px;
+            padding: 28px;
+            text-align: center;
+            animation: appear 0.25s ease;
+        }
+
+        .success {
+            font-size: 50px;
+            margin-bottom: 12px;
+        }
+
+        .modal-box h2 {
+            margin-bottom: 10px;
+        }
+
+        .modal-box p {
+            color: #aaa9b8;
+            line-height: 1.5;
+        }
+
+        .payment-options {
+            display: flex;
             flex-direction: column;
+            gap: 10px;
+            margin-top: 22px;
         }
 
-        .discount-btn {
-            min-height: 42px;
+        .payment-option {
+            width: 100%;
+            padding: 15px;
+            border-radius: 13px;
+            background: #11111d;
+            border: 1px solid #343442;
+            color: white;
+            text-align: left;
+        }
+
+        .payment-option:hover {
+            border-color: #ffb000;
+            transform: translateY(-2px);
+        }
+
+        .payment-option.disabled {
+            opacity: 0.45;
+            cursor: not-allowed;
+        }
+
+        .payment-option.disabled:hover {
+            transform: none;
+            border-color: #343442;
+        }
+
+        .payment-title {
+            font-size: 15px;
+            font-weight: 800;
+        }
+
+        .payment-subtitle {
+            display: block;
+            color: #888795;
+            font-size: 12px;
+            margin-top: 4px;
+        }
+
+        .transfer-box {
+            margin-top: 20px;
+            padding: 18px;
+            background: #11111d;
+            border: 1px solid #343442;
+            border-radius: 15px;
+            text-align: left;
+        }
+
+        .transfer-box h3 {
+            margin-bottom: 15px;
+        }
+
+        .transfer-row {
+            margin-bottom: 13px;
+        }
+
+        .transfer-label {
+            display: block;
+            color: #888795;
+            font-size: 12px;
+            margin-bottom: 4px;
+        }
+
+        .transfer-value {
+            color: white;
+            font-weight: 800;
+            word-break: break-word;
+        }
+
+        .chat-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            margin-top: 10px;
+            background: #25d366;
+            color: white;
+        }
+
+        .back-btn,
+        .close-btn,
+        .cancel-btn {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            color: white;
+        }
+
+        .back-btn {
+            margin-top: 10px;
+            background: #292936;
+        }
+
+        .close-btn {
+            margin-top: 20px;
+            background: linear-gradient(135deg, #ffb000, #ff7200);
+            color: #111;
+        }
+
+        .close-btn:hover,
+        .chat-btn:hover,
+        .back-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .cancel-btn {
+            margin-top: 10px;
+            background: #7d2525;
+        }
+
+        .cancel-btn:hover {
+            background: #a52e2e;
+        }
+
+        .admin-btn {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #1b1b2a;
+            border: 1px solid #343442;
+            color: white;
+            font-size: 18px;
+            display: grid;
+            place-items: center;
+        }
+
+        .admin-btn:hover {
+            border-color: #ffb000;
+            transform: translateY(-2px);
         }
 
         .admin-modal-box {
-            width: 96vw;
-            height: 94vh;
-            max-height: 94vh;
-            padding: 14px;
-            border-radius: 16px;
+            width: min(1050px, 94vw);
+            height: min(88vh, 820px);
+            max-height: 88vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            text-align: left;
+            padding: 20px;
+            border-color: rgba(255,176,0,0.16);
+            box-shadow: 0 30px 90px rgba(0,0,0,0.65);
+        }
+
+        #adminPanelView {
+            display: flex;
+            flex: 1;
+            min-height: 0;
+            flex-direction: column;
         }
 
         .admin-header {
-            gap: 10px;
-            padding-bottom: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #2b2b39;
+        }
+
+        .admin-header-copy h2 {
+            margin-bottom: 4px;
+        }
+
+        .admin-header-copy p {
+            margin: 0;
         }
 
         .admin-header-icon {
-            width: 40px;
-            height: 40px;
-            flex-basis: 40px;
-            border-radius: 11px;
-            font-size: 19px;
+            width: 46px;
+            height: 46px;
+            flex: 0 0 46px;
+            border-radius: 13px;
+            display: grid;
+            place-items: center;
+            background: rgba(255,176,0,0.1);
+            border: 1px solid rgba(255,176,0,0.2);
+            font-size: 22px;
         }
 
         .admin-content-scroll {
-            padding-top: 10px;
+            flex: 1;
+            min-height: 0;
+            overflow-y: auto;
+            overflow-x: hidden;
+            padding: 12px 3px 6px 0;
+            scrollbar-width: thin;
+            scrollbar-color: #4a4a5b transparent;
+        }
+
+        .admin-content-scroll::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .admin-content-scroll::-webkit-scrollbar-thumb {
+            background: #4a4a5b;
+            border-radius: 20px;
         }
 
         .admin-tools {
-            grid-template-columns: 1fr;
-            gap: 7px;
+            display: grid;
+            grid-template-columns: minmax(260px, 1.8fr) minmax(170px, 0.9fr) minmax(170px, 0.9fr);
+            gap: 8px;
+            margin: 0 0 9px;
         }
 
         .admin-tools input,
         .admin-tools select {
-            padding: 9px 10px;
-            font-size: 12px;
+            width: 100%;
+            margin: 0;
+            padding: 10px 11px;
+            border-radius: 9px;
+            border: 1px solid #343442;
+            background: #0d0d17;
+            color: #fff;
+            outline: none;
+        }
+
+        .admin-tools input:focus,
+        .admin-tools select:focus {
+            border-color: #ffb000;
+        }
+
+        .admin-orders-wrap {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 0;
+            border: 1px solid #343442;
+            border-radius: 12px;
+            background: #0d0d17;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.18);
         }
 
         .admin-orders {
+            width: 100%;
             min-width: 820px;
+            border-collapse: collapse;
             font-size: 12px;
         }
 
         .admin-orders th {
-            padding: 10px 9px;
+            position: sticky;
+            top: 0;
+            z-index: 2;
+            padding: 10px 10px;
+            background: #171722;
+            color: #aaa9b8;
+            text-align: left;
+            font-weight: 800;
+            border-bottom: 1px solid #343442;
+            white-space: nowrap;
         }
 
         .admin-orders td {
-            padding: 9px;
+            padding: 9px 10px;
+            border-bottom: 1px solid #242432;
+            color: #eee;
+            white-space: nowrap;
+        }
+
+        .admin-orders td:first-child,
+        .admin-orders th:first-child {
+            padding-left: 12px;
+        }
+
+        .admin-orders tbody tr {
+            cursor: pointer;
+            transition: 0.15s;
+        }
+
+        .admin-orders tbody tr:hover {
+            background: rgba(255,176,0,0.06);
+        }
+
+        .admin-orders tbody tr.selected {
+            background: rgba(255,176,0,0.13);
+            box-shadow: inset 3px 0 0 #ffb000;
+        }
+
+        .admin-orders tbody tr:last-child td {
+            border-bottom: none;
+        }
+
+        .admin-empty {
+            padding: 35px 20px;
+            text-align: center;
+            color: #888795;
         }
 
         .admin-selection {
             padding: 8px;
+            border: 1px solid #343442;
+            border-radius: 10px;
+            background: #11111d;
+        }
+
+        .admin-selection-info {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: #aaa9b8;
+            font-size: 11px;
+            min-height: 16px;
         }
 
         .admin-actions {
+            display: grid;
             grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 5px;
+            gap: 6px;
+            margin-top: 7px;
         }
 
         .admin-action {
             min-height: 32px;
-            padding: 7px 5px;
-            font-size: 10px;
+            padding: 7px 8px;
+            border-radius: 8px;
+            color: white;
+            font-size: 11px;
+            line-height: 1.1;
+        }
+
+        .admin-confirm {
+            background: #1e8f4d;
+        }
+
+        .admin-cancel {
+            background: #7d2525;
+        }
+
+        .admin-action:disabled {
+            display: none;
+        }
+
+        .admin-action:not(:disabled):hover {
+            transform: translateY(-1px);
         }
 
         .admin-footer-buttons {
+            display: grid;
             grid-template-columns: 1fr 1fr 1fr;
-            gap: 5px;
+            gap: 6px;
+            margin-top: 6px;
         }
 
         .admin-footer-buttons button {
             min-height: 32px;
-            padding: 7px 4px;
-            font-size: 10px;
+            padding: 7px 8px;
+            border-radius: 8px;
+            font-size: 11px;
+            margin-top: 0;
         }
 
-        .admin-detail-grid {
-            grid-template-columns: 1fr;
+        .admin-fixed-footer {
+            flex-shrink: 0;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #343442;
+            background: #171722;
+        }
+
+        .admin-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 7px;
+            font-size: 10px;
+            font-weight: 800;
+            border: 1px solid transparent;
+        }
+
+        .admin-status-pendiente {
+            color: #ffcb5c;
+            background: rgba(255,203,92,0.1);
+            border-color: rgba(255,203,92,0.25);
+        }
+
+        .admin-status-pagado {
+            color: #8cffad;
+            background: rgba(67,255,121,0.1);
+            border-color: rgba(67,255,121,0.25);
+        }
+
+        .admin-status-mandado {
+            color: #ffc66d;
+            background: rgba(255,171,71,0.1);
+            border-color: rgba(255,171,71,0.25);
+        }
+
+        .admin-status-entregado {
+            color: #75ffcf;
+            background: rgba(117,255,207,0.1);
+            border-color: rgba(117,255,207,0.25);
+        }
+
+        .admin-status-rechazado,
+        .admin-status-error,
+        .admin-status-cancelado {
+            color: #ff8b8b;
+            background: rgba(255,69,69,0.1);
+            border-color: rgba(255,69,69,0.25);
+        }
+
+        .admin-status-procesando {
+            color: #7dc7ff;
+            background: rgba(125,199,255,0.1);
+            border-color: rgba(125,199,255,0.25);
+        }
+
+        .admin-status-enviado {
+            color: #75ffcf;
+            background: rgba(117,255,207,0.1);
+            border-color: rgba(117,255,207,0.25);
         }
 
         .admin-inspect-modal {
-            padding: 10px;
+            position: absolute;
+            inset: 0;
+            background: rgba(5,5,12,0.82);
+            backdrop-filter: blur(7px);
+            z-index: 20;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .admin-inspect-modal.show {
+            display: flex;
         }
 
         .admin-inspect-box {
-            padding: 14px;
-            max-height: 94%;
-            border-radius: 14px;
+            width: min(720px, 100%);
+            max-height: 90%;
+            overflow-y: auto;
+            padding: 20px;
+            border: 1px solid #3b3b4b;
+            border-radius: 16px;
+            background: linear-gradient(180deg, #171722, #0f0f19);
+            box-shadow: 0 25px 80px rgba(0,0,0,0.65);
+            animation: appear 0.2s ease;
+        }
+
+        .admin-inspect-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 16px;
+        }
+
+        .admin-inspect-title {
+            font-size: 18px;
+            font-weight: 900;
+        }
+
+        .admin-inspect-close {
+            width: 34px;
+            height: 34px;
+            flex: 0 0 34px;
+            border-radius: 9px;
+            background: #292936;
+            color: white;
+            font-size: 16px;
+        }
+
+        .admin-inspect-close:hover {
+            background: #3a3a49;
+        }
+
+        .admin-detail-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 9px;
+        }
+
+        .admin-detail {
+            padding: 10px 11px;
+            border: 1px solid #292936;
+            border-radius: 9px;
+            background: #11111d;
+        }
+
+        .admin-detail-label {
+            display: block;
+            color: #888795;
+            font-size: 10px;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .admin-detail-value {
+            color: #fff;
+            font-size: 12px;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .admin-progress {
+            margin-top: 16px;
+            overflow-x: auto;
+            padding-bottom: 4px;
+        }
+
+        .admin-progress-track {
+            min-width: 600px;
+            display: flex;
+            align-items: flex-start;
+            position: relative;
+        }
+
+        .admin-progress-track::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            left: 8%;
+            right: 8%;
+            height: 3px;
+            background: #343442;
+        }
+
+        .admin-progress-step {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            text-align: center;
+        }
+
+        .admin-progress-dot {
+            width: 30px;
+            height: 30px;
+            margin: 0 auto 8px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #22222f;
+            border: 2px solid #444454;
+            color: #aaa;
+            font-size: 12px;
+            font-weight: 900;
+        }
+
+        .admin-progress-step.active .admin-progress-dot,
+        .admin-progress-step.done .admin-progress-dot {
+            background: #ffb000;
+            border-color: #ffb000;
+            color: #111;
+        }
+
+        .admin-progress-step.active .admin-progress-label,
+        .admin-progress-step.done .admin-progress-label {
+            color: #fff;
+        }
+
+        .admin-progress-label {
+            color: #777685;
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .admin-progress-step.error .admin-progress-dot,
+        .admin-progress-step.rejected .admin-progress-dot {
+            background: #7d2525;
+            border-color: #ff6969;
+            color: #fff;
+        }
+
+        .admin-progress-step.error .admin-progress-label,
+        .admin-progress-step.rejected .admin-progress-label {
+            color: #ff8b8b;
         }
 
         .admin-inspect-footer {
-            display: grid;
-            grid-template-columns: 1fr;
-        }
-    }
-
-    @keyframes appear {
-        from {
-            opacity: 0;
-            transform: translateY(8px);
+            display: flex;
+            gap: 7px;
+            margin-top: 15px;
         }
 
-        to {
-            opacity: 1;
-            transform: translateY(0);
+        .admin-inspect-footer button {
+            flex: 1;
+            min-height: 34px;
+            padding: 8px;
+            border-radius: 9px;
+            font-size: 11px;
         }
-    }
 
-    body::before {
-        content: "";
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        background: radial-gradient(circle at 50% -10%, rgba(255,176,0,0.08), transparent 35%);
-        z-index: -1;
-    }
+        @media (min-width: 1100px) {
+            main {
+                width: min(1180px, 92%);
+            }
 
-    button,
-    input,
-    select {
-        -webkit-tap-highlight-color: transparent;
-    }
+            .layout {
+                grid-template-columns: minmax(0, 1.45fr) minmax(330px, 0.65fr);
+                gap: 26px;
+            }
 
-    .card,
-    .modal-box {
-        backdrop-filter: blur(12px);
-    }
+            .packages {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
 
-    .package {
-        position: relative;
-        overflow: hidden;
-    }
+        @media (max-width: 750px) {
+            header {
+                padding: 16px 5%;
+            }
 
-    .package::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.04), transparent 70%);
-        transform: translateX(-100%);
-        transition: transform 0.5s ease;
-    }
+            .status {
+                display: none;
+            }
 
-    .package:hover::after {
-        transform: translateX(100%);
-    }
-</style>
+            main {
+                margin: 30px auto;
+            }
 
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+            .layout {
+                grid-template-columns: 1fr;
+            }
 
+            .summary {
+                position: static;
+            }
+
+            .input-area {
+                flex-direction: column;
+            }
+
+            .search-btn {
+                padding: 14px;
+            }
+
+            .admin-modal-box {
+                width: 96vw;
+                height: 94vh;
+                max-height: 94vh;
+                padding: 14px;
+                border-radius: 16px;
+            }
+
+            .admin-header {
+                gap: 10px;
+                padding-bottom: 11px;
+            }
+
+            .admin-header-icon {
+                width: 40px;
+                height: 40px;
+                flex-basis: 40px;
+                border-radius: 11px;
+                font-size: 19px;
+            }
+
+            .admin-content-scroll {
+                padding-top: 10px;
+            }
+
+            .admin-tools {
+                grid-template-columns: 1fr;
+                gap: 7px;
+            }
+
+            .admin-tools input,
+            .admin-tools select {
+                padding: 9px 10px;
+                font-size: 12px;
+            }
+
+            .admin-orders {
+                min-width: 820px;
+                font-size: 12px;
+            }
+
+            .admin-orders th {
+                padding: 10px 9px;
+            }
+
+            .admin-orders td {
+                padding: 9px;
+            }
+
+            .admin-selection {
+                padding: 8px;
+            }
+
+            .admin-actions {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 5px;
+            }
+
+            .admin-action {
+                min-height: 32px;
+                padding: 7px 5px;
+                font-size: 10px;
+            }
+
+            .admin-footer-buttons {
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 5px;
+            }
+
+            .admin-footer-buttons button {
+                min-height: 32px;
+                padding: 7px 4px;
+                font-size: 10px;
+            }
+
+            .admin-detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .admin-inspect-modal {
+                padding: 10px;
+            }
+
+            .admin-inspect-box {
+                padding: 14px;
+                max-height: 94%;
+                border-radius: 14px;
+            }
+
+            .admin-inspect-footer {
+                display: grid;
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @keyframes appear {
+            from {
+                opacity: 0;
+                transform: translateY(8px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(circle at 50% -10%, rgba(255,176,0,0.08), transparent 35%);
+            z-index: -1;
+        }
+
+        button,
+        input,
+        select {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .card,
+        .modal-box {
+            backdrop-filter: blur(12px);
+        }
+
+        .package {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .package::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(120deg, transparent 30%, rgba(255,255,255,0.04), transparent 70%);
+            transform: translateX(-100%);
+            transition: transform 0.5s ease;
+        }
+
+        .package:hover::after {
+            transform: translateX(100%);
+        }
+    </style>
 </head>
 
 <body>
@@ -1375,2207 +1131,1039 @@
 <header>
     <div class="logo">🔥 MONTEFINIX<span>Recargas</span></div>
 
-    <div class="header-right">
+    <div style="display:flex;align-items:center;gap:14px;">
         <div class="status">
             <span id="statusDot" class="status-dot"></span>
             <span id="statusText">Comprobando servidor...</span>
         </div>
 
-        <button
-            id="accountButton"
-            class="account-btn"
-            onclick="abrirCuenta()"
-        >
-            👤 Iniciar sesión
-        </button>
-
-        <button
-            class="admin-btn"
-            onclick="abrirAdminLogin()"
-            title="Administración"
-        >
-            ⚙️
-        </button>
+        <button class="admin-btn" onclick="abrirAdminLogin()" title="Administración">⚙️</button>
     </div>
 </header>
 
 <main>
 
-<section class="hero">
-    <h1>Recargá <span>Diamantes</span></h1>
-    <p>Ingresá tu ID para validar tu cuenta en tiempo real.</p>
-</section>
+    <section class="hero">
+        <h1>Recargá <span>Diamantes</span></h1>
+        <p>Ingresá tu ID para validar tu cuenta en tiempo real.</p>
+    </section>
 
-<div class="layout">
+    <div class="layout">
 
-    <section class="card">
+        <section class="card">
 
-        <div class="card-title">1. Identificá tu cuenta</div>
+            <div class="card-title">1. Identificá tu cuenta</div>
 
-        <label for="uid">ID / UID de Free Fire</label>
+            <label for="uid">ID / UID de Free Fire</label>
 
-        <div class="input-area">
-
-            <input
-                type="number"
-                id="uid"
-                placeholder="Ej: 123456789"
-                autocomplete="off"
-                min="1"
-                inputmode="numeric"
-            >
-
-            <button
-                id="searchButton"
-                class="search-btn"
-                onclick="buscarJugador()"
-            >
-                🔍 Buscar
-            </button>
-
-        </div>
-
-        <div id="message" class="message"></div>
-
-        <div id="player" class="player">
-
-            <div class="avatar">👤</div>
-
-            <div>
-                <div id="playerName" class="player-name">-</div>
-                <div id="playerId" class="player-id">ID: -</div>
-            </div>
-
-        </div>
-
-        <div class="card-title" style="margin-top:30px;">
-            2. Elegí tus diamantes
-        </div>
-
-        <div class="packages">
-
-            <div class="package" onclick="seleccionarPaquete(this, 110, 1600, '1')">
-                <div class="diamonds">110 <span class="diamond-icon">💎</span></div>
-                <div class="price">$1.600</div>
-            </div>
-
-            <div class="package" onclick="seleccionarPaquete(this, 341, 4300, '3')">
-                <div class="diamonds">341 <span class="diamond-icon">💎</span></div>
-                <div class="price">$4.300</div>
-            </div>
-
-            <div class="package" onclick="seleccionarPaquete(this, 572, 6900, '4')">
-                <div class="diamonds">572 <span class="diamond-icon">💎</span></div>
-                <div class="price">$6.900</div>
-            </div>
-
-            <div class="package" onclick="seleccionarPaquete(this, 1166, 12600, '5')">
-                <div class="diamonds">1166 <span class="diamond-icon">💎</span></div>
-                <div class="price">$12.600</div>
-            </div>
-
-            <div class="package" onclick="seleccionarPaquete(this, 2398, 25000, '48')">
-                <div class="diamonds">2398 <span class="diamond-icon">💎</span></div>
-                <div class="price">$25.000</div>
-            </div>
-
-            <div class="package" onclick="seleccionarPaquete(this, 6160, 65000, '49')">
-                <div class="diamonds">6160 <span class="diamond-icon">💎</span></div>
-                <div class="price">$65.000</div>
-            </div>
-
-        </div>
-
-        <div class="discount-section">
-
-            <div class="discount-title">
-                🎟️ ¿Tenés un código de descuento?
-            </div>
-
-            <div class="discount-input-area">
+            <div class="input-area">
 
                 <input
-                    id="discountCode"
-                    type="text"
-                    placeholder="Ingresá tu código"
+                    type="number"
+                    id="uid"
+                    placeholder="Ej: 123456789"
                     autocomplete="off"
-                    maxlength="50"
-                    oninput="limpiarEstadoCodigo()"
+                    min="1"
+                    inputmode="numeric"
                 >
 
                 <button
-                    id="discountButton"
-                    class="discount-btn"
-                    onclick="validarCodigoDescuento()"
+                    id="searchButton"
+                    class="search-btn"
+                    onclick="buscarJugador()"
                 >
-                    Aplicar
+                    🔍 Buscar
                 </button>
 
             </div>
 
-            <div
-                id="discountMessage"
-                class="discount-message"
-            ></div>
+            <div id="message" class="message"></div>
 
-        </div>
+            <div id="player" class="player">
 
-    </section>
+                <div class="avatar">👤</div>
 
-    <aside class="card summary">
+                <div>
+                    <div id="playerName" class="player-name">-</div>
+                    <div id="playerId" class="player-id">ID: -</div>
+                </div>
 
-        <div class="card-title">Resumen</div>
+            </div>
 
-        <div class="summary-row">
-            <span>Jugador</span>
-            <strong id="summaryPlayer">No seleccionado</strong>
-        </div>
+            <div class="card-title" style="margin-top:30px;">
+                2. Elegí tus diamantes
+            </div>
 
-        <div class="summary-row">
-            <span>ID</span>
-            <strong id="summaryId">-</strong>
-        </div>
+            <div class="packages">
 
-        <div class="summary-row">
-            <span>Diamantes</span>
-            <strong id="summaryDiamonds">-</strong>
-        </div>
+                <div class="package" onclick="seleccionarPaquete(this, 110, 1600, '1')">
+                    <div class="diamonds">110 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$1.600</div>
+                </div>
 
-        <div
-            id="summaryDiscountRow"
-            class="summary-row discount-row"
-            style="display:none;"
-        >
-            <span>Descuento</span>
-            <strong id="summaryDiscount">-$0</strong>
-        </div>
+                <div class="package" onclick="seleccionarPaquete(this, 341, 4000, '3')">
+                    <div class="diamonds">341 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$4.000</div>
+                </div>
 
-        <div
-            id="summaryCodeRow"
-            class="summary-row"
-            style="display:none;"
-        >
-            <span>Código</span>
-            <strong id="summaryCode">-</strong>
-        </div>
+                <div class="package" onclick="seleccionarPaquete(this, 572, 6900, '4')">
+                    <div class="diamonds">572 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$6.900</div>
+                </div>
 
-        <div
-            id="originalTotal"
-            class="original-total"
-        >
-            $0
-        </div>
+                <div class="package" onclick="seleccionarPaquete(this, 1166, 12600, '5')">
+                    <div class="diamonds">1166 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$12.600</div>
+                </div>
 
-        <div class="total">
-            <span>Total</span>
-            <span id="total">$0</span>
-        </div>
+                <div class="package" onclick="seleccionarPaquete(this, 2398, 24700, '48')">
+                    <div class="diamonds">2398 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$24.700</div>
+                </div>
 
-        <button
-            id="buyButton"
-            class="buy-btn"
-            onclick="comprar()"
-            disabled
-        >
-            Continuar
-        </button>
+                <div class="package" onclick="seleccionarPaquete(this, 6160, 62000, '49')">
+                    <div class="diamonds">6160 <span class="diamond-icon">💎</span></div>
+                    <div class="price">$62.000</div>
+                </div>
 
-        <div
-            id="loginRequired"
-            class="login-required"
-        >
-            👤 Iniciá sesión para realizar una compra.
-        </div>
+            </div>
 
-        <div class="secure">
-            🔒 Tus datos se mantienen seguros
-        </div>
+        </section>
 
-    </aside>
+        <aside class="card summary">
 
-</div>
+            <div class="card-title">Resumen</div>
+
+            <div class="summary-row">
+                <span>Jugador</span>
+                <strong id="summaryPlayer">No seleccionado</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>ID</span>
+                <strong id="summaryId">-</strong>
+            </div>
+
+            <div class="summary-row">
+                <span>Diamantes</span>
+                <strong id="summaryDiamonds">-</strong>
+            </div>
+
+            <div class="total">
+                <span>Total</span>
+                <span id="total">$0</span>
+            </div>
+
+            <button
+                id="buyButton"
+                class="buy-btn"
+                onclick="comprar()"
+                disabled
+            >
+                Continuar
+            </button>
+
+            <div class="secure">
+                🔒 Tus datos se mantienen seguros
+            </div>
+
+        </aside>
+
+    </div>
 
 </main>
 
-<div id="authModal" class="modal">
-
-    <div class="modal-box auth-modal-box">
-
-        <div id="authLoginView">
-
-            <div class="success">👤</div>
-
-            <h2>Tu cuenta</h2>
-
-            <p>Iniciá sesión para comprar y usar códigos de descuento.</p>
-
-            <div class="auth-tabs">
-
-                <button
-                    id="loginTab"
-                    class="auth-tab active"
-                    onclick="mostrarLogin()"
-                >
-                    Iniciar sesión
-                </button>
-
-                <button
-                    id="registerTab"
-                    class="auth-tab"
-                    onclick="mostrarRegistro()"
-                >
-                    Registrarme
-                </button>
-
-            </div>
-
-            <div class="auth-form">
-
-                <div id="registerNameGroup" style="display:none;">
-                    <label for="registerName">Nombre</label>
-                    <input
-                        id="registerName"
-                        type="text"
-                        placeholder="Tu nombre"
-                        autocomplete="name"
-                    >
-                </div>
-
-                <label for="authEmail">Correo electrónico</label>
-
-                <input
-                    id="authEmail"
-                    type="email"
-                    placeholder="correo@ejemplo.com"
-                    autocomplete="email"
-                >
-
-                <label for="authPassword">Contraseña</label>
-
-                <input
-                    id="authPassword"
-                    type="password"
-                    placeholder="Contraseña"
-                    autocomplete="current-password"
-                >
-
-                <div
-                    id="authMessage"
-                    class="auth-message"
-                ></div>
-
-                <button
-                    id="authSubmitButton"
-                    class="auth-submit"
-                    onclick="procesarAuth()"
-                >
-                    Iniciar sesión
-                </button>
-
-            </div>
-
-            <button
-                class="back-btn"
-                onclick="cerrarCuenta()"
-            >
-                Cerrar
-            </button>
-
-        </div>
-
-        <div id="profileView" style="display:none;">
-
-            <div class="success">👤</div>
-
-            <h2>Mi cuenta</h2>
-
-            <p>Información de tu cuenta Montefinix.</p>
-
-            <div class="profile-card">
-
-                <div class="profile-item">
-                    <span class="profile-label">Nombre</span>
-                    <span
-                        id="profileName"
-                        class="profile-value"
-                    >
-                        -
-                    </span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-label">Correo</span>
-                    <span
-                        id="profileEmail"
-                        class="profile-value"
-                    >
-                        -
-                    </span>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-label">Tu código de descuento</span>
-                    <span
-                        id="profileCode"
-                        class="profile-value"
-                    >
-                        -
-                    </span>
-
-                    <button
-                        class="copy-code"
-                        onclick="copiarCodigoPropio()"
-                    >
-                        📋 Copiar código
-                    </button>
-                </div>
-
-                <div class="profile-item">
-                    <span class="profile-label">Usos de tu código</span>
-                    <span
-                        id="profileUses"
-                        class="profile-value"
-                    >
-                        0
-                    </span>
-                </div>
-
-            </div>
-
-            <button
-                class="logout-btn"
-                onclick="cerrarSesion()"
-            >
-                🚪 Cerrar sesión
-            </button>
-
-            <button
-                class="back-btn"
-                onclick="cerrarCuenta()"
-            >
-                Cerrar
-            </button>
-
-        </div>
-
-    </div>
-
-</div>
-
 <div id="modal" class="modal">
 
-<div class="modal-box">
+    <div class="modal-box">
 
-    <div id="modalIcon" class="success">⏳</div>
+        <div id="modalIcon" class="success">⏳</div>
 
-    <h2 id="modalTitle">Preparando pedido</h2>
+        <h2 id="modalTitle">Preparando pedido</h2>
 
-    <p id="modalText">-</p>
+        <p id="modalText">-</p>
 
-    <div id="paymentOptions" class="payment-options" style="display:none;">
+        <div id="paymentOptions" class="payment-options" style="display:none;">
 
-        <button class="payment-option" onclick="mostrarTransferencia()">
-            <span class="payment-title">🏦 Transferencia bancaria</span>
-            <span class="payment-subtitle">Pago manual</span>
-        </button>
+            <button class="payment-option" onclick="mostrarTransferencia()">
+                <span class="payment-title">🏦 Transferencia bancaria</span>
+                <span class="payment-subtitle">Pago manual</span>
+            </button>
 
-        <button class="payment-option disabled" disabled>
-            <span class="payment-title">💳 Mercado Pago</span>
-            <span class="payment-subtitle">Próximamente</span>
-        </button>
+            <button class="payment-option disabled" disabled>
+                <span class="payment-title">💳 Mercado Pago</span>
+                <span class="payment-subtitle">Próximamente</span>
+            </button>
 
-        <button class="payment-option disabled" disabled>
-            <span class="payment-title">💰 Otro método de pago</span>
-            <span class="payment-subtitle">Próximamente</span>
-        </button>
+            <button class="payment-option disabled" disabled>
+                <span class="payment-title">💰 Otro método de pago</span>
+                <span class="payment-subtitle">Próximamente</span>
+            </button>
 
-    </div>
+        </div>
 
-    <div id="transferConfirmBox" class="transfer-box" style="display:none;">
+        <div id="transferConfirmBox" class="transfer-box" style="display:none;">
 
-        <h3>🏦 Transferencia bancaria</h3>
+            <h3>🏦 Transferencia bancaria</h3>
 
-        <p style="color:#aaa9b8;line-height:1.6;margin-bottom:18px;">
-            Este pedido utiliza acreditación manual.
-            Primero confirmá que vas a realizar el pago mediante transferencia bancaria.
-            Después se mostrarán los datos para realizar la transferencia.
-        </p>
+            <p style="color:#aaa9b8;line-height:1.6;margin-bottom:18px;">
+                Este pedido utiliza acreditación manual.
+                Primero confirmá que vas a realizar el pago mediante transferencia bancaria.
+                Después se mostrarán los datos para realizar la transferencia.
+            </p>
+
+            <button
+                id="confirmTransferButton"
+                class="close-btn"
+                onclick="confirmarTransferencia()"
+            >
+                ✓ Confirmar
+            </button>
+
+            <button
+                class="back-btn"
+                onclick="volverMetodosPago()"
+            >
+                ← Volver a métodos de pago
+            </button>
+
+        </div>
+
+        <div id="transferBox" class="transfer-box" style="display:none;">
+
+            <h3>🏦 Datos para transferir</h3>
+
+            <div class="transfer-row">
+                <span class="transfer-label">Alias</span>
+                <span class="transfer-value">alexis.coutoune</span>
+            </div>
+
+            <div class="transfer-row">
+                <span class="transfer-label">CVU</span>
+                <span class="transfer-value">0000003100072529868807</span>
+            </div>
+
+            <div class="transfer-row">
+                <span class="transfer-label">Cuenta</span>
+                <span class="transfer-value">Alexis Dylan Coutoune</span>
+            </div>
+
+            <div class="transfer-row">
+                <span class="transfer-label">Importe exacto</span>
+                <span id="transferAmount" class="transfer-value">$0</span>
+            </div>
+
+            <button class="chat-btn" onclick="enviarComprobante()">
+                📲 Enviar comprobante
+            </button>
+
+            <button class="back-btn" onclick="volverMetodosPago()">
+                ← Volver a métodos de pago
+            </button>
+
+        </div>
 
         <button
-            id="confirmTransferButton"
+            id="closeButton"
             class="close-btn"
-            onclick="confirmarTransferencia()"
+            onclick="pagarAhora()"
         >
-            ✓ Confirmar
+            💳 Pagar ahora
         </button>
 
         <button
-            class="back-btn"
-            onclick="volverMetodosPago()"
+            id="cancelButton"
+            class="cancel-btn"
+            onclick="cancelarPedido()"
+            style="display:none;"
         >
-            ← Volver a métodos de pago
+            Cancelar pedido
         </button>
 
     </div>
-
-    <div id="transferBox" class="transfer-box" style="display:none;">
-
-        <h3>🏦 Datos para transferir</h3>
-
-        <div class="transfer-row">
-            <span class="transfer-label">Alias</span>
-            <span class="transfer-value">alexis.coutoune</span>
-        </div>
-
-        <div class="transfer-row">
-            <span class="transfer-label">CVU</span>
-            <span class="transfer-value">0000003100072529868807</span>
-        </div>
-
-        <div class="transfer-row">
-            <span class="transfer-label">Cuenta</span>
-            <span class="transfer-value">Alexis Dylan Coutoune</span>
-        </div>
-
-        <div class="transfer-row">
-            <span class="transfer-label">Importe exacto</span>
-            <span id="transferAmount" class="transfer-value">$0</span>
-        </div>
-
-        <button class="chat-btn" onclick="enviarComprobante()">
-            📲 Enviar comprobante
-        </button>
-
-        <button class="back-btn" onclick="volverMetodosPago()">
-            ← Volver a métodos de pago
-        </button>
-
-    </div>
-
-    <button
-        id="closeButton"
-        class="close-btn"
-        onclick="pagarAhora()"
-    >
-        💳 Pagar ahora
-    </button>
-
-    <button
-        id="cancelButton"
-        class="cancel-btn"
-        onclick="cancelarPedido()"
-        style="display:none;"
-    >
-        Cancelar pedido
-    </button>
-
-</div>
 
 </div>
 
 <div id="adminModal" class="modal">
 
-<div class="modal-box admin-modal-box">
+    <div class="modal-box admin-modal-box">
 
-    <div id="adminLoginView" class="admin-login">
+        <div id="adminLoginView" class="admin-login">
 
-        <div class="success">🔐</div>
+            <div class="success">🔐</div>
 
-        <h2>Panel de administración</h2>
+            <h2>Panel de administración</h2>
 
-        <p>Ingresá la clave de administrador para acceder a los pedidos.</p>
+            <p>Ingresá la clave de administrador para acceder a los pedidos.</p>
 
-        <input
-            id="adminSecretInput"
-            type="password"
-            placeholder="Clave de administrador"
-            autocomplete="off"
-            style="margin-top:18px;"
-        >
+            <input
+                id="adminSecretInput"
+                type="password"
+                placeholder="Clave de administrador"
+                autocomplete="off"
+                style="margin-top:18px;"
+            >
 
-        <div id="adminLoginMessage" class="message"></div>
+            <div id="adminLoginMessage" class="message"></div>
 
-        <button class="close-btn" onclick="entrarAdmin()">Ingresar</button>
+            <button class="close-btn" onclick="entrarAdmin()">Ingresar</button>
 
-        <button class="back-btn" onclick="cerrarAdmin()">Cerrar</button>
-
-    </div>
-
-    <div id="adminPanelView" style="display:none;">
-
-        <div class="admin-header">
-
-            <div class="admin-header-copy">
-                <h2>Pedidos</h2>
-                <p id="adminPanelMessage">Cargando pedidos...</p>
-            </div>
-
-            <div class="admin-header-icon">⚙️</div>
+            <button class="back-btn" onclick="cerrarAdmin()">Cerrar</button>
 
         </div>
 
-        <div class="admin-content-scroll">
+        <div id="adminPanelView" style="display:none;">
 
-            <div class="admin-tools">
+            <div class="admin-header">
 
-                <input
-                    id="adminSearchInput"
-                    type="search"
-                    placeholder="🔎 Buscar por ID de jugador..."
-                    oninput="aplicarFiltrosAdmin()"
-                >
-
-                <select
-                    id="adminStatusFilter"
-                    onchange="aplicarFiltrosAdmin()"
-                >
-                    <option value="">Todos los estados</option>
-                    <option value="PENDIENTE">Pendiente</option>
-                    <option value="PAGADO">Pagado</option>
-                    <option value="MANDADO">Mandado</option>
-                    <option value="ENTREGADO">Entregado</option>
-                    <option value="ERROR">Error</option>
-                    <option value="RECHAZADO">Rechazado</option>
-                    <option value="CANCELADO">Cancelado</option>
-                </select>
-
-                <select
-                    id="adminAmountFilter"
-                    onchange="aplicarFiltrosAdmin()"
-                >
-                    <option value="">Todos los montos</option>
-                    <option value="0-3999">Hasta $3.999</option>
-                    <option value="4000-9999">$4.000 - $9.999</option>
-                    <option value="10000-24999">$10.000 - $24.999</option>
-                    <option value="25000-999999999">$25.000 o más</option>
-                </select>
-
-            </div>
-
-            <div id="adminOrders"></div>
-
-        </div>
-
-        <div class="admin-fixed-footer">
-
-            <div class="admin-selection">
-
-                <div
-                    id="adminSelectionInfo"
-                    class="admin-selection-info"
-                >
-                    Seleccioná un pedido para gestionarlo.
+                <div class="admin-header-copy">
+                    <h2>Pedidos</h2>
+                    <p id="adminPanelMessage">Cargando pedidos...</p>
                 </div>
 
-                <div class="admin-actions">
+                <div class="admin-header-icon">⚙️</div>
 
-                    <button
-                        id="adminConfirmButton"
-                        class="admin-action admin-confirm"
-                        onclick="acreditarPedidoSeleccionado()"
-                        disabled
-                    >
-                        ✓ Confirmar pago
-                    </button>
+            </div>
 
-                    <button
-                        id="adminMandadoButton"
-                        class="admin-action"
-                        style="background:#8a5a00;"
-                        onclick="mandarPedidoSeleccionado()"
-                        disabled
-                    >
-                        📦 Marcar mandado
-                    </button>
+            <div class="admin-content-scroll">
 
-                    <button
-                        id="adminEntregadoButton"
-                        class="admin-action"
-                        style="background:#176b49;"
-                        onclick="entregarPedidoSeleccionado()"
-                        disabled
-                    >
-                        ✓ Marcar entregado
-                    </button>
+                <div class="admin-tools">
 
-                    <button
-                        id="adminCancelButton"
-                        class="admin-action admin-cancel"
-                        onclick="cancelarPedidoSeleccionado()"
-                        disabled
+                    <input
+                        id="adminSearchInput"
+                        type="search"
+                        placeholder="🔎 Buscar por ID de jugador..."
+                        oninput="aplicarFiltrosAdmin()"
                     >
-                        ✕ Cancelar
-                    </button>
+
+                    <select
+                        id="adminStatusFilter"
+                        onchange="aplicarFiltrosAdmin()"
+                    >
+                        <option value="">Todos los estados</option>
+                        <option value="PENDIENTE">Pendiente</option>
+                        <option value="PAGADO">Pagado</option>
+                        <option value="MANDADO">Mandado</option>
+                        <option value="ENTREGADO">Entregado</option>
+                        <option value="ERROR">Error</option>
+                        <option value="RECHAZADO">Rechazado</option>
+                        <option value="CANCELADO">Cancelado</option>
+                    </select>
+
+                    <select
+                        id="adminAmountFilter"
+                        onchange="aplicarFiltrosAdmin()"
+                    >
+                        <option value="">Todos los montos</option>
+                        <option value="0-3999">Hasta $3.999</option>
+                        <option value="4000-9999">$4.000 - $9.999</option>
+                        <option value="10000-24999">$10.000 - $24.999</option>
+                        <option value="25000-999999999">$25.000 o más</option>
+                    </select>
 
                 </div>
 
+                <div id="adminOrders"></div>
+
             </div>
 
-            <div class="admin-footer-buttons">
+            <div class="admin-fixed-footer">
 
-                <button
-                    id="adminInspectButton"
-                    class="back-btn"
-                    onclick="inspeccionarPedidoSeleccionado()"
-                    disabled
-                >
-                    🔍 Inspeccionar
-                </button>
+                <div class="admin-selection">
 
-                <button
-                    class="back-btn"
-                    onclick="cargarPedidosAdmin()"
-                >
-                    🔄 Actualizar
-                </button>
+                    <div
+                        id="adminSelectionInfo"
+                        class="admin-selection-info"
+                    >
+                        Seleccioná un pedido para gestionarlo.
+                    </div>
 
-                <button
-                    class="close-btn"
-                    onclick="cerrarAdmin()"
-                >
-                    Cerrar
-                </button>
+                    <div class="admin-actions">
+
+                        <button
+                            id="adminConfirmButton"
+                            class="admin-action admin-confirm"
+                            onclick="acreditarPedidoSeleccionado()"
+                            disabled
+                        >
+                            ✓ Confirmar pago
+                        </button>
+
+                        <button
+                            id="adminMandadoButton"
+                            class="admin-action"
+                            style="background:#8a5a00;"
+                            onclick="mandarPedidoSeleccionado()"
+                            disabled
+                        >
+                            📦 Marcar mandado
+                        </button>
+
+                        <button
+                            id="adminEntregadoButton"
+                            class="admin-action"
+                            style="background:#176b49;"
+                            onclick="entregarPedidoSeleccionado()"
+                            disabled
+                        >
+                            ✓ Marcar entregado
+                        </button>
+
+                        <button
+                            id="adminCancelButton"
+                            class="admin-action admin-cancel"
+                            onclick="cancelarPedidoSeleccionado()"
+                            disabled
+                        >
+                            ✕ Cancelar
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div class="admin-footer-buttons">
+
+                    <button
+                        id="adminInspectButton"
+                        class="back-btn"
+                        onclick="inspeccionarPedidoSeleccionado()"
+                        disabled
+                    >
+                        🔍 Inspeccionar
+                    </button>
+
+                    <button
+                        class="back-btn"
+                        onclick="cargarPedidosAdmin()"
+                    >
+                        🔄 Actualizar
+                    </button>
+
+                    <button
+                        class="close-btn"
+                        onclick="cerrarAdmin()"
+                    >
+                        Cerrar
+                    </button>
+
+                </div>
 
             </div>
 
         </div>
 
-    </div>
-
-    <div
-        id="adminInspectModal"
-        class="admin-inspect-modal"
-        onclick="cerrarInspeccionAdmin(event)"
-    >
         <div
-            id="adminInspectBox"
-            class="admin-inspect-box"
-            onclick="event.stopPropagation()"
-        ></div>
-    </div>
+            id="adminInspectModal"
+            class="admin-inspect-modal"
+            onclick="cerrarInspeccionAdmin(event)"
+        >
+            <div
+                id="adminInspectBox"
+                class="admin-inspect-box"
+                onclick="event.stopPropagation()"
+            ></div>
+        </div>
 
-</div>
+    </div>
 
 </div>
 
 <script>
 
-const API_URL = "https://recargas-montefinix-server.onrender.com";
-const CHAT_URL = "https://wa.me/1154821952";
+    const API_URL = "https://recargas-montefinix-server.onrender.com";
 
-const SUPABASE_URL = "https://jtuehylaekjelltvjhrx.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_m6dxWY4qEtYFsg5tPOWp8A_gRdcwuR2";
+    const CHAT_URL = "https://wa.me/1154821952";
 
-const supabaseClient = window.supabase.createClient(
-    SUPABASE_URL,
-    SUPABASE_ANON_KEY
-);
+    let jugadorEncontrado = false;
+    let paqueteSeleccionado = null;
+    let pedidoActual = null;
 
-let jugadorEncontrado = false;
-let paqueteSeleccionado = null;
-let pedidoActual = null;
+    async function comprobarServidor() {
 
-let usuarioActual = null;
-let perfilActual = null;
+        const statusText = document.getElementById("statusText");
+        const statusDot = document.getElementById("statusDot");
 
-let modoAuth = "login";
-let codigoDescuentoAplicado = "";
-let descuentoAplicado = 0;
-let porcentajeDescuentoAplicado = 0;
+        try {
 
-async function obtenerSesion() {
-    const { data, error } = await supabaseClient.auth.getSession();
+            const respuesta = await fetch(`${API_URL}/api/estado`);
 
-    if (error) {
-        return null;
-    }
+            if (!respuesta.ok) {
+                throw new Error("Servidor no disponible");
+            }
 
-    return data?.session || null;
-}
+            statusText.textContent = "Servidor activo";
+            statusDot.style.background = "#43ff79";
+            statusDot.style.boxShadow = "0 0 10px #43ff79";
 
-async function obtenerToken() {
-    const sesion = await obtenerSesion();
+        } catch (error) {
 
-    if (!sesion?.access_token) {
-        return null;
-    }
+            statusText.textContent = "Servidor desconectado";
+            statusDot.style.background = "#ff4545";
+            statusDot.style.boxShadow = "0 0 10px #ff4545";
 
-    return sesion.access_token;
-}
-
-async function comprobarServidor() {
-
-    const statusText = document.getElementById("statusText");
-    const statusDot = document.getElementById("statusDot");
-
-    try {
-
-        const respuesta = await fetch(`${API_URL}/api/estado`);
-
-        if (!respuesta.ok) {
-            throw new Error("Servidor no disponible");
         }
 
-        statusText.textContent = "Servidor activo";
-        statusDot.style.background = "#43ff79";
-        statusDot.style.boxShadow = "0 0 10px #43ff79";
-
-    } catch (error) {
-
-        statusText.textContent = "Servidor desconectado";
-        statusDot.style.background = "#ff4545";
-        statusDot.style.boxShadow = "0 0 10px #ff4545";
-
     }
-}
 
-function actualizarBotonCuenta() {
+    async function buscarJugador() {
 
-    const boton = document.getElementById("accountButton");
+        const uidInput = document.getElementById("uid");
+        const uid = uidInput.value.trim();
+        const message = document.getElementById("message");
+        const player = document.getElementById("player");
 
-    if (usuarioActual) {
+        if (!uid) {
 
-        const nombre =
-            perfilActual?.nombre ||
-            usuarioActual.user_metadata?.full_name ||
-            usuarioActual.user_metadata?.name ||
-            "Mi cuenta";
+            message.textContent = "⚠️ Primero ingresá un ID.";
+            player.classList.remove("show");
+            jugadorEncontrado = false;
+            actualizarResumen();
 
-        boton.textContent =
-            "👤 " +
-            (nombre.length > 16
-                ? nombre.substring(0, 16) + "..."
-                : nombre);
+            return;
+        }
 
-    } else {
+        if (!/^\d+$/.test(uid)) {
 
-        boton.textContent = "👤 Iniciar sesión";
+            message.textContent = "⚠️ El ID debe contener solamente números.";
+            player.classList.remove("show");
+            jugadorEncontrado = false;
+            actualizarResumen();
 
-    }
-}
+            return;
+        }
 
-async function cargarPerfil() {
+        if (uid.length < 6) {
 
-    const token = await obtenerToken();
+            message.textContent = "⚠️ El ID parece demasiado corto.";
+            player.classList.remove("show");
+            jugadorEncontrado = false;
+            actualizarResumen();
 
-    if (!token) {
-        perfilActual = null;
-        actualizarBotonCuenta();
+            return;
+        }
+
+        document.getElementById("playerName").textContent = "ID ingresado";
+        document.getElementById("playerId").textContent = "ID: " + uid;
+
+        message.textContent = "✅ ID ingresado correctamente.";
+
+        player.classList.add("show");
+
+        jugadorEncontrado = true;
+
         actualizarResumen();
-        return;
-    }
-
-    try {
-
-        const respuesta = await fetch(
-            `${API_URL}/api/perfil`,
-            {
-                headers: {
-                    "Authorization": `Bearer ${token}`
-                }
-            }
-        );
-
-        const datos = await respuesta.json();
-
-        if (!respuesta.ok || !datos.ok) {
-            throw new Error(
-                datos.error || "No se pudo cargar el perfil."
-            );
-        }
-
-        perfilActual = datos.perfil || null;
-
-    } catch (error) {
-
-        perfilActual = null;
 
     }
 
-    actualizarBotonCuenta();
-    actualizarResumen();
-}
+    function seleccionarPaquete(elemento, diamantes, precio, variantId) {
 
-function mostrarPerfil() {
+        document
+            .querySelectorAll(".package")
+            .forEach(pkg => pkg.classList.remove("selected"));
 
-    document.getElementById("authLoginView").style.display = "none";
-    document.getElementById("profileView").style.display = "block";
+        elemento.classList.add("selected");
 
-    document.getElementById("profileName").textContent =
-        perfilActual?.nombre ||
-        usuarioActual?.user_metadata?.full_name ||
-        usuarioActual?.user_metadata?.name ||
-        "Usuario";
+        paqueteSeleccionado = {
+            diamantes: diamantes,
+            precio: precio,
+            variant_id: variantId
+        };
 
-    document.getElementById("profileEmail").textContent =
-        perfilActual?.email ||
-        usuarioActual?.email ||
-        "-";
-
-    document.getElementById("profileCode").textContent =
-        perfilActual?.codigo_descuento ||
-        "Sin código";
-
-    document.getElementById("profileUses").textContent =
-        Number(perfilActual?.usos_codigo || 0);
-
-}
-
-function abrirCuenta() {
-
-    document.getElementById("authModal").classList.add("show");
-
-    if (usuarioActual) {
-
-        cargarPerfil().then(() => {
-            mostrarPerfil();
-        });
-
-    } else {
-
-        mostrarLogin();
-
-    }
-}
-
-function cerrarCuenta() {
-
-    document
-        .getElementById("authModal")
-        .classList.remove("show");
-
-    document.getElementById("authMessage").textContent = "";
-
-}
-
-function mostrarLogin() {
-
-    modoAuth = "login";
-
-    document.getElementById("loginTab").classList.add("active");
-    document.getElementById("registerTab").classList.remove("active");
-
-    document.getElementById("registerNameGroup").style.display = "none";
-
-    document.getElementById("authSubmitButton").textContent =
-        "Iniciar sesión";
-
-    document.getElementById("authPassword").autocomplete =
-        "current-password";
-
-    document.getElementById("authMessage").textContent = "";
-
-    document.getElementById("authLoginView").style.display = "block";
-    document.getElementById("profileView").style.display = "none";
-
-}
-
-function mostrarRegistro() {
-
-    modoAuth = "register";
-
-    document.getElementById("loginTab").classList.remove("active");
-    document.getElementById("registerTab").classList.add("active");
-
-    document.getElementById("registerNameGroup").style.display = "block";
-
-    document.getElementById("authSubmitButton").textContent =
-        "Crear cuenta";
-
-    document.getElementById("authPassword").autocomplete =
-        "new-password";
-
-    document.getElementById("authMessage").textContent = "";
-
-}
-
-async function procesarAuth() {
-
-    const email =
-        document.getElementById("authEmail").value.trim();
-
-    const password =
-        document.getElementById("authPassword").value;
-
-    const nombre =
-        document.getElementById("registerName").value.trim();
-
-    const message =
-        document.getElementById("authMessage");
-
-    const button =
-        document.getElementById("authSubmitButton");
-
-    if (!email) {
-
-        message.textContent =
-            "⚠️ Ingresá tu correo electrónico.";
-
-        return;
+        actualizarResumen();
 
     }
 
-    if (!password || password.length < 6) {
+    function actualizarResumen() {
 
-        message.textContent =
-            "⚠️ La contraseña debe tener al menos 6 caracteres.";
+        const uid = document.getElementById("uid").value.trim();
 
-        return;
+        if (jugadorEncontrado) {
 
-    }
+            document.getElementById("summaryPlayer").textContent =
+                document.getElementById("playerName").textContent;
 
-    if (modoAuth === "register" && !nombre) {
-
-        message.textContent =
-            "⚠️ Ingresá tu nombre.";
-
-        return;
-
-    }
-
-    button.disabled = true;
-    button.textContent = "Procesando...";
-
-    try {
-
-        if (modoAuth === "register") {
-
-            const { data, error } =
-                await supabaseClient.auth.signUp({
-                    email,
-                    password,
-                    options: {
-                        data: {
-                            full_name: nombre
-                        }
-                    }
-                });
-
-            if (error) {
-                throw error;
-            }
-
-            if (data.session) {
-
-                usuarioActual = data.user;
-
-                await cargarPerfil();
-
-                message.textContent =
-                    "✅ Cuenta creada correctamente.";
-
-                setTimeout(() => {
-                    cerrarCuenta();
-                }, 700);
-
-            } else {
-
-                message.textContent =
-                    "✅ Cuenta creada. Revisá tu correo para confirmar la cuenta.";
-
-            }
+            document.getElementById("summaryId").textContent = uid;
 
         } else {
 
-            const { data, error } =
-                await supabaseClient.auth.signInWithPassword({
-                    email,
-                    password
-                });
+            document.getElementById("summaryPlayer").textContent =
+                "No seleccionado";
 
-            if (error) {
-                throw error;
-            }
+            document.getElementById("summaryId").textContent = "-";
 
-            usuarioActual = data.user;
-
-            await cargarPerfil();
-
-            message.textContent =
-                "✅ Sesión iniciada.";
-
-            setTimeout(() => {
-                cerrarCuenta();
-            }, 500);
-
-        }
-
-    } catch (error) {
-
-        message.textContent =
-            "❌ " +
-            (
-                error.message ||
-                "No se pudo completar la operación."
-            );
-
-    } finally {
-
-        button.disabled = false;
-
-        button.textContent =
-            modoAuth === "register"
-                ? "Crear cuenta"
-                : "Iniciar sesión";
-
-    }
-}
-
-async function cerrarSesion() {
-
-    try {
-
-        await supabaseClient.auth.signOut();
-
-    } catch (error) {
-    }
-
-    usuarioActual = null;
-    perfilActual = null;
-
-    codigoDescuentoAplicado = "";
-    descuentoAplicado = 0;
-    porcentajeDescuentoAplicado = 0;
-
-    document.getElementById("discountCode").value = "";
-    document.getElementById("discountMessage").textContent = "";
-
-    actualizarBotonCuenta();
-    actualizarResumen();
-
-    cerrarCuenta();
-
-}
-
-async function copiarCodigoPropio() {
-
-    const codigo =
-        perfilActual?.codigo_descuento;
-
-    if (!codigo) {
-        return;
-    }
-
-    try {
-
-        await navigator.clipboard.writeText(codigo);
-
-        const boton =
-            document.querySelector(".copy-code");
-
-        const textoOriginal =
-            boton.textContent;
-
-        boton.textContent =
-            "✅ Código copiado";
-
-        setTimeout(() => {
-            boton.textContent = textoOriginal;
-        }, 1500);
-
-    } catch (error) {
-
-        alert("Tu código es: " + codigo);
-
-    }
-}
-
-function limpiarEstadoCodigo() {
-
-    codigoDescuentoAplicado = "";
-    descuentoAplicado = 0;
-    porcentajeDescuentoAplicado = 0;
-
-    const message =
-        document.getElementById("discountMessage");
-
-    message.textContent = "";
-    message.className = "discount-message";
-
-    actualizarResumen();
-
-}
-
-async function validarCodigoDescuento() {
-
-    const codigo =
-        document
-            .getElementById("discountCode")
-            .value
-            .trim()
-            .toUpperCase();
-
-    const message =
-        document.getElementById("discountMessage");
-
-    const button =
-        document.getElementById("discountButton");
-
-    if (!usuarioActual) {
-
-        message.textContent =
-            "⚠️ Primero iniciá sesión.";
-
-        message.className =
-            "discount-message error";
-
-        abrirCuenta();
-
-        return;
-
-    }
-
-    if (!codigo) {
-
-        message.textContent =
-            "⚠️ Ingresá un código.";
-
-        message.className =
-            "discount-message error";
-
-        return;
-
-    }
-
-    button.disabled = true;
-    button.textContent = "Validando...";
-
-    try {
-
-        const token =
-            await obtenerToken();
-
-        if (!token) {
-            throw new Error("La sesión expiró.");
-        }
-
-        const respuesta =
-            await fetch(
-                `${API_URL}/api/validar-codigo`,
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        codigo
-                    })
-                }
-            );
-
-        const datos =
-            await respuesta.json();
-
-        if (!respuesta.ok || !datos.ok) {
-
-            throw new Error(
-                datos.error ||
-                "Código inválido."
-            );
-
-        }
-
-        codigoDescuentoAplicado = codigo;
-
-        porcentajeDescuentoAplicado =
-            Number(
-                datos.porcentaje_descuento || 0
-            );
-
-        if (
-            Number.isNaN(porcentajeDescuentoAplicado) ||
-            porcentajeDescuentoAplicado < 0
-        ) {
-            porcentajeDescuentoAplicado = 0;
         }
 
         if (paqueteSeleccionado) {
 
-            descuentoAplicado =
-                calcularDescuentoLocal(
-                    paqueteSeleccionado.precio,
-                    porcentajeDescuentoAplicado
-                );
+            document.getElementById("summaryDiamonds").textContent =
+                paqueteSeleccionado.diamantes + " 💎";
+
+            document.getElementById("total").textContent =
+                "$" + paqueteSeleccionado.precio.toLocaleString("es-AR");
 
         } else {
 
-            descuentoAplicado = 0;
+            document.getElementById("summaryDiamonds").textContent = "-";
+            document.getElementById("total").textContent = "$0";
 
         }
 
-        message.textContent =
-            `✅ Código válido: ${porcentajeDescuentoAplicado}% de descuento.`;
-
-        message.className =
-            "discount-message success";
-
-        actualizarResumen();
-
-    } catch (error) {
-
-        codigoDescuentoAplicado = "";
-        descuentoAplicado = 0;
-        porcentajeDescuentoAplicado = 0;
-
-        message.textContent =
-            "❌ " +
-            (
-                error.message ||
-                "Código inválido."
-            );
-
-        message.className =
-            "discount-message error";
-
-        actualizarResumen();
-
-    } finally {
-
-        button.disabled = false;
-        button.textContent = "Aplicar";
-
-    }
-}
-
-function calcularDescuentoLocal(precio, porcentaje) {
-
-    const valor =
-        Number(precio || 0);
-
-    const porcentajeNumero =
-        Number(porcentaje || 0);
-
-    if (
-        valor <= 0 ||
-        porcentajeNumero <= 0
-    ) {
-        return 0;
-    }
-
-    return Math.round(
-        valor * porcentajeNumero / 100
-    );
-
-}
-
-function obtenerPrecioVisual() {
-
-    if (!paqueteSeleccionado) {
-        return 0;
-    }
-
-    if (
-        !codigoDescuentoAplicado ||
-        porcentajeDescuentoAplicado <= 0
-    ) {
-        return Number(
-            paqueteSeleccionado.precio
-        );
-    }
-
-    return Math.max(
-        0,
-        Number(paqueteSeleccionado.precio) -
-        calcularDescuentoLocal(
-            paqueteSeleccionado.precio,
-            porcentajeDescuentoAplicado
-        )
-    );
-
-}
-
-async function buscarJugador() {
-
-    const uidInput =
-        document.getElementById("uid");
-
-    const uid =
-        uidInput.value.trim();
-
-    const message =
-        document.getElementById("message");
-
-    const player =
-        document.getElementById("player");
-
-    if (!uid) {
-
-        message.textContent =
-            "⚠️ Primero ingresá un ID.";
-
-        player.classList.remove("show");
-        jugadorEncontrado = false;
-        actualizarResumen();
-
-        return;
+        document.getElementById("buyButton").disabled =
+            !(jugadorEncontrado && paqueteSeleccionado);
 
     }
 
-    if (!/^\d+$/.test(uid)) {
+    async function comprar() {
 
-        message.textContent =
-            "⚠️ El ID debe contener solamente números.";
+        if (!jugadorEncontrado || !paqueteSeleccionado || pedidoActual) {
+            return;
+        }
 
-        player.classList.remove("show");
-        jugadorEncontrado = false;
-        actualizarResumen();
-
-        return;
-
-    }
-
-    if (uid.length < 6) {
-
-        message.textContent =
-            "⚠️ El ID parece demasiado corto.";
-
-        player.classList.remove("show");
-        jugadorEncontrado = false;
-        actualizarResumen();
-
-        return;
-
-    }
-
-    document.getElementById("playerName").textContent =
-        "ID ingresado";
-
-    document.getElementById("playerId").textContent =
-        "ID: " + uid;
-
-    message.textContent =
-        "✅ ID ingresado correctamente.";
-
-    player.classList.add("show");
-
-    jugadorEncontrado = true;
-
-    actualizarResumen();
-
-}
-
-function seleccionarPaquete(
-    elemento,
-    diamantes,
-    precio,
-    variantId
-) {
-
-    document
-        .querySelectorAll(".package")
-        .forEach(pkg =>
-            pkg.classList.remove("selected")
-        );
-
-    elemento.classList.add("selected");
-
-    paqueteSeleccionado = {
-        diamantes,
-        precio,
-        variant_id: variantId
-    };
-
-    if (codigoDescuentoAplicado) {
-
-        descuentoAplicado =
-            calcularDescuentoLocal(
-                precio,
-                porcentajeDescuentoAplicado
-            );
-
-    }
-
-    actualizarResumen();
-
-}
-
-function actualizarResumen() {
-
-    const uid =
-        document
-            .getElementById("uid")
-            .value
-            .trim();
-
-    if (jugadorEncontrado) {
-
-        document.getElementById("summaryPlayer").textContent =
+        const nombre =
             document.getElementById("playerName").textContent;
 
-        document.getElementById("summaryId").textContent =
-            uid;
+        const uid =
+            document.getElementById("uid").value.trim();
 
-    } else {
+        const diamantes =
+            paqueteSeleccionado.diamantes;
 
-        document.getElementById("summaryPlayer").textContent =
-            "No seleccionado";
+        const precio =
+            paqueteSeleccionado.precio;
 
-        document.getElementById("summaryId").textContent =
-            "-";
+        const precioMostrar =
+            precio.toLocaleString("es-AR");
 
-    }
+        const merchantRef =
+            "prueba-" + Date.now();
 
-    const discountRow =
-        document.getElementById("summaryDiscountRow");
+        pedidoActual = {
+            merchant_ref: merchantRef,
+            pagando: false,
+            cancelando: false
+        };
 
-    const codeRow =
-        document.getElementById("summaryCodeRow");
+        const modal = document.getElementById("modal");
+        const closeButton = document.getElementById("closeButton");
+        const cancelButton = document.getElementById("cancelButton");
 
-    const originalTotal =
-        document.getElementById("originalTotal");
+        closeButton.disabled = true;
+        closeButton.textContent = "Preparando...";
+        cancelButton.style.display = "none";
+        cancelButton.disabled = false;
+        cancelButton.textContent = "Cancelar pedido";
 
-    if (paqueteSeleccionado) {
+        document.getElementById("paymentOptions").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
 
-        document.getElementById("summaryDiamonds").textContent =
-            paqueteSeleccionado.diamantes + " 💎";
+        document.getElementById("modalIcon").textContent = "⏳";
 
-        const precioOriginal =
-            Number(paqueteSeleccionado.precio);
+        document.getElementById("modalTitle").textContent =
+            "Preparando pedido";
 
-        const descuento =
-            codigoDescuentoAplicado
-                ? calcularDescuentoLocal(
-                    precioOriginal,
-                    porcentajeDescuentoAplicado
-                )
-                : 0;
+        document.getElementById("modalText").innerHTML = `
+            Estamos preparando tu pedido.<br><br>
+            Jugador: <strong>${nombre}</strong><br>
+            Paquete: <strong>${diamantes} 💎</strong><br>
+            Total: <strong>$${precioMostrar}</strong>
+        `;
 
-        const precioFinal =
-            Math.max(
-                0,
-                precioOriginal - descuento
-            );
+        modal.classList.add("show");
 
-        document.getElementById("total").textContent =
-            "$" +
-            precioFinal.toLocaleString("es-AR");
+        try {
 
-        if (descuento > 0) {
-
-            discountRow.style.display = "flex";
-
-            document.getElementById("summaryDiscount").textContent =
-                "-$" +
-                descuento.toLocaleString("es-AR") +
-                ` (${porcentajeDescuentoAplicado}%)`;
-
-            codeRow.style.display = "flex";
-
-            document.getElementById("summaryCode").textContent =
-                codigoDescuentoAplicado;
-
-            originalTotal.style.display = "block";
-
-            originalTotal.textContent =
-                "$" +
-                precioOriginal.toLocaleString("es-AR");
-
-        } else {
-
-            discountRow.style.display = "none";
-            codeRow.style.display = "none";
-            originalTotal.style.display = "none";
-
-        }
-
-    } else {
-
-        document.getElementById("summaryDiamonds").textContent =
-            "-";
-
-        document.getElementById("total").textContent =
-            "$0";
-
-        discountRow.style.display = "none";
-        codeRow.style.display = "none";
-        originalTotal.style.display = "none";
-
-    }
-
-    const puedeComprar =
-        jugadorEncontrado &&
-        paqueteSeleccionado &&
-        !!usuarioActual;
-
-    document.getElementById("buyButton").disabled =
-        !puedeComprar;
-
-    document.getElementById("loginRequired").style.display =
-        (
-            jugadorEncontrado &&
-            paqueteSeleccionado &&
-            !usuarioActual
-        )
-            ? "block"
-            : "none";
-
-}
-
-async function comprar() {
-
-    if (
-        !jugadorEncontrado ||
-        !paqueteSeleccionado ||
-        pedidoActual
-    ) {
-        return;
-    }
-
-    if (!usuarioActual) {
-
-        abrirCuenta();
-
-        return;
-
-    }
-
-    const token =
-        await obtenerToken();
-
-    if (!token) {
-
-        usuarioActual = null;
-        perfilActual = null;
-
-        actualizarBotonCuenta();
-        actualizarResumen();
-
-        abrirCuenta();
-
-        return;
-
-    }
-
-    const nombre =
-        document
-            .getElementById("playerName")
-            .textContent;
-
-    const uid =
-        document
-            .getElementById("uid")
-            .value
-            .trim();
-
-    const diamantes =
-        paqueteSeleccionado.diamantes;
-
-    const precio =
-        paqueteSeleccionado.precio;
-
-    const precioMostrar =
-        obtenerPrecioVisual()
-            .toLocaleString("es-AR");
-
-    const merchantRef =
-        "prueba-" + Date.now();
-
-    pedidoActual = {
-        merchant_ref: merchantRef,
-        pagando: false,
-        cancelando: false
-    };
-
-    const modal =
-        document.getElementById("modal");
-
-    const closeButton =
-        document.getElementById("closeButton");
-
-    const cancelButton =
-        document.getElementById("cancelButton");
-
-    closeButton.disabled = true;
-    closeButton.textContent = "Preparando...";
-
-    cancelButton.style.display = "none";
-    cancelButton.disabled = false;
-    cancelButton.textContent = "Cancelar pedido";
-
-    document.getElementById("paymentOptions").style.display =
-        "none";
-
-    document.getElementById("transferConfirmBox").style.display =
-        "none";
-
-    document.getElementById("transferBox").style.display =
-        "none";
-
-    document.getElementById("modalIcon").textContent =
-        "⏳";
-
-    document.getElementById("modalTitle").textContent =
-        "Preparando pedido";
-
-    document.getElementById("modalText").innerHTML = `
-        Estamos preparando tu pedido.<br><br>
-        Jugador: <strong>${escapeHtmlAdmin(nombre)}</strong><br>
-        Paquete: <strong>${diamantes} 💎</strong><br>
-        Total: <strong>$${precioMostrar}</strong>
-    `;
-
-    modal.classList.add("show");
-
-    try {
-
-        const respuesta =
-            await fetch(
+            const respuesta = await fetch(
                 `${API_URL}/api/recarga-prueba`,
                 {
                     method: "POST",
                     headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
+                        "Content-Type": "application/json"
                     },
                     body: JSON.stringify({
                         paquete: String(diamantes),
                         game_id: uid,
                         merchant_ref: merchantRef,
-                        precio: precio,
-                        codigo_descuento:
-                            codigoDescuentoAplicado || null
+                        precio: precio
                     })
                 }
             );
 
-        const datos =
-            await respuesta.json();
+            const datos = await respuesta.json();
 
-        if (!respuesta.ok || !datos.ok) {
-
-            throw new Error(
-                datos.error ||
-                "No se pudo crear el pedido."
-            );
-
-        }
-
-        pedidoActual = {
-            ...datos.pedido,
-            pagando: false,
-            cancelando: false
-        };
-
-        const precioFinal =
-            Number(
-                pedidoActual.precio ||
-                precio
-            );
-
-        document.getElementById("modalIcon").textContent =
-            "💎";
-
-        document.getElementById("modalTitle").textContent =
-            "Pedido preparado";
-
-        document.getElementById("modalText").innerHTML = `
-            Jugador: <strong>${escapeHtmlAdmin(nombre)}</strong><br>
-            Paquete: <strong>${diamantes} 💎</strong><br>
-            Total: <strong>$${precioFinal.toLocaleString("es-AR")}</strong>
-            ${
-                pedidoActual.descuento_aplicado
-                    ? `<br><span style="color:#8cffad;">Descuento aplicado: -$${Number(pedidoActual.descuento_aplicado).toLocaleString("es-AR")}</span>`
-                    : ""
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error || "No se pudo crear el pedido."
+                );
             }
-            <br><br>
-            Elegí un método de pago para continuar.
-        `;
 
-        closeButton.disabled = false;
-        closeButton.textContent = "💳 Pagar ahora";
+            pedidoActual = {
+                ...datos.pedido,
+                pagando: false,
+                cancelando: false
+            };
 
-        cancelButton.style.display =
-            "block";
+            document.getElementById("modalIcon").textContent = "💎";
 
-    } catch (error) {
+            document.getElementById("modalTitle").textContent =
+                "Pedido preparado";
 
-        document.getElementById("modalIcon").textContent =
-            "❌";
+            document.getElementById("modalText").innerHTML = `
+                Jugador: <strong>${nombre}</strong><br>
+                Paquete: <strong>${diamantes} 💎</strong><br>
+                Total: <strong>$${precioMostrar}</strong>
+                <br><br>
+                Elegí un método de pago para continuar.
+            `;
+
+            closeButton.disabled = false;
+            closeButton.textContent = "💳 Pagar ahora";
+            cancelButton.style.display = "block";
+
+        } catch (error) {
+
+            document.getElementById("modalIcon").textContent = "❌";
+
+            document.getElementById("modalTitle").textContent =
+                "Error";
+
+            document.getElementById("modalText").innerHTML = `
+                No se pudo preparar el pedido.
+                <br><br>
+                Intentá nuevamente.
+            `;
+
+            closeButton.disabled = false;
+            closeButton.textContent = "💳 Pagar ahora";
+            cancelButton.style.display = "none";
+
+            pedidoActual = null;
+        }
+
+    }
+
+    function pagarAhora() {
+
+        if (!pedidoActual || !pedidoActual.merchant_ref) {
+            return;
+        }
+
+        const precio =
+            Number(pedidoActual.precio || paqueteSeleccionado?.precio || 0);
+
+        document.getElementById("modalIcon").textContent = "💳";
 
         document.getElementById("modalTitle").textContent =
-            "Error";
+            "Elegí cómo pagar";
 
         document.getElementById("modalText").innerHTML = `
-            No se pudo preparar el pedido.
+            Seleccioná uno de los métodos disponibles.
             <br><br>
-            ${escapeHtmlAdmin(
-                error.message ||
-                "Intentá nuevamente."
-            )}
+            Total: <strong>$${precio.toLocaleString("es-AR")}</strong>
         `;
 
-        closeButton.disabled = false;
-        closeButton.textContent =
-            "💳 Pagar ahora";
+        document.getElementById("paymentOptions").style.display = "flex";
+        document.getElementById("transferConfirmBox").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
 
-        cancelButton.style.display =
-            "none";
-
-        pedidoActual = null;
+        document.getElementById("closeButton").style.display = "none";
 
     }
 
-}
+    function mostrarTransferencia() {
 
-function pagarAhora() {
-
-    if (
-        !pedidoActual ||
-        !pedidoActual.merchant_ref
-    ) {
-        return;
-    }
-
-    const precio =
-        Number(
-            pedidoActual.precio ||
-            paqueteSeleccionado?.precio ||
-            0
-        );
-
-    document.getElementById("modalIcon").textContent =
-        "💳";
-
-    document.getElementById("modalTitle").textContent =
-        "Elegí cómo pagar";
-
-    document.getElementById("modalText").innerHTML = `
-        Seleccioná uno de los métodos disponibles.
-        <br><br>
-        Total: <strong>$${precio.toLocaleString("es-AR")}</strong>
-    `;
-
-    document.getElementById("paymentOptions").style.display =
-        "flex";
-
-    document.getElementById("transferConfirmBox").style.display =
-        "none";
-
-    document.getElementById("transferBox").style.display =
-        "none";
-
-    document.getElementById("closeButton").style.display =
-        "none";
-
-}
-
-function mostrarTransferencia() {
-
-    if (
-        !pedidoActual ||
-        !pedidoActual.merchant_ref
-    ) {
-        return;
-    }
-
-    document.getElementById("paymentOptions").style.display =
-        "none";
-
-    document.getElementById("transferBox").style.display =
-        "none";
-
-    document.getElementById("transferConfirmBox").style.display =
-        "block";
-
-    document.getElementById("closeButton").style.display =
-        "none";
-
-    document.getElementById("modalIcon").textContent =
-        "🏦";
-
-    document.getElementById("modalTitle").textContent =
-        "Transferencia bancaria";
-
-    document.getElementById("modalText").textContent =
-        "Acreditación manual";
-
-    const boton =
-        document.getElementById("confirmTransferButton");
-
-    boton.disabled = false;
-    boton.textContent = "✓ Confirmar";
-
-}
-
-async function confirmarTransferencia() {
-
-    if (
-        !pedidoActual ||
-        !pedidoActual.merchant_ref
-    ) {
-        return;
-    }
-
-    const boton =
-        document.getElementById("confirmTransferButton");
-
-    boton.disabled = true;
-    boton.textContent = "Guardando...";
-
-    try {
-
-        const token =
-            await obtenerToken();
-
-        if (!token) {
-            throw new Error("La sesión expiró. Iniciá sesión nuevamente.");
+        if (!pedidoActual || !pedidoActual.merchant_ref) {
+            return;
         }
 
-        const respuesta =
-            await fetch(
-                `${API_URL}/api/pedido/${encodeURIComponent(pedidoActual.merchant_ref)}/metodo-pago`,
-                {
-                    method: "PATCH",
-                    headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
-                    },
-                    body: JSON.stringify({
-                        metodo_pago:
-                            "TRANSFERENCIA_BANCARIA"
-                    })
-                }
-            );
+        document.getElementById("paymentOptions").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "block";
 
-        const datos =
-            await respuesta.json();
+        document.getElementById("closeButton").style.display = "none";
 
-        if (!respuesta.ok || !datos.ok) {
-
-            throw new Error(
-                datos.error ||
-                "No se pudo guardar el método de pago."
-            );
-
-        }
-
-        pedidoActual = {
-            ...datos.pedido,
-            pagando: false,
-            cancelando: false
-        };
-
-        document.getElementById("transferConfirmBox").style.display =
-            "none";
-
-        document.getElementById("transferBox").style.display =
-            "block";
-
-        document.getElementById("transferAmount").textContent =
-            "$" +
-            Number(
-                pedidoActual.precio || 0
-            ).toLocaleString("es-AR");
-
-        document.getElementById("modalIcon").textContent =
-            "🏦";
+        document.getElementById("modalIcon").textContent = "🏦";
 
         document.getElementById("modalTitle").textContent =
-            "Datos para transferir";
+            "Transferencia bancaria";
 
         document.getElementById("modalText").textContent =
-            "Realizá la transferencia por el importe exacto y luego enviá el comprobante.";
+            "Acreditación manual";
 
-        document.getElementById("cancelButton").style.display =
-            "block";
-
-    } catch (error) {
-
-        document.getElementById("modalText").textContent =
-            "❌ " +
-            (
-                error.message ||
-                "No se pudo guardar el método de pago."
-            );
+        const boton =
+            document.getElementById("confirmTransferButton");
 
         boton.disabled = false;
         boton.textContent = "✓ Confirmar";
 
     }
 
-}
+    async function confirmarTransferencia() {
 
-function volverMetodosPago() {
+        if (!pedidoActual || !pedidoActual.merchant_ref) {
+            return;
+        }
 
-    document.getElementById("transferConfirmBox").style.display =
-        "none";
+        const boton =
+            document.getElementById("confirmTransferButton");
 
-    document.getElementById("transferBox").style.display =
-        "none";
+        boton.disabled = true;
+        boton.textContent = "Guardando...";
 
-    pagarAhora();
+        try {
 
-}
+            const respuesta = await fetch(
+                `${API_URL}/api/pedido/${encodeURIComponent(pedidoActual.merchant_ref)}/metodo-pago`,
+                {
+                    method: "PATCH",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        metodo_pago: "TRANSFERENCIA_BANCARIA"
+                    })
+                }
+            );
 
-function enviarComprobante() {
+            const datos = await respuesta.json();
 
-    if (!pedidoActual) {
-        return;
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error ||
+                    "No se pudo guardar el método de pago."
+                );
+            }
+
+            pedidoActual = {
+                ...datos.pedido,
+                pagando: false,
+                cancelando: false
+            };
+
+            document.getElementById("transferConfirmBox").style.display = "none";
+            document.getElementById("transferBox").style.display = "block";
+
+            document.getElementById("transferAmount").textContent =
+                "$" +
+                Number(
+                    pedidoActual.precio || 0
+                ).toLocaleString("es-AR");
+
+            document.getElementById("modalIcon").textContent = "🏦";
+
+            document.getElementById("modalTitle").textContent =
+                "Datos para transferir";
+
+            document.getElementById("modalText").textContent =
+                "Realizá la transferencia por el importe exacto y luego enviá el comprobante.";
+
+            document.getElementById("cancelButton").style.display = "block";
+
+        } catch (error) {
+
+            document.getElementById("modalText").textContent =
+                "❌ " +
+                (
+                    error.message ||
+                    "No se pudo guardar el método de pago."
+                );
+
+            boton.disabled = false;
+            boton.textContent = "✓ Confirmar";
+
+        }
+
     }
 
-    const uid =
-        document
-            .getElementById("uid")
-            .value
-            .trim();
+    function volverMetodosPago() {
 
-    const paquete =
-        paqueteSeleccionado?.diamantes ||
-        pedidoActual.paquete;
+        document.getElementById("transferConfirmBox").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
 
-    const precio =
-        Number(
-            pedidoActual.precio ||
-            paqueteSeleccionado?.precio ||
-            0
-        );
+        pagarAhora();
 
-    const mensaje =
-        encodeURIComponent(
+    }
+
+    function enviarComprobante() {
+
+        if (!pedidoActual) {
+            return;
+        }
+
+        const uid =
+            document.getElementById("uid").value.trim();
+
+        const paquete =
+            paqueteSeleccionado?.diamantes || pedidoActual.paquete;
+
+        const precio =
+            Number(
+                pedidoActual.precio ||
+                paqueteSeleccionado?.precio ||
+                0
+            );
+
+        const mensaje = encodeURIComponent(
             `Hola, quiero enviar el comprobante de mi pedido ${pedidoActual.merchant_ref}. UID: ${uid}. Paquete: ${paquete} diamantes. Total: $${precio.toLocaleString("es-AR")}.`
         );
 
-    window.open(
-        `${CHAT_URL}?text=${mensaje}`,
-        "_blank"
-    );
+        window.open(
+            `${CHAT_URL}?text=${mensaje}`,
+            "_blank"
+        );
 
-}
-
-async function cancelarPedido() {
-
-    if (
-        !pedidoActual ||
-        !pedidoActual.merchant_ref ||
-        pedidoActual.cancelando
-    ) {
-        return;
     }
 
-    const merchantRef =
-        pedidoActual.merchant_ref;
+    async function cancelarPedido() {
 
-    const cancelButton =
-        document.getElementById("cancelButton");
-
-    const closeButton =
-        document.getElementById("closeButton");
-
-    pedidoActual.cancelando = true;
-
-    cancelButton.disabled = true;
-    cancelButton.textContent =
-        "Cancelando...";
-
-    closeButton.disabled = true;
-
-    try {
-
-        const token =
-            await obtenerToken();
-
-        if (!token) {
-            throw new Error(
-                "La sesión expiró. Iniciá sesión nuevamente."
-            );
+        if (
+            !pedidoActual ||
+            !pedidoActual.merchant_ref ||
+            pedidoActual.cancelando
+        ) {
+            return;
         }
 
-        const respuesta =
-            await fetch(
+        const merchantRef = pedidoActual.merchant_ref;
+        const cancelButton = document.getElementById("cancelButton");
+        const closeButton = document.getElementById("closeButton");
+
+        pedidoActual.cancelando = true;
+
+        cancelButton.disabled = true;
+        cancelButton.textContent = "Cancelando...";
+        closeButton.disabled = true;
+
+        try {
+
+            const respuesta = await fetch(
                 `${API_URL}/api/pedido/${encodeURIComponent(merchantRef)}/cancelar`,
                 {
                     method: "PATCH",
                     headers: {
-                        "Content-Type": "application/json",
-                        "Authorization": `Bearer ${token}`
+                        "Content-Type": "application/json"
                     }
                 }
             );
 
-        const datos =
-            await respuesta.json();
+            const datos = await respuesta.json();
 
-        if (!respuesta.ok || !datos.ok) {
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error || "No se pudo cancelar el pedido."
+                );
+            }
 
-            throw new Error(
-                datos.error ||
-                "No se pudo cancelar el pedido."
-            );
+            document.getElementById("modalIcon").textContent = "❌";
 
+            document.getElementById("modalTitle").textContent =
+                "Pedido cancelado";
+
+            document.getElementById("modalText").innerHTML = `
+                El pedido fue cancelado correctamente.
+            `;
+
+            document.getElementById("paymentOptions").style.display = "none";
+            document.getElementById("transferConfirmBox").style.display = "none";
+            document.getElementById("transferBox").style.display = "none";
+
+            cancelButton.style.display = "none";
+
+            pedidoActual = null;
+
+            closeButton.style.display = "block";
+            closeButton.disabled = false;
+            closeButton.textContent = "Cerrar";
+            closeButton.onclick = cerrarModal;
+
+        } catch (error) {
+
+            if (pedidoActual) {
+                pedidoActual.cancelando = false;
+            }
+
+            cancelButton.disabled = false;
+            cancelButton.textContent = "Cancelar pedido";
+            closeButton.disabled = false;
+
+            document.getElementById("modalText").innerHTML += `
+                <br><br>
+                No se pudo cancelar el pedido. Intentá nuevamente.
+            `;
         }
 
-        document.getElementById("modalIcon").textContent =
-            "❌";
+    }
 
-        document.getElementById("modalTitle").textContent =
-            "Pedido cancelado";
+    function cerrarModal() {
 
-        document.getElementById("modalText").innerHTML = `
-            El pedido fue cancelado correctamente.
-        `;
+        document
+            .getElementById("modal")
+            .classList.remove("show");
 
-        document.getElementById("paymentOptions").style.display =
-            "none";
+        const closeButton = document.getElementById("closeButton");
+        const cancelButton = document.getElementById("cancelButton");
 
-        document.getElementById("transferConfirmBox").style.display =
-            "none";
+        document.getElementById("paymentOptions").style.display = "none";
+        document.getElementById("transferConfirmBox").style.display = "none";
+        document.getElementById("transferBox").style.display = "none";
 
-        document.getElementById("transferBox").style.display =
-            "none";
+        closeButton.style.display = "block";
+        closeButton.disabled = false;
+        closeButton.textContent = "💳 Pagar ahora";
+        closeButton.onclick = pagarAhora;
 
-        cancelButton.style.display =
-            "none";
+        cancelButton.disabled = false;
+        cancelButton.textContent = "Cancelar pedido";
+        cancelButton.style.display = "none";
 
         pedidoActual = null;
 
-        closeButton.style.display =
-            "block";
+    }
 
-        closeButton.disabled =
-            false;
+    let adminSecret = "";
+    let pedidoAdminSeleccionado = null;
 
-        closeButton.textContent =
-            "Cerrar";
+    window.pedidosAdminActuales = [];
 
-        closeButton.onclick =
-            cerrarModal;
+    function abrirAdminLogin() {
 
-    } catch (error) {
+        document.getElementById("adminModal").classList.add("show");
 
-        if (pedidoActual) {
-            pedidoActual.cancelando = false;
+        document.getElementById("adminLoginView").style.display = "block";
+        document.getElementById("adminPanelView").style.display = "none";
+
+        document.getElementById("adminSecretInput").value = "";
+        document.getElementById("adminLoginMessage").textContent = "";
+
+        cerrarInspeccionAdmin();
+
+        setTimeout(
+            () => document.getElementById("adminSecretInput").focus(),
+            50
+        );
+
+    }
+
+    async function entrarAdmin() {
+
+        const input = document.getElementById("adminSecretInput");
+        const message = document.getElementById("adminLoginMessage");
+        const secret = input.value.trim();
+
+        if (!secret) {
+
+            message.textContent =
+                "⚠️ Ingresá la clave de administrador.";
+
+            return;
         }
 
-        cancelButton.disabled =
-            false;
+        message.textContent = "Verificando...";
 
-        cancelButton.textContent =
-            "Cancelar pedido";
+        try {
 
-        closeButton.disabled =
-            false;
-
-        document.getElementById("modalText").innerHTML += `
-            <br><br>
-            ${escapeHtmlAdmin(
-                error.message ||
-                "No se pudo cancelar el pedido. Intentá nuevamente."
-            )}
-        `;
-
-    }
-
-}
-
-function cerrarModal() {
-
-    document
-        .getElementById("modal")
-        .classList.remove("show");
-
-    const closeButton =
-        document.getElementById("closeButton");
-
-    const cancelButton =
-        document.getElementById("cancelButton");
-
-    document.getElementById("paymentOptions").style.display =
-        "none";
-
-    document.getElementById("transferConfirmBox").style.display =
-        "none";
-
-    document.getElementById("transferBox").style.display =
-        "none";
-
-    closeButton.style.display =
-        "block";
-
-    closeButton.disabled =
-        false;
-
-    closeButton.textContent =
-        "💳 Pagar ahora";
-
-    closeButton.onclick =
-        pagarAhora;
-
-    cancelButton.disabled =
-        false;
-
-    cancelButton.textContent =
-        "Cancelar pedido";
-
-    cancelButton.style.display =
-        "none";
-
-    pedidoActual = null;
-
-}
-
-let adminSecret = "";
-let pedidoAdminSeleccionado = null;
-
-window.pedidosAdminActuales = [];
-
-function abrirAdminLogin() {
-
-    document
-        .getElementById("adminModal")
-        .classList.add("show");
-
-    document.getElementById("adminLoginView").style.display =
-        "block";
-
-    document.getElementById("adminPanelView").style.display =
-        "none";
-
-    document.getElementById("adminSecretInput").value =
-        "";
-
-    document.getElementById("adminLoginMessage").textContent =
-        "";
-
-    cerrarInspeccionAdmin();
-
-    setTimeout(
-        () =>
-            document
-                .getElementById("adminSecretInput")
-                .focus(),
-        50
-    );
-
-}
-
-async function entrarAdmin() {
-
-    const input =
-        document.getElementById("adminSecretInput");
-
-    const message =
-        document.getElementById("adminLoginMessage");
-
-    const secret =
-        input.value.trim();
-
-    if (!secret) {
-
-        message.textContent =
-            "⚠️ Ingresá la clave de administrador.";
-
-        return;
-
-    }
-
-    message.textContent =
-        "Verificando...";
-
-    try {
-
-        const respuesta =
-            await fetch(
+            const respuesta = await fetch(
                 `${API_URL}/api/pedidos`,
                 {
                     headers: {
@@ -3584,171 +2172,124 @@ async function entrarAdmin() {
                 }
             );
 
-        const datos =
-            await respuesta.json();
+            const datos = await respuesta.json();
 
-        if (!respuesta.ok || !datos.ok) {
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error || "Clave incorrecta."
+                );
+            }
 
-            throw new Error(
-                datos.error ||
-                "Clave incorrecta."
-            );
+            adminSecret = secret;
+            window.pedidosAdminActuales = datos.pedidos || [];
+            pedidoAdminSeleccionado = null;
+
+            document.getElementById("adminLoginView").style.display = "none";
+            document.getElementById("adminPanelView").style.display = "flex";
+
+            document.getElementById("adminSearchInput").value = "";
+            document.getElementById("adminStatusFilter").value = "";
+            document.getElementById("adminAmountFilter").value = "";
+
+            cerrarInspeccionAdmin();
+
+            mostrarPedidosAdmin(window.pedidosAdminActuales);
+
+        } catch (error) {
+
+            message.textContent =
+                "❌ " + (error.message || "No se pudo acceder.");
 
         }
 
-        adminSecret = secret;
+    }
 
-        window.pedidosAdminActuales =
-            datos.pedidos || [];
+    function escapeHtmlAdmin(valor) {
 
-        pedidoAdminSeleccionado =
-            null;
-
-        document.getElementById("adminLoginView").style.display =
-            "none";
-
-        document.getElementById("adminPanelView").style.display =
-            "flex";
-
-        document.getElementById("adminSearchInput").value =
-            "";
-
-        document.getElementById("adminStatusFilter").value =
-            "";
-
-        document.getElementById("adminAmountFilter").value =
-            "";
-
-        cerrarInspeccionAdmin();
-
-        mostrarPedidosAdmin(
-            window.pedidosAdminActuales
-        );
-
-    } catch (error) {
-
-        message.textContent =
-            "❌ " +
-            (
-                error.message ||
-                "No se pudo acceder."
-            );
+        return String(valor ?? "")
+            .replace(/&/g, "&amp;")
+            .replace(/</g, "&lt;")
+            .replace(/>/g, "&gt;")
+            .replace(/\"/g, "&quot;")
+            .replace(/'/g, "&#039;");
 
     }
 
-}
+    function obtenerEstadoAdmin(pedido) {
 
-function escapeHtmlAdmin(valor) {
+        const estado =
+            String(pedido?.estado || "PENDIENTE").toUpperCase();
 
-    return String(valor ?? "")
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/\"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        if (estado === "ENVIADO") {
+            return "MANDADO";
+        }
 
-}
+        return estado;
 
-function obtenerEstadoAdmin(pedido) {
-
-    const estado =
-        String(
-            pedido?.estado ||
-            "PENDIENTE"
-        ).toUpperCase();
-
-    if (estado === "ENVIADO") {
-        return "MANDADO";
     }
 
-    return estado;
-
-}
-
-function estadoClaseAdmin(estado) {
-    return String(estado || "").toLowerCase();
-}
-
-function formatearMetodoPagoAdmin(metodo) {
-
-    const valor =
-        String(metodo || "").toUpperCase();
-
-    if (valor === "TRANSFERENCIA_BANCARIA") {
-        return "🏦 Transferencia bancaria";
+    function estadoClaseAdmin(estado) {
+        return String(estado || "").toLowerCase();
     }
 
-    if (valor === "NO_DEFINIDO") {
-        return "No seleccionado";
+    function formatearMetodoPagoAdmin(metodo) {
+
+        const valor =
+            String(metodo || "").toUpperCase();
+
+        if (valor === "TRANSFERENCIA_BANCARIA") {
+            return "🏦 Transferencia bancaria";
+        }
+
+        if (valor === "NO_DEFINIDO") {
+            return "No seleccionado";
+        }
+
+        if (!valor) {
+            return "No registrado";
+        }
+
+        return metodo;
+
     }
 
-    if (!valor) {
-        return "No registrado";
-    }
+    function aplicarFiltrosAdmin() {
 
-    return metodo;
+        const busqueda =
+            (document.getElementById("adminSearchInput")?.value || "")
+                .trim()
+                .toLowerCase();
 
-}
+        const estado =
+            document.getElementById("adminStatusFilter")?.value || "";
 
-function aplicarFiltrosAdmin() {
+        const monto =
+            document.getElementById("adminAmountFilter")?.value || "";
 
-    const busqueda =
-        (
-            document.getElementById(
-                "adminSearchInput"
-            )?.value ||
-            ""
-        )
-            .trim()
-            .toLowerCase();
-
-    const estado =
-        document.getElementById(
-            "adminStatusFilter"
-        )?.value || "";
-
-    const monto =
-        document.getElementById(
-            "adminAmountFilter"
-        )?.value || "";
-
-    const filtrados =
-        window.pedidosAdminActuales.filter(
-            pedido => {
+        const filtrados =
+            window.pedidosAdminActuales.filter(pedido => {
 
                 const uid =
-                    String(
-                        pedido.game_id || ""
-                    ).toLowerCase();
+                    String(pedido.game_id || "").toLowerCase();
 
                 const estadoPedido =
                     obtenerEstadoAdmin(pedido);
 
                 const precio =
-                    Number(
-                        pedido.precio || 0
-                    );
+                    Number(pedido.precio || 0);
 
-                if (
-                    busqueda &&
-                    !uid.includes(busqueda)
-                ) {
+                if (busqueda && !uid.includes(busqueda)) {
                     return false;
                 }
 
-                if (
-                    estado &&
-                    estadoPedido !== estado
-                ) {
+                if (estado && estadoPedido !== estado) {
                     return false;
                 }
 
                 if (monto) {
 
                     const partes =
-                        monto
-                            .split("-")
-                            .map(Number);
+                        monto.split("-").map(Number);
 
                     if (
                         precio < partes[0] ||
@@ -3761,1137 +2302,894 @@ function aplicarFiltrosAdmin() {
 
                 return true;
 
-            }
-        );
+            });
 
-    mostrarPedidosAdmin(filtrados);
+        mostrarPedidosAdmin(filtrados);
 
-}
+    }
 
-function mostrarPedidosAdmin(pedidos) {
+    function mostrarPedidosAdmin(pedidos) {
 
-    const contenedor =
-        document.getElementById(
-            "adminOrders"
-        );
+        const contenedor =
+            document.getElementById("adminOrders");
 
-    const mensaje =
-        document.getElementById(
-            "adminPanelMessage"
-        );
+        const mensaje =
+            document.getElementById("adminPanelMessage");
 
-    pedidos =
-        [...pedidos].sort(
-            (a, b) => {
+        pedidos = [...pedidos].sort((a, b) => {
 
-                const da =
-                    new Date(
-                        a.created_at || 0
-                    ).getTime();
+            const da =
+                new Date(a.created_at || 0).getTime();
 
-                const db =
-                    new Date(
-                        b.created_at || 0
-                    ).getTime();
+            const db =
+                new Date(b.created_at || 0).getTime();
 
-                return db - da;
+            return db - da;
 
-            }
-        );
+        });
 
-    if (!pedidos.length) {
+        if (!pedidos.length) {
+
+            mensaje.textContent =
+                window.pedidosAdminActuales.length
+                    ? "No hay pedidos que coincidan con los filtros."
+                    : "No hay pedidos registrados.";
+
+            contenedor.innerHTML = `
+                <div class="admin-orders-wrap">
+                    <div class="admin-empty">
+                        No hay pedidos para mostrar.
+                    </div>
+                </div>
+            `;
+
+            actualizarAccionesAdmin();
+
+            return;
+        }
 
         mensaje.textContent =
-            window.pedidosAdminActuales.length
-                ? "No hay pedidos que coincidan con los filtros."
-                : "No hay pedidos registrados.";
+            `${pedidos.length} de ${window.pedidosAdminActuales.length} pedido${window.pedidosAdminActuales.length === 1 ? "" : "s"}.`;
 
         contenedor.innerHTML = `
             <div class="admin-orders-wrap">
-                <div class="admin-empty">
-                    No hay pedidos para mostrar.
-                </div>
+
+                <table class="admin-orders">
+
+                    <thead>
+
+                        <tr>
+                            <th>ID</th>
+                            <th>Valor</th>
+                            <th>N.º de pedido</th>
+                            <th>Cantidad</th>
+                            <th>Estado</th>
+                            <th>Referencia de comerciante</th>
+                        </tr>
+
+                    </thead>
+
+                    <tbody>
+
+                        ${pedidos.map(pedido => {
+
+                            const estado =
+                                obtenerEstadoAdmin(pedido);
+
+                            const ref =
+                                String(pedido.merchant_ref)
+                                    .replace(/\\/g, "\\\\")
+                                    .replace(/'/g, "\\'");
+
+                            return `
+                                <tr
+                                    data-ref="${escapeHtmlAdmin(pedido.merchant_ref)}"
+                                    onclick="seleccionarPedidoAdmin('${ref}')"
+                                    class="${pedidoAdminSeleccionado === pedido.merchant_ref ? "selected" : ""}"
+                                >
+                                    <td>${escapeHtmlAdmin(pedido.game_id)}</td>
+
+                                    <td>
+                                        $${Number(pedido.precio || 0).toLocaleString("es-AR")}
+                                    </td>
+
+                                    <td>
+                                        #${escapeHtmlAdmin(pedido.id)}
+                                    </td>
+
+                                    <td>
+                                        ${escapeHtmlAdmin(pedido.paquete)} 💎
+                                    </td>
+
+                                    <td>
+                                        <span class="admin-status admin-status-${estadoClaseAdmin(estado)}">
+                                            ${escapeHtmlAdmin(estado)}
+                                        </span>
+                                    </td>
+
+                                    <td>
+                                        ${escapeHtmlAdmin(pedido.merchant_ref)}
+                                    </td>
+                                </tr>
+                            `;
+
+                        }).join("")}
+
+                    </tbody>
+
+                </table>
+
             </div>
         `;
 
         actualizarAccionesAdmin();
 
-        return;
-
     }
 
-    mensaje.textContent =
-        `${pedidos.length} de ${window.pedidosAdminActuales.length} pedido${window.pedidosAdminActuales.length === 1 ? "" : "s"}.`;
+    function seleccionarPedidoAdmin(merchantRef) {
 
-    contenedor.innerHTML = `
-        <div class="admin-orders-wrap">
+        pedidoAdminSeleccionado = merchantRef;
 
-            <table class="admin-orders">
-
-                <thead>
-
-                    <tr>
-                        <th>ID</th>
-                        <th>Valor</th>
-                        <th>N.º de pedido</th>
-                        <th>Cantidad</th>
-                        <th>Estado</th>
-                        <th>Referencia de comerciante</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-
-                    ${pedidos.map(pedido => {
-
-                        const estado =
-                            obtenerEstadoAdmin(
-                                pedido
-                            );
-
-                        const ref =
-                            String(
-                                pedido.merchant_ref
-                            )
-                                .replace(
-                                    /\\/g,
-                                    "\\\\"
-                                )
-                                .replace(
-                                    /'/g,
-                                    "\\'"
-                                );
-
-                        return `
-                            <tr
-                                data-ref="${escapeHtmlAdmin(pedido.merchant_ref)}"
-                                onclick="seleccionarPedidoAdmin('${ref}')"
-                                class="${pedidoAdminSeleccionado === pedido.merchant_ref ? "selected" : ""}"
-                            >
-                                <td>
-                                    ${escapeHtmlAdmin(pedido.game_id)}
-                                </td>
-
-                                <td>
-                                    $${Number(pedido.precio || 0).toLocaleString("es-AR")}
-                                </td>
-
-                                <td>
-                                    #${escapeHtmlAdmin(pedido.id)}
-                                </td>
-
-                                <td>
-                                    ${escapeHtmlAdmin(pedido.paquete)} 💎
-                                </td>
-
-                                <td>
-                                    <span class="admin-status admin-status-${estadoClaseAdmin(estado)}">
-                                        ${escapeHtmlAdmin(estado)}
-                                    </span>
-                                </td>
-
-                                <td>
-                                    ${escapeHtmlAdmin(pedido.merchant_ref)}
-                                </td>
-                            </tr>
-                        `;
-
-                    }).join("")}
-
-                </tbody>
-
-            </table>
-
-        </div>
-    `;
-
-    actualizarAccionesAdmin();
-
-}
-
-function seleccionarPedidoAdmin(merchantRef) {
-
-    pedidoAdminSeleccionado =
-        merchantRef;
-
-    cerrarInspeccionAdmin();
-
-    aplicarFiltrosAdmin();
-
-    actualizarAccionesAdmin();
-
-}
-
-function actualizarAccionesAdmin() {
-
-    const pedido =
-        window.pedidosAdminActuales.find(
-            p =>
-                p.merchant_ref ===
-                pedidoAdminSeleccionado
-        );
-
-    const info =
-        document.getElementById(
-            "adminSelectionInfo"
-        );
-
-    const confirmar =
-        document.getElementById(
-            "adminConfirmButton"
-        );
-
-    const mandado =
-        document.getElementById(
-            "adminMandadoButton"
-        );
-
-    const entregado =
-        document.getElementById(
-            "adminEntregadoButton"
-        );
-
-    const cancelar =
-        document.getElementById(
-            "adminCancelButton"
-        );
-
-    const inspeccionar =
-        document.getElementById(
-            "adminInspectButton"
-        );
-
-    confirmar.style.display = "none";
-    mandado.style.display = "none";
-    entregado.style.display = "none";
-    cancelar.style.display = "none";
-
-    confirmar.disabled = true;
-    mandado.disabled = true;
-    entregado.disabled = true;
-    cancelar.disabled = true;
-    inspeccionar.disabled = true;
-
-    confirmar.textContent =
-        "✓ Confirmar pago";
-
-    mandado.textContent =
-        "📦 Marcar mandado";
-
-    entregado.textContent =
-        "✓ Marcar entregado";
-
-    cancelar.textContent =
-        "✕ Cancelar";
-
-    if (!pedido) {
-
-        info.textContent =
-            "Seleccioná un pedido para gestionarlo.";
-
-        return;
-
-    }
-
-    const estado =
-        obtenerEstadoAdmin(pedido);
-
-    info.innerHTML =
-        `Pedido <strong>#${escapeHtmlAdmin(pedido.id)}</strong> · Estado: <strong>${escapeHtmlAdmin(estado)}</strong>`;
-
-    inspeccionar.disabled =
-        false;
-
-    if (estado === "PENDIENTE") {
-
-        confirmar.style.display =
-            "block";
-
-        confirmar.disabled =
-            false;
-
-        cancelar.style.display =
-            "block";
-
-        cancelar.disabled =
-            false;
-
-    } else if (estado === "PAGADO") {
-
-        mandado.style.display =
-            "block";
-
-        mandado.disabled =
-            false;
-
-        cancelar.style.display =
-            "block";
-
-        cancelar.disabled =
-            false;
-
-    } else if (estado === "MANDADO") {
-
-        entregado.style.display =
-            "block";
-
-        entregado.disabled =
-            false;
-
-        cancelar.style.display =
-            "block";
-
-        cancelar.disabled =
-            false;
-
-    } else if (estado === "ENTREGADO") {
-
-        cancelar.style.display =
-            "block";
-
-        cancelar.disabled =
-            false;
-
-    } else {
-
-        cancelar.style.display =
-            "block";
-
-        cancelar.disabled =
-            false;
-
-    }
-
-}
-
-async function cargarPedidosAdmin() {
-
-    if (!adminSecret) {
-        return;
-    }
-
-    const mensaje =
-        document.getElementById(
-            "adminPanelMessage"
-        );
-
-    mensaje.textContent =
-        "Cargando pedidos...";
-
-    try {
-
-        const respuesta =
-            await fetch(
-                `${API_URL}/api/pedidos`,
-                {
-                    headers: {
-                        "x-admin-secret":
-                            adminSecret
-                    }
-                }
-            );
-
-        const datos =
-            await respuesta.json();
-
-        if (
-            !respuesta.ok ||
-            !datos.ok
-        ) {
-
-            throw new Error(
-                datos.error ||
-                "No se pudieron cargar los pedidos."
-            );
-
-        }
-
-        window.pedidosAdminActuales =
-            datos.pedidos || [];
-
-        if (
-            pedidoAdminSeleccionado &&
-            !window.pedidosAdminActuales.some(
-                p =>
-                    p.merchant_ref ===
-                    pedidoAdminSeleccionado
-            )
-        ) {
-
-            pedidoAdminSeleccionado =
-                null;
-
-        }
+        cerrarInspeccionAdmin();
 
         aplicarFiltrosAdmin();
 
-    } catch (error) {
+        actualizarAccionesAdmin();
+
+    }
+
+    function actualizarAccionesAdmin() {
+
+        const pedido =
+            window.pedidosAdminActuales.find(
+                p => p.merchant_ref === pedidoAdminSeleccionado
+            );
+
+        const info =
+            document.getElementById("adminSelectionInfo");
+
+        const confirmar =
+            document.getElementById("adminConfirmButton");
+
+        const mandado =
+            document.getElementById("adminMandadoButton");
+
+        const entregado =
+            document.getElementById("adminEntregadoButton");
+
+        const cancelar =
+            document.getElementById("adminCancelButton");
+
+        const inspeccionar =
+            document.getElementById("adminInspectButton");
+
+        confirmar.style.display = "none";
+        mandado.style.display = "none";
+        entregado.style.display = "none";
+        cancelar.style.display = "none";
+
+        confirmar.disabled = true;
+        mandado.disabled = true;
+        entregado.disabled = true;
+        cancelar.disabled = true;
+        inspeccionar.disabled = true;
+
+        confirmar.textContent = "✓ Confirmar pago";
+        mandado.textContent = "📦 Marcar mandado";
+        entregado.textContent = "✓ Marcar entregado";
+        cancelar.textContent = "✕ Cancelar";
+
+        if (!pedido) {
+
+            info.textContent =
+                "Seleccioná un pedido para gestionarlo.";
+
+            return;
+
+        }
+
+        const estado =
+            obtenerEstadoAdmin(pedido);
+
+        info.innerHTML =
+            `Pedido <strong>#${escapeHtmlAdmin(pedido.id)}</strong> · Estado: <strong>${escapeHtmlAdmin(estado)}</strong>`;
+
+        inspeccionar.disabled = false;
+
+        if (estado === "PENDIENTE") {
+
+            confirmar.style.display = "block";
+            confirmar.disabled = false;
+
+            cancelar.style.display = "block";
+            cancelar.disabled = false;
+
+        } else if (estado === "PAGADO") {
+
+            mandado.style.display = "block";
+            mandado.disabled = false;
+
+            cancelar.style.display = "block";
+            cancelar.disabled = false;
+
+        } else if (estado === "MANDADO") {
+
+            entregado.style.display = "block";
+            entregado.disabled = false;
+
+            cancelar.style.display = "block";
+            cancelar.disabled = false;
+
+        } else if (estado === "ENTREGADO") {
+
+            cancelar.style.display = "block";
+            cancelar.disabled = false;
+
+        } else {
+
+            cancelar.style.display = "block";
+            cancelar.disabled = false;
+
+        }
+
+    }
+
+    async function cargarPedidosAdmin() {
+
+        if (!adminSecret) {
+            return;
+        }
+
+        const mensaje =
+            document.getElementById("adminPanelMessage");
 
         mensaje.textContent =
-            "❌ " +
-            (
-                error.message ||
-                "No se pudieron cargar los pedidos."
-            );
+            "Cargando pedidos...";
+
+        try {
+
+            const respuesta =
+                await fetch(
+                    `${API_URL}/api/pedidos`,
+                    {
+                        headers: {
+                            "x-admin-secret": adminSecret
+                        }
+                    }
+                );
+
+            const datos =
+                await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+                throw new Error(
+                    datos.error ||
+                    "No se pudieron cargar los pedidos."
+                );
+            }
+
+            window.pedidosAdminActuales =
+                datos.pedidos || [];
+
+            if (
+                pedidoAdminSeleccionado &&
+                !window.pedidosAdminActuales.some(
+                    p =>
+                        p.merchant_ref ===
+                        pedidoAdminSeleccionado
+                )
+            ) {
+
+                pedidoAdminSeleccionado = null;
+
+            }
+
+            aplicarFiltrosAdmin();
+
+        } catch (error) {
+
+            mensaje.textContent =
+                "❌ " +
+                (error.message ||
+                    "No se pudieron cargar los pedidos.");
+
+        }
 
     }
 
-}
-
-async function cambiarEstadoAdmin(
-    estadoNuevo,
-    textoBoton
-) {
-
-    const pedido =
-        window.pedidosAdminActuales.find(
-            p =>
-                p.merchant_ref ===
-                pedidoAdminSeleccionado
-        );
-
-    if (!pedido) {
-        return;
-    }
-
-    const estadoActual =
-        obtenerEstadoAdmin(pedido);
-
-    const permitidos = {
-
-        PAGADO: [
-            "PENDIENTE"
-        ],
-
-        MANDADO: [
-            "PAGADO"
-        ],
-
-        ENTREGADO: [
-            "MANDADO"
-        ]
-
-    };
-
-    if (
-        !permitidos[estadoNuevo]?.includes(
-            estadoActual
-        )
+    async function cambiarEstadoAdmin(
+        estadoNuevo,
+        textoBoton
     ) {
 
-        return;
-
-    }
-
-    const botones = [
-        "adminConfirmButton",
-        "adminMandadoButton",
-        "adminEntregadoButton",
-        "adminCancelButton"
-    ].map(
-        id =>
-            document.getElementById(id)
-    );
-
-    botones.forEach(
-        b => b.disabled = true
-    );
-
-    const botonActivo =
-        botones.find(
-            b =>
-                b &&
-                b.textContent.includes(
-                    textoBoton
-                )
-        );
-
-    if (botonActivo) {
-
-        botonActivo.textContent =
-            "Procesando...";
-
-    }
-
-    try {
-
-        const respuesta =
-            await fetch(
-                `${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`,
-                {
-                    method: "PATCH",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json",
-
-                        "x-admin-secret":
-                            adminSecret
-                    },
-
-                    body: JSON.stringify({
-                        estado:
-                            estadoNuevo
-                    })
-                }
+        const pedido =
+            window.pedidosAdminActuales.find(
+                p =>
+                    p.merchant_ref ===
+                    pedidoAdminSeleccionado
             );
 
-        const datos =
-            await respuesta.json();
+        if (!pedido) {
+            return;
+        }
+
+        const estadoActual =
+            obtenerEstadoAdmin(pedido);
+
+        const permitidos = {
+
+            PAGADO: [
+                "PENDIENTE"
+            ],
+
+            MANDADO: [
+                "PAGADO"
+            ],
+
+            ENTREGADO: [
+                "MANDADO"
+            ]
+
+        };
 
         if (
-            !respuesta.ok ||
-            !datos.ok
+            !permitidos[estadoNuevo]?.includes(
+                estadoActual
+            )
         ) {
 
-            throw new Error(
-                datos.error ||
-                "No se pudo actualizar el estado."
-            );
+            return;
 
         }
 
-        pedidoAdminSeleccionado =
-            datos.pedido?.merchant_ref ||
-            pedidoAdminSeleccionado;
-
-        cerrarInspeccionAdmin();
-
-        await cargarPedidosAdmin();
-
-    } catch (error) {
-
-        document.getElementById(
-            "adminPanelMessage"
-        ).textContent =
-            "❌ " +
-            (
-                error.message ||
-                "No se pudo actualizar el estado."
-            );
-
-        actualizarAccionesAdmin();
-
-    }
-
-}
-
-function acreditarPedidoSeleccionado() {
-
-    cambiarEstadoAdmin(
-        "PAGADO",
-        "Confirmar pago"
-    );
-
-}
-
-function mandarPedidoSeleccionado() {
-
-    cambiarEstadoAdmin(
-        "MANDADO",
-        "Marcar mandado"
-    );
-
-}
-
-function entregarPedidoSeleccionado() {
-
-    cambiarEstadoAdmin(
-        "ENTREGADO",
-        "Marcar entregado"
-    );
-
-}
-
-async function cancelarPedidoSeleccionado() {
-
-    const pedido =
-        window.pedidosAdminActuales.find(
-            p =>
-                p.merchant_ref ===
-                pedidoAdminSeleccionado
-        );
-
-    if (!pedido) {
-        return;
-    }
-
-    const botones = [
-        "adminConfirmButton",
-        "adminMandadoButton",
-        "adminEntregadoButton",
-        "adminCancelButton"
-    ].map(
-        id =>
-            document.getElementById(id)
-    );
-
-    botones.forEach(
-        b => b.disabled = true
-    );
-
-    const cancelar =
-        document.getElementById(
+        const botones = [
+            "adminConfirmButton",
+            "adminMandadoButton",
+            "adminEntregadoButton",
             "adminCancelButton"
+        ].map(
+            id =>
+                document.getElementById(id)
         );
 
-    cancelar.style.display =
-        "block";
+        botones.forEach(
+            b => b.disabled = true
+        );
 
-    cancelar.textContent =
-        "Cancelando...";
-
-    try {
-
-        const respuesta =
-            await fetch(
-                `${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`,
-                {
-                    method: "PATCH",
-
-                    headers: {
-                        "Content-Type":
-                            "application/json",
-
-                        "x-admin-secret":
-                            adminSecret
-                    },
-
-                    body: JSON.stringify({
-                        estado:
-                            "RECHAZADO"
-                    })
-                }
+        const botonActivo =
+            botones.find(
+                b =>
+                    b &&
+                    b.textContent.includes(
+                        textoBoton
+                    )
             );
 
-        const datos =
-            await respuesta.json();
+        if (botonActivo) {
+            botonActivo.textContent =
+                "Procesando...";
+        }
 
-        if (
-            !respuesta.ok ||
-            !datos.ok
-        ) {
+        try {
 
-            throw new Error(
-                datos.error ||
-                "No se pudo cancelar el pedido."
-            );
+            const respuesta =
+                await fetch(
+                    `${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`,
+                    {
+                        method: "PATCH",
+
+                        headers: {
+                            "Content-Type": "application/json",
+                            "x-admin-secret": adminSecret
+                        },
+
+                        body: JSON.stringify({
+                            estado: estadoNuevo
+                        })
+                    }
+                );
+
+            const datos =
+                await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+
+                throw new Error(
+                    datos.error ||
+                    "No se pudo actualizar el estado."
+                );
+
+            }
+
+            pedidoAdminSeleccionado =
+                datos.pedido?.merchant_ref ||
+                pedidoAdminSeleccionado;
+
+            cerrarInspeccionAdmin();
+
+            await cargarPedidosAdmin();
+
+        } catch (error) {
+
+            document.getElementById(
+                "adminPanelMessage"
+            ).textContent =
+                "❌ " +
+                (
+                    error.message ||
+                    "No se pudo actualizar el estado."
+                );
+
+            actualizarAccionesAdmin();
 
         }
 
-        cerrarInspeccionAdmin();
+    }
 
-        await cargarPedidosAdmin();
+    function acreditarPedidoSeleccionado() {
 
-    } catch (error) {
+        cambiarEstadoAdmin(
+            "PAGADO",
+            "Confirmar pago"
+        );
 
-        document.getElementById(
-            "adminPanelMessage"
-        ).textContent =
-            "❌ " +
-            (
-                error.message ||
-                "No se pudo cancelar el pedido."
+    }
+
+    function mandarPedidoSeleccionado() {
+
+        cambiarEstadoAdmin(
+            "MANDADO",
+            "Marcar mandado"
+        );
+
+    }
+
+    function entregarPedidoSeleccionado() {
+
+        cambiarEstadoAdmin(
+            "ENTREGADO",
+            "Marcar entregado"
+        );
+
+    }
+
+    async function cancelarPedidoSeleccionado() {
+
+        const pedido =
+            window.pedidosAdminActuales.find(
+                p =>
+                    p.merchant_ref ===
+                    pedidoAdminSeleccionado
             );
 
-        actualizarAccionesAdmin();
+        if (!pedido) {
+            return;
+        }
 
-    } finally {
+        const botones = [
+            "adminConfirmButton",
+            "adminMandadoButton",
+            "adminEntregadoButton",
+            "adminCancelButton"
+        ].map(
+            id =>
+                document.getElementById(id)
+        );
 
+        botones.forEach(
+            b => b.disabled = true
+        );
+
+        const cancelar =
+            document.getElementById(
+                "adminCancelButton"
+            );
+
+        cancelar.style.display = "block";
         cancelar.textContent =
-            "✕ Cancelar";
+            "Cancelando...";
+
+        try {
+
+            const respuesta =
+                await fetch(
+                    `${API_URL}/api/admin/pedido/${encodeURIComponent(pedido.merchant_ref)}/estado`,
+                    {
+                        method: "PATCH",
+
+                        headers: {
+                            "Content-Type": "application/json",
+                            "x-admin-secret": adminSecret
+                        },
+
+                        body: JSON.stringify({
+                            estado: "RECHAZADO"
+                        })
+                    }
+                );
+
+            const datos =
+                await respuesta.json();
+
+            if (!respuesta.ok || !datos.ok) {
+
+                throw new Error(
+                    datos.error ||
+                    "No se pudo cancelar el pedido."
+                );
+
+            }
+
+            cerrarInspeccionAdmin();
+
+            await cargarPedidosAdmin();
+
+        } catch (error) {
+
+            document.getElementById(
+                "adminPanelMessage"
+            ).textContent =
+                "❌ " +
+                (
+                    error.message ||
+                    "No se pudo cancelar el pedido."
+                );
+
+            actualizarAccionesAdmin();
+
+        } finally {
+
+            cancelar.textContent =
+                "✕ Cancelar";
+
+        }
 
     }
 
-}
+    function inspeccionarPedidoSeleccionado() {
 
-function inspeccionarPedidoSeleccionado() {
+        const pedido =
+            window.pedidosAdminActuales.find(
+                p =>
+                    p.merchant_ref ===
+                    pedidoAdminSeleccionado
+            );
 
-    const pedido =
-        window.pedidosAdminActuales.find(
-            p =>
-                p.merchant_ref ===
-                pedidoAdminSeleccionado
-        );
+        const modal =
+            document.getElementById(
+                "adminInspectModal"
+            );
 
-    const modal =
-        document.getElementById(
-            "adminInspectModal"
-        );
+        const box =
+            document.getElementById(
+                "adminInspectBox"
+            );
 
-    const box =
-        document.getElementById(
-            "adminInspectBox"
-        );
+        if (!pedido) {
 
-    if (!pedido) {
+            cerrarInspeccionAdmin();
 
-        cerrarInspeccionAdmin();
+            return;
 
-        return;
+        }
 
-    }
+        const estado =
+            obtenerEstadoAdmin(pedido);
 
-    const estado =
-        obtenerEstadoAdmin(pedido);
+        const pasos = [
+            "PENDIENTE",
+            "PAGADO",
+            "MANDADO",
+            "ENTREGADO"
+        ];
 
-    const pasos = [
-        "PENDIENTE",
-        "PAGADO",
-        "MANDADO",
-        "ENTREGADO"
-    ];
+        const indice =
+            pasos.indexOf(estado);
 
-    const indice =
-        pasos.indexOf(estado);
+        const especial =
+            estado === "RECHAZADO" ||
+            estado === "ERROR" ||
+            estado === "CANCELADO";
 
-    const especial =
-        estado === "RECHAZADO" ||
-        estado === "ERROR" ||
-        estado === "CANCELADO";
+        const metodo =
+            formatearMetodoPagoAdmin(
+                pedido.metodo_pago ||
+                pedido.metodo_de_pago ||
+                ""
+            );
 
-    const metodo =
-        formatearMetodoPagoAdmin(
-            pedido.metodo_pago ||
-            pedido.metodo_de_pago ||
-            ""
-        );
+        const fecha =
+            pedido.created_at
+                ? new Date(pedido.created_at)
+                : null;
 
-    const fecha =
-        pedido.created_at
-            ? new Date(
-                pedido.created_at
-            )
-            : null;
+        const hora =
+            fecha &&
+            !Number.isNaN(fecha.getTime())
+                ? fecha.toLocaleString(
+                    "es-AR",
+                    {
+                        dateStyle: "short",
+                        timeStyle: "medium"
+                    }
+                )
+                : "No registrada";
 
-    const hora =
-        fecha &&
-        !Number.isNaN(
-            fecha.getTime()
-        )
-            ? fecha.toLocaleString(
-                "es-AR",
-                {
-                    dateStyle: "short",
-                    timeStyle: "medium"
-                }
-            )
-            : "No registrada";
+        let progreso = "";
 
-    let progreso = "";
+        if (especial) {
 
-    if (especial) {
+            progreso = `
+                <div class="admin-progress">
 
-        progreso = `
-            <div class="admin-progress">
+                    <div class="admin-progress-track">
 
-                <div class="admin-progress-track">
+                        ${pasos.map(
+                            (paso, i) => `
+                                <div class="admin-progress-step ${i <= Math.max(indice, 0) ? "done" : ""}">
+                                    <div class="admin-progress-dot">
+                                        ${i + 1}
+                                    </div>
 
-                    ${pasos.map(
-                        (paso, i) => `
-                            <div class="admin-progress-step ${i <= Math.max(indice, 0) ? "done" : ""}">
-                                <div class="admin-progress-dot">
-                                    ${i + 1}
+                                    <div class="admin-progress-label">
+                                        ${
+                                            paso === "PENDIENTE"
+                                                ? "Pendiente"
+                                                : paso === "PAGADO"
+                                                    ? "Pagado"
+                                                    : paso === "MANDADO"
+                                                        ? "Mandado"
+                                                        : "Entregado"
+                                        }
+                                    </div>
                                 </div>
+                            `
+                        ).join("")}
 
-                                <div class="admin-progress-label">
-                                    ${
-                                        paso === "PENDIENTE"
-                                            ? "Pendiente"
-                                            : paso === "PAGADO"
-                                                ? "Pagado"
-                                                : paso === "MANDADO"
-                                                    ? "Mandado"
-                                                    : "Entregado"
-                                    }
-                                </div>
+                        <div class="admin-progress-step ${estado === "RECHAZADO" || estado === "CANCELADO" ? "rejected" : "error"}">
+
+                            <div class="admin-progress-dot">
+                                !
                             </div>
-                        `
-                    ).join("")}
 
-                    <div class="admin-progress-step ${estado === "RECHAZADO" || estado === "CANCELADO" ? "rejected" : "error"}">
+                            <div class="admin-progress-label">
+                                ${escapeHtmlAdmin(estado)}
+                            </div>
 
-                        <div class="admin-progress-dot">
-                            !
-                        </div>
-
-                        <div class="admin-progress-label">
-                            ${escapeHtmlAdmin(estado)}
                         </div>
 
                     </div>
 
                 </div>
+            `;
+
+        } else {
+
+            progreso = `
+                <div class="admin-progress">
+
+                    <div class="admin-progress-track">
+
+                        ${pasos.map(
+                            (paso, i) => `
+                                <div class="admin-progress-step ${i < indice ? "done" : i === indice ? "active" : ""}">
+
+                                    <div class="admin-progress-dot">
+                                        ${i + 1}
+                                    </div>
+
+                                    <div class="admin-progress-label">
+                                        ${
+                                            paso === "PENDIENTE"
+                                                ? "Pendiente"
+                                                : paso === "PAGADO"
+                                                    ? "Pagado"
+                                                    : paso === "MANDADO"
+                                                        ? "Mandado"
+                                                        : "Entregado"
+                                        }
+                                    </div>
+
+                                </div>
+                            `
+                        ).join("")}
+
+                    </div>
+
+                </div>
+            `;
+
+        }
+
+        box.innerHTML = `
+
+            <div class="admin-inspect-top">
+
+                <div class="admin-inspect-title">
+                    🔍 Detalle del pedido #${escapeHtmlAdmin(pedido.id)}
+                </div>
+
+                <button
+                    class="admin-inspect-close"
+                    onclick="cerrarInspeccionAdmin()"
+                >
+                    ✕
+                </button>
 
             </div>
-        `;
 
-    } else {
+            <div class="admin-detail-grid">
 
-        progreso = `
-            <div class="admin-progress">
+                <div class="admin-detail">
+                    <span class="admin-detail-label">
+                        ID del jugador
+                    </span>
 
-                <div class="admin-progress-track">
+                    <span class="admin-detail-value">
+                        ${escapeHtmlAdmin(pedido.game_id)}
+                    </span>
+                </div>
 
-                    ${pasos.map(
-                        (paso, i) => `
-                            <div class="admin-progress-step ${i < indice ? "done" : i === indice ? "active" : ""}">
+                <div class="admin-detail">
+                    <span class="admin-detail-label">
+                        Cantidad
+                    </span>
 
-                                <div class="admin-progress-dot">
-                                    ${i + 1}
-                                </div>
+                    <span class="admin-detail-value">
+                        ${escapeHtmlAdmin(pedido.paquete)} 💎
+                    </span>
+                </div>
 
-                                <div class="admin-progress-label">
-                                    ${
-                                        paso === "PENDIENTE"
-                                            ? "Pendiente"
-                                            : paso === "PAGADO"
-                                                ? "Pagado"
-                                                : paso === "MANDADO"
-                                                    ? "Mandado"
-                                                    : "Entregado"
-                                    }
-                                </div>
+                <div class="admin-detail">
+                    <span class="admin-detail-label">
+                        Valor
+                    </span>
 
-                            </div>
-                        `
-                    ).join("")}
+                    <span class="admin-detail-value">
+                        $${Number(pedido.precio || 0).toLocaleString("es-AR")}
+                    </span>
+                </div>
+
+                <div class="admin-detail">
+                    <span class="admin-detail-label">
+                        Método de compra
+                    </span>
+
+                    <span class="admin-detail-value">
+                        ${escapeHtmlAdmin(metodo)}
+                    </span>
+                </div>
+
+                <div class="admin-detail">
+                    <span class="admin-detail-label">
+                        Referencia de comerciante
+                    </span>
+
+                    <span class="admin-detail-value">
+                        ${escapeHtmlAdmin(pedido.merchant_ref)}
+                    </span>
+                </div>
+
+                <div class="admin-detail">
+                    <span class="admin-detail-label">
+                        Horario de creación
+                    </span>
+
+                    <span class="admin-detail-value">
+                        ${escapeHtmlAdmin(hora)}
+                    </span>
+                </div>
+
+                <div class="admin-detail">
+                    <span class="admin-detail-label">
+                        Última actualización
+                    </span>
+
+                    <span class="admin-detail-value">
+                        ${
+                            escapeHtmlAdmin(
+                                pedido.updated_at
+                                    ? new Date(
+                                        pedido.updated_at
+                                    ).toLocaleString(
+                                        "es-AR",
+                                        {
+                                            dateStyle: "short",
+                                            timeStyle: "medium"
+                                        }
+                                    )
+                                    : "No registrada"
+                            )
+                        }
+                    </span>
+                </div>
+
+                <div class="admin-detail">
+
+                    <span class="admin-detail-label">
+                        Estado actual
+                    </span>
+
+                    <span class="admin-detail-value">
+
+                        <span class="admin-status admin-status-${estadoClaseAdmin(estado)}">
+                            ${escapeHtmlAdmin(estado)}
+                        </span>
+
+                    </span>
 
                 </div>
 
             </div>
+
+            ${progreso}
+
+            <div class="admin-inspect-footer">
+
+                <button
+                    class="back-btn"
+                    onclick="cerrarInspeccionAdmin()"
+                >
+                    Cerrar
+                </button>
+
+            </div>
+
         `;
 
+        modal.classList.add("show");
+
     }
 
-    box.innerHTML = `
+    function cerrarInspeccionAdmin(event) {
 
-        <div class="admin-inspect-top">
+        if (
+            event &&
+            event.target &&
+            event.target.id !== "adminInspectModal"
+        ) {
+            return;
+        }
 
-            <div class="admin-inspect-title">
-                🔍 Detalle del pedido #${escapeHtmlAdmin(pedido.id)}
-            </div>
+        const modal =
+            document.getElementById(
+                "adminInspectModal"
+            );
 
-            <button
-                class="admin-inspect-close"
-                onclick="cerrarInspeccionAdmin()"
-            >
-                ✕
-            </button>
+        if (modal) {
+            modal.classList.remove("show");
+        }
 
-        </div>
-
-        <div class="admin-detail-grid">
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    ID del jugador
-                </span>
-
-                <span class="admin-detail-value">
-                    ${escapeHtmlAdmin(pedido.game_id)}
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Cantidad
-                </span>
-
-                <span class="admin-detail-value">
-                    ${escapeHtmlAdmin(pedido.paquete)} 💎
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Valor
-                </span>
-
-                <span class="admin-detail-value">
-                    $${Number(pedido.precio || 0).toLocaleString("es-AR")}
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Precio original
-                </span>
-
-                <span class="admin-detail-value">
-                    $${Number(
-                        pedido.precio_original ||
-                        pedido.precio ||
-                        0
-                    ).toLocaleString("es-AR")}
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Descuento
-                </span>
-
-                <span class="admin-detail-value">
-                    ${
-                        Number(
-                            pedido.descuento_aplicado ||
-                            0
-                        ) > 0
-                            ? `-$${Number(pedido.descuento_aplicado).toLocaleString("es-AR")} (${Number(pedido.descuento_porcentaje || 0)}%)`
-                            : "Sin descuento"
-                    }
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Código de descuento
-                </span>
-
-                <span class="admin-detail-value">
-                    ${escapeHtmlAdmin(
-                        pedido.codigo_descuento ||
-                        "Ninguno"
-                    )}
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Método de compra
-                </span>
-
-                <span class="admin-detail-value">
-                    ${escapeHtmlAdmin(metodo)}
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Referencia de comerciante
-                </span>
-
-                <span class="admin-detail-value">
-                    ${escapeHtmlAdmin(pedido.merchant_ref)}
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Horario de creación
-                </span>
-
-                <span class="admin-detail-value">
-                    ${escapeHtmlAdmin(hora)}
-                </span>
-            </div>
-
-            <div class="admin-detail">
-                <span class="admin-detail-label">
-                    Última actualización
-                </span>
-
-                <span class="admin-detail-value">
-                    ${
-                        escapeHtmlAdmin(
-                            pedido.updated_at
-                                ? new Date(
-                                    pedido.updated_at
-                                ).toLocaleString(
-                                    "es-AR",
-                                    {
-                                        dateStyle: "short",
-                                        timeStyle: "medium"
-                                    }
-                                )
-                                : "No registrada"
-                        )
-                    }
-                </span>
-            </div>
-
-            <div class="admin-detail">
-
-                <span class="admin-detail-label">
-                    Estado actual
-                </span>
-
-                <span class="admin-detail-value">
-
-                    <span class="admin-status admin-status-${estadoClaseAdmin(estado)}">
-                        ${escapeHtmlAdmin(estado)}
-                    </span>
-
-                </span>
-
-            </div>
-
-        </div>
-
-        ${progreso}
-
-        <div class="admin-inspect-footer">
-
-            <button
-                class="back-btn"
-                onclick="cerrarInspeccionAdmin()"
-            >
-                Cerrar
-            </button>
-
-        </div>
-
-    `;
-
-    modal.classList.add("show");
-
-}
-
-function cerrarInspeccionAdmin(event) {
-
-    if (
-        event &&
-        event.target &&
-        event.target.id !==
-            "adminInspectModal"
-    ) {
-        return;
     }
 
-    const modal =
-        document.getElementById(
-            "adminInspectModal"
-        );
+    function cerrarAdmin() {
 
-    if (modal) {
-        modal.classList.remove("show");
+        cerrarInspeccionAdmin();
+
+        document
+            .getElementById("adminModal")
+            .classList.remove("show");
+
+        adminSecret = "";
+        pedidoAdminSeleccionado = null;
+        window.pedidosAdminActuales = [];
+
     }
-
-}
-
-function cerrarAdmin() {
-
-    cerrarInspeccionAdmin();
 
     document
-        .getElementById("adminModal")
-        .classList.remove("show");
+        .getElementById("adminSecretInput")
+        ?.addEventListener(
+            "keydown",
+            function(event) {
 
-    adminSecret = "";
-    pedidoAdminSeleccionado = null;
-    window.pedidosAdminActuales = [];
+                if (event.key === "Enter") {
+                    entrarAdmin();
+                }
 
-}
-
-document
-    .getElementById("adminSecretInput")
-    ?.addEventListener(
-        "keydown",
-        function(event) {
-
-            if (event.key === "Enter") {
-                entrarAdmin();
             }
-
-        }
-    );
-
-document
-    .getElementById("uid")
-    ?.addEventListener(
-        "input",
-        function() {
-            if (jugadorEncontrado) {
-                jugadorEncontrado = false;
-                document
-                    .getElementById("player")
-                    .classList.remove("show");
-            }
-
-            actualizarResumen();
-        }
-    );
-
-supabaseClient.auth.onAuthStateChange(
-    async (event, session) => {
-
-        usuarioActual =
-            session?.user || null;
-
-        if (usuarioActual) {
-
-            await cargarPerfil();
-
-        } else {
-
-            perfilActual = null;
-
-            codigoDescuentoAplicado = "";
-            descuentoAplicado = 0;
-            porcentajeDescuentoAplicado = 0;
-
-            const codigoInput =
-                document.getElementById(
-                    "discountCode"
-                );
-
-            if (codigoInput) {
-                codigoInput.value = "";
-            }
-
-            const message =
-                document.getElementById(
-                    "discountMessage"
-                );
-
-            if (message) {
-                message.textContent = "";
-                message.className =
-                    "discount-message";
-            }
-
-            actualizarBotonCuenta();
-            actualizarResumen();
-
-        }
-
-    }
-);
-
-async function iniciarAplicacion() {
-
-    try {
-
-        const sesion =
-            await obtenerSesion();
-
-        usuarioActual =
-            sesion?.user || null;
-
-        if (usuarioActual) {
-            await cargarPerfil();
-        } else {
-            actualizarBotonCuenta();
-            actualizarResumen();
-        }
-
-    } catch (error) {
-
-        usuarioActual = null;
-        perfilActual = null;
-
-        actualizarBotonCuenta();
-        actualizarResumen();
-
-    }
+        );
 
     comprobarServidor();
-
-}
-
-iniciarAplicacion();
 
 </script>
 

@@ -1,4 +1,3 @@
 User-agent: *
 Allow: /
-
 Sitemap: https://alexisXD-h.github.io/recargas-montefinix/sitemap.xml
